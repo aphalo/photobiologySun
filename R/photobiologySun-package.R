@@ -31,6 +31,6 @@
 #' @examples
 #' library(photobiologySun)
 #' library(photobiologyVIS)
-#' with(sun.data, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
-#' plot(s.e.irrad~w.length, data=sun1.data, main=comment(sun1.data), type="l")
+#' with(sun_May_morning.data, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
+#' plot(s.e.irrad~w.length, data=sun_May_morning.data, main=comment(sun_May_morning.data), type="l")
 NULL
