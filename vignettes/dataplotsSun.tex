@@ -1,6 +1,6 @@
 %\VignetteEngine{knitr}
-%\VignetteIndexEntry{UV-radiation quantification with R: Catalogue of lamps}
-%\VignetteDepends{knitr, photobiology, photobiologyLamps, photobiologygg, ggplot2}
+%\VignetteIndexEntry{UV-radiation quantification with R: Catalogue of solar spectra}
+%\VignetteDepends{knitr, photobiology, photobiologySun, photobiologygg, ggplot2}
 %\VignetteKeyword{misc}
 
 \documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
@@ -109,18 +109,18 @@ We define a function to do the actual plotting so as to not repeat code, and to 
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{lamp.plotter} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{lamp.name}\hlstd{,} \hlkwc{w.low} \hlstd{=} \hlnum{250}\hlstd{,} \hlkwc{w.high} \hlstd{=} \hlnum{900}\hlstd{,} \hlkwc{scaled} \hlstd{=} \hlstr{"peak"}\hlstd{) \{}
+\hlstd{source.plotter} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{source.name}\hlstd{,} \hlkwc{w.low} \hlstd{=} \hlnum{250}\hlstd{,} \hlkwc{w.high} \hlstd{=} \hlnum{900}\hlstd{,} \hlkwc{scaled} \hlstd{=} \hlstr{"peak"}\hlstd{) \{}
     \hlstd{w.length.out} \hlkwb{<-} \hlkwd{seq}\hlstd{(}\hlkwc{from} \hlstd{= w.low,} \hlkwc{to} \hlstd{= w.high,} \hlkwc{length.out} \hlstd{=} \hlnum{300}\hlstd{)}
-    \hlstd{spectrum.data} \hlkwb{<-} \hlkwd{calc_lamp_output}\hlstd{(}\hlkwc{w.length.out} \hlstd{= w.length.out,} \hlkwc{lamp.name} \hlstd{= lamp.name,}
+    \hlstd{spectrum.data} \hlkwb{<-} \hlkwd{calc_source_output}\hlstd{(}\hlkwc{w.length.out} \hlstd{= w.length.out,} \hlkwc{source.name} \hlstd{= source.name,}
         \hlkwc{scaled} \hlstd{= scaled)}
     \hlstd{spectrum.data} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(spectrum.data)}
     \hlstd{fig_energy} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= w.length,} \hlkwc{y} \hlstd{= s.e.irrad),} \hlkwc{data} \hlstd{= spectrum.data)} \hlopt{+}
         \hlkwd{xlim}\hlstd{(w.low, w.high)} \hlopt{+} \hlkwd{labs}\hlstd{(}\hlkwc{x} \hlstd{=} \hlstr{"Wavelength (nm)"}\hlstd{,} \hlkwc{y} \hlstd{=} \hlstr{"Spectral energy irradiance\textbackslash{}n(rel. units)"}\hlstd{,}
-        \hlkwc{title} \hlstd{= lamp.name)} \hlopt{+} \hlkwd{geom_line}\hlstd{()} \hlopt{+} \hlkwd{stat_peaks}\hlstd{(}\hlkwc{ignore_threshold} \hlstd{=} \hlnum{0.33}\hlstd{,}
+        \hlkwc{title} \hlstd{= source.name)} \hlopt{+} \hlkwd{geom_line}\hlstd{()} \hlopt{+} \hlkwd{stat_peaks}\hlstd{(}\hlkwc{ignore_threshold} \hlstd{=} \hlnum{0.33}\hlstd{,}
         \hlkwc{colour} \hlstd{=} \hlstr{"red"}\hlstd{,} \hlkwc{span} \hlstd{=} \hlnum{21}\hlstd{)}
     \hlstd{fig_photon} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= w.length,} \hlkwc{y} \hlstd{= s.q.irrad),} \hlkwc{data} \hlstd{= spectrum.data)} \hlopt{+}
         \hlkwd{xlim}\hlstd{(w.low, w.high)} \hlopt{+} \hlkwd{labs}\hlstd{(}\hlkwc{x} \hlstd{=} \hlstr{"Wavelength (nm)"}\hlstd{,} \hlkwc{y} \hlstd{=} \hlstr{"Spectral photon irradiance\textbackslash{}n(rel. units)"}\hlstd{,}
-        \hlkwc{title} \hlstd{= lamp.name)} \hlopt{+} \hlkwd{geom_line}\hlstd{()} \hlopt{+} \hlkwd{stat_peaks}\hlstd{(}\hlkwc{ignore_threshold} \hlstd{=} \hlnum{0.33}\hlstd{,}
+        \hlkwc{title} \hlstd{= source.name)} \hlopt{+} \hlkwd{geom_line}\hlstd{()} \hlopt{+} \hlkwd{stat_peaks}\hlstd{(}\hlkwc{ignore_threshold} \hlstd{=} \hlnum{0.33}\hlstd{,}
         \hlkwc{colour} \hlstd{=} \hlstr{"red"}\hlstd{,} \hlkwc{span} \hlstd{=} \hlnum{21}\hlstd{)}
     \hlkwd{print}\hlstd{(fig_energy)}
     \hlkwd{print}\hlstd{(fig_photon)}
@@ -139,7 +139,7 @@ We define a function to do the actual plotting so as to not repeat code, and to 
 \begin{alltt}
 \hlstd{spectra} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlstr{"WMO_Wehrli_AM0"}\hlstd{,} \hlstr{"ASTM_E490_AM0"}\hlstd{,} \hlstr{"Gueymard_AM0"}\hlstd{)}
 \hlkwa{for} \hlstd{(spc} \hlkwa{in} \hlstd{spectra) \{}
-    \hlkwd{lamp.plotter}\hlstd{(}\hlkwc{lamp.name} \hlstd{= spc,} \hlkwc{w.low} \hlstd{=} \hlnum{200}\hlstd{,} \hlkwc{w.high} \hlstd{=} \hlnum{4000}\hlstd{)}
+    \hlkwd{source.plotter}\hlstd{(}\hlkwc{source.name} \hlstd{= spc,} \hlkwc{w.low} \hlstd{=} \hlnum{200}\hlstd{,} \hlkwc{w.high} \hlstd{=} \hlnum{4000}\hlstd{)}
 \hlstd{\}}
 \end{alltt}
 \end{kframe}
@@ -165,7 +165,7 @@ We define a function to do the actual plotting so as to not repeat code, and to 
 \begin{alltt}
 \hlstd{spectra} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlstr{"ASTM_G173_direct"}\hlstd{,} \hlstr{"ASTM_G173_global"}\hlstd{)}
 \hlkwa{for} \hlstd{(spc} \hlkwa{in} \hlstd{spectra) \{}
-    \hlkwd{lamp.plotter}\hlstd{(}\hlkwc{lamp.name} \hlstd{= spc)}
+    \hlkwd{source.plotter}\hlstd{(}\hlkwc{source.name} \hlstd{= spc)}
 \hlstd{\}}
 \end{alltt}
 \end{kframe}
@@ -189,7 +189,7 @@ We define a function to do the actual plotting so as to not repeat code, and to 
 \begin{alltt}
 \hlstd{spectra} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlstr{"sun_May_morning"}\hlstd{)}
 \hlkwa{for} \hlstd{(spc} \hlkwa{in} \hlstd{spectra) \{}
-    \hlkwd{lamp.plotter}\hlstd{(}\hlkwc{lamp.name} \hlstd{= spc)}
+    \hlkwd{source.plotter}\hlstd{(}\hlkwc{source.name} \hlstd{= spc)}
 \hlstd{\}}
 \end{alltt}
 \end{kframe}
