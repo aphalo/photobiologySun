@@ -1,0 +1,101 @@
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{UV-radiation quantification with R: Catalogue of lamps}
+%\VignetteDepends{knitr, photobiology, photobiologyLamps, photobiologygg, ggplot2}
+%\VignetteKeyword{misc}
+
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{abbrev}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=2,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{breakurl}
+
+\newcommand{\PB}{\textsf{photobiology}\xspace}
+\newcommand{\PBVIS}{\textsf{photobiologyVIS}\xspace}
+\newcommand{\PBUV}{\textsf{photobiologyUV}\xspace}
+\newcommand{\PBPHY}{\textsf{photobiologyPhy}\xspace}
+\newcommand{\PBCRY}{\textsf{photobiologyCry}\xspace}
+\newcommand{\PBFil}{\textsf{photobiologyFilters}\xspace}
+\newcommand{\PBLam}{\textsf{photobiologyLamps}\xspace}
+\newcommand{\PBSen}{\textsf{photobiologySensors}\xspace}
+\newcommand{\PBSun}{\textsf{photobiologySun}\xspace}
+
+\begin{document}
+
+\title{\PBSun Version 0.1.1\\ Catalogue of Solar Spectra}
+\author{Pedro J. Aphalo}
+
+\maketitle
+
+\section{Introduction}
+
+We will plot the emission spectra of the different lamps for which data is provided in the pacakge. We plot side-by-side the lamp output as spectral energy irradiance and as spectral photon irradiance. All spectra are normalized to an area of one under the whole curve.
+
+<<setup, include=FALSE, cache=FALSE>>=
+library(knitr)
+opts_chunk$set(fig.path='figure/pos-', fig.align='center', fig.show='hold', size="footnotesize",
+               fig.width=8, fig.height=4, out.width='.95\\textwidth', dev='cairo_pdf')
+@
+
+<<example-0, eval=TRUE>>=
+library(ggplot2)
+library(photobiology)
+library(photobiologyLamps)
+library(photobiologySun)
+library(photobiologygg)
+@
+
+We define a function to do the actual plotting so as to not repeat code, and to make changes easier in the future.
+
+<<setup-function>>=
+lamp.plotter <- function(lamp.name, w.low=250.0, w.high=900, scaled="peak"){
+w.length.out <- seq(from=w.low, to=w.high, length.out=300)
+spectrum.data <- calc_lamp_output(w.length.out=w.length.out, lamp.name=lamp.name, scaled=scaled)
+spectrum.data <- na.omit(spectrum.data)
+fig_energy <- ggplot(aes(x=w.length, y=s.e.irrad), data=spectrum.data) + xlim(w.low, w.high) +
+  labs(x="Wavelength (nm)", y="Spectral energy irradiance\n(rel. units)", title=lamp.name) + 
+  geom_line() + stat_peaks(ignore_threshold=0.33, colour="red", span=21)
+fig_photon <- ggplot(aes(x=w.length, y=s.q.irrad), data=spectrum.data) + xlim(w.low, w.high) +
+  labs(x="Wavelength (nm)", y="Spectral photon irradiance\n(rel. units)", title=lamp.name) + 
+  geom_line() + stat_peaks(ignore_threshold=0.33, colour="red", span=21)
+print(fig_energy)
+print(fig_photon)
+}
+@
+
+\newpage
+
+\section{Extraterrestrial solar spectra}
+
+<<extraterrestrial>>=
+spectra <- c("WMO_Wehrli_AM0", "ASTM_E490_AM0", "Gueymard_AM0")
+for (spc in spectra) {
+  lamp.plotter(lamp.name=spc, w.low=200, w.high=4000)
+}
+@
+
+\section{Standard terrestrial solar spectra}
+
+<<terrestrial-std>>=
+spectra <- c("ASTM_G173_direct", "ASTM_G173_global")
+for (spc in spectra) {
+  lamp.plotter(lamp.name=spc)
+}
+@
+
+\section{Measured dayligh spectra}
+
+<<terrestrial-meas>>=
+spectra <- c("sun_May_morning")
+for (spc in spectra) {
+  lamp.plotter(lamp.name=spc)
+}
+@
+
+
+\end{document}
