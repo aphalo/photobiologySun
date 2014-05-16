@@ -1,7 +1,7 @@
 photobiologySun 0.1.1
 =====================
 
-Added several standard spectra for extraterrestrial and terrestrial solar spectrum from WMO and ASTM.
+Added several standard spectra for extraterrestrial and terrestrial solar spectrum from WMO and ASTM. All dataframes now include both spectral photon irradiance and spectral energy irradiance values.
 
 photobiologySun 0.1.0
 =====================

@@ -2,7 +2,7 @@ Package: photobiologySun
 Type: Package
 Title: Data for sun spectra
 Version: 0.1.1
-Date: 2014-05-09
+Date: 2014-05-14
 Author: Pedro J. Aphalo <pedro.aphalo@helsinki.fi>
 Maintainer: Pedro J. Aphalo <pedro.aphalo@helsinki.fi>
 Description: This package provides data for some frequently used lamps.

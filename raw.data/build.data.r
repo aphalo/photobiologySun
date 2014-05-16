@@ -5,6 +5,8 @@ library(photobiology)
 oldwd <- setwd("raw.data")
 sun_May_morning.data <- process_maya_files("meas6n_short.txt", "dark6_short.txt",
                                            "pc6_long.txt", "meas6n_long.txt", "dark6_long.txt", method = "sun")
+sun_May_morning.data$s.q.irrad <- with(sun_May_morning.data, as_quantum_mol(w.length, s.e.irrad))
+sun_May_morning.data$s.e.irrad.good <- NULL
 
 # ASTM AM0
 

@@ -45,7 +45,6 @@ opts_chunk$set(fig.path='figure/pos-', fig.align='center', fig.show='hold', size
 <<example-0, eval=TRUE>>=
 library(ggplot2)
 library(photobiology)
-library(photobiologyLamps)
 library(photobiologySun)
 library(photobiologygg)
 @
