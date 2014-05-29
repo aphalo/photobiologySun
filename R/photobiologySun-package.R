@@ -11,8 +11,8 @@
 #' \tabular{ll}{
 #' Package: \tab photobiologySun\cr
 #' Type: \tab Package\cr
-#' Version: \tab 0.1.1\cr
-#' Date: \tab 2014-05-14\cr
+#' Version: \tab 0.1.2\cr
+#' Date: \tab 2014-05-23\cr
 #' License: \tab GPL (>= 3)\cr
 #' URL: \tab \url{http://uv4growth.dyndns.org},\cr \tab \url{http://openinstruments.dyndns.org},\cr
 #' \tab \url{https://bitbucket.org/aphalo/photobiology}\cr
@@ -31,8 +31,8 @@
 #' @examples
 #' library(photobiologySun)
 #' library(photobiologyVIS)
-#' with(sun_May_morning.data, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
-#' plot(s.e.irrad~w.length, data=sun_May_morning.data, main=comment(sun_May_morning.data), type="l")
+#' with(sun_May_morning.dt, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
+#' plot(s.e.irrad~w.length, data=sun_May_morning.dt, main=comment(sun_May_morning.dt), type="l")
 #' 
 #' @import photobiology
 NULL

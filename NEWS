@@ -1,3 +1,8 @@
+photobiologySun 0.1.2
+=====================
+
+Now spectra are in data.frame and data.table compatible "source.spct" objects.
+
 photobiologySun 0.1.1
 =====================
 

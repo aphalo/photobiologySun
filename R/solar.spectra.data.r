@@ -20,14 +20,14 @@
 #' @docType data
 #' @keywords datasets
 #' @format A data frame with 1425 rows (250 nm to 900 nm, variable step) and 3 variables.
-#' @name sun_May_morning.data
+#' @name sun_May_morning.dt
 #' @examples
 #' library(photobiologySun)
 #' library(photobiologyVIS)
-#' with(sun_May_morning.data, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
-#' plot(s.e.irrad~w.length, data=sun_May_morning.data, main=comment(sun_May_morning.data), type="l")
+#' with(sun_May_morning.dt, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
+#' plot(s.e.irrad~w.length, data=sun_May_morning.dt, main=comment(sun_May_morning.dt), type="l")
 #' @aliases 
-#'   sun_May_morning.data 
+#'   sun_May_morning.dt 
 NULL
 #' Spectral data for the extraterrestrial solar spectrum ASTM E490
 #'
@@ -52,14 +52,14 @@ NULL
 #' @docType data
 #' @keywords datasets
 #' @format A data frame with  rows (119.5 nm to 1E6 nm, variable step) and 3 variables.
-#' @name ASTM_E490_AM0.data
+#' @name ASTM_E490_AM0.dt
 #' @examples
 #' library(photobiologySun)
 #' library(photobiologyVIS)
-#' with(sun_May_morning.data, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
-#' plot(s.e.irrad~w.length, data=sun_May_morning.data, main=comment(sun_May_morning.data), type="l")
+#' with(ASTM_E490_AM0.dt, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
+#' plot(s.e.irrad~w.length, data=ASTM_E490_AM0.dt, main=comment(ASTM_E490_AM0.dt), type="l")
 #' @aliases 
-#'   ASTM_E490_AM0.data 
+#'   ASTM_E490_AM0.dt 
 NULL
 #' Spectral data for the extraterrestrial solar spectrum of Gueymard (2004)
 #'
@@ -86,14 +86,14 @@ NULL
 #' @docType data
 #' @keywords datasets
 #' @format A data frame with  rows (119.5 nm to 1E6 nm, variable step) and 3 variables.
-#' @name Gueymard_AM0.data
+#' @name Gueymard_AM0.dt
 #' @examples
 #' library(photobiologySun)
 #' library(photobiologyVIS)
-#' with(sun_May_morning.data, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
-#' plot(s.e.irrad~w.length, data=sun_May_morning.data, main=comment(sun_May_morning.data), type="l")
+#' with(Gueymard_AM0.dt, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
+#' plot(s.e.irrad~w.length, data=Gueymard_AM0.dt, main=comment(Gueymard_AM0.dt), type="l")
 #' @aliases 
-#'   Gueymard_AM0.data 
+#'   Gueymard_AM0.dt 
 NULL
 #' Spectral data for the extraterrestrial solar spectrum of Wehrli
 #'
@@ -118,24 +118,24 @@ NULL
 #' @docType data
 #' @keywords datasets
 #' @format A data frame with  rows (119.5 nm to 1E6 nm, variable step) and 3 variables.
-#' @name WMO_Wehrli_AM0.data
+#' @name WMO_Wehrli_AM0.dt
 #' @examples
 #' library(photobiologySun)
 #' library(photobiologyVIS)
-#' with(sun_May_morning.data, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
-#' plot(s.e.irrad~w.length, data=sun_May_morning.data, main=comment(sun_May_morning.data), type="l")
+#' with(WMO_Wehrli_AM0.dt, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
+#' plot(s.e.irrad~w.length, data=WMO_Wehrli_AM0.dt, main=comment(WMO_Wehrli_AM0.dt), type="l")
 #' @aliases 
-#'   WMO_Wehrli_AM0.data 
+#'   WMO_Wehrli_AM0.dt 
 NULL
 #' Spectral data for the terrestrial solar spectrum ASTM G173
 #'
 #' Air Mass 1.5 (AM1.5) spectrum
 #' Dataset containing wavelengths from 280.0 nm to 4000.0 nm and 
 #' tabulated values for spectral irradiance for the sun "typical for USA".
-#' Dataframe ASTM_G173_direct.data contains the spectrum of direct solar
+#' Dataframe ASTM_G173_direct.dt contains the spectrum of direct solar
 #' radiation on a plane at an inclination of 37 degrees, which together
 #' with the assumed solar elevation results on a surface pointing at the
-#' sun. Dataframe ASTM_G173_global.data conatains the spectral data for global
+#' sun. Dataframe ASTM_G173_global.dt conatains the spectral data for global
 #' radiation on the same plane.
 #' 
 #' The variables are as follows:
@@ -155,12 +155,12 @@ NULL
 #' @docType data
 #' @keywords datasets
 #' @format A data frame with  rows (119.5 nm to 1E6 nm, variable step) and 3 variables.
-#' @name ASTM_G173_direct.data
+#' @name ASTM_G173_direct.dt
 #' @examples
 #' library(photobiologySun)
 #' library(photobiologyVIS)
-#' with(sun_May_morning.data, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
-#' plot(s.e.irrad~w.length, data=sun_May_morning.data, main=comment(sun_May_morning.data), type="l")
+#' with(ASTM_G173_direct.dt, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
+#' plot(s.e.irrad~w.length, data=ASTM_G173_direct.dt, main=comment(ASTM_G173_direct.dt), type="l")
 #' @aliases 
-#'   ASTM_G173_direct.data, ASTM_G173_global.data 
+#'   ASTM_G173_direct.dt, ASTM_G173_global.dt 
 NULL

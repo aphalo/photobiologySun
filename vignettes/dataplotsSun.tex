@@ -77,7 +77,7 @@
 
 \begin{document}
 
-\title{\PBSun Version 0.1.1\\ Catalogue of Solar Spectra}
+\title{\PBSun Version 0.1.2\\ Catalogue of Solar Spectra}
 \author{Pedro J. Aphalo}
 
 \maketitle
@@ -94,6 +94,10 @@ We will plot the emission spectra of the different lamps for which data is provi
 \begin{alltt}
 \hlkwd{library}\hlstd{(ggplot2)}
 \hlkwd{library}\hlstd{(photobiology)}
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: data.table}}\begin{alltt}
 \hlkwd{library}\hlstd{(photobiologySun)}
 \hlkwd{library}\hlstd{(photobiologygg)}
 \end{alltt}
@@ -110,14 +114,14 @@ We define a function to do the actual plotting so as to not repeat code, and to 
 \begin{alltt}
 \hlstd{source.plotter} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{source.name}\hlstd{,} \hlkwc{w.low} \hlstd{=} \hlnum{250}\hlstd{,} \hlkwc{w.high} \hlstd{=} \hlnum{900}\hlstd{,} \hlkwc{scaled} \hlstd{=} \hlstr{"peak"}\hlstd{) \{}
     \hlstd{w.length.out} \hlkwb{<-} \hlkwd{seq}\hlstd{(}\hlkwc{from} \hlstd{= w.low,} \hlkwc{to} \hlstd{= w.high,} \hlkwc{length.out} \hlstd{=} \hlnum{300}\hlstd{)}
-    \hlstd{spectrum.data} \hlkwb{<-} \hlkwd{calc_source_output}\hlstd{(}\hlkwc{w.length.out} \hlstd{= w.length.out,} \hlkwc{source.name} \hlstd{= source.name,}
+    \hlstd{spectrum.dt} \hlkwb{<-} \hlkwd{calc_source_output}\hlstd{(}\hlkwc{w.length.out} \hlstd{= w.length.out,} \hlkwc{source.name} \hlstd{= source.name,}
         \hlkwc{scaled} \hlstd{= scaled)}
-    \hlstd{spectrum.data} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(spectrum.data)}
-    \hlstd{fig_energy} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= w.length,} \hlkwc{y} \hlstd{= s.e.irrad),} \hlkwc{data} \hlstd{= spectrum.data)} \hlopt{+}
+    \hlstd{spectrum.dt} \hlkwb{<-} \hlkwd{na.omit}\hlstd{(spectrum.dt)}
+    \hlstd{fig_energy} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= w.length,} \hlkwc{y} \hlstd{= s.e.irrad),} \hlkwc{data} \hlstd{= spectrum.dt)} \hlopt{+}
         \hlkwd{xlim}\hlstd{(w.low, w.high)} \hlopt{+} \hlkwd{labs}\hlstd{(}\hlkwc{x} \hlstd{=} \hlstr{"Wavelength (nm)"}\hlstd{,} \hlkwc{y} \hlstd{=} \hlstr{"Spectral energy irradiance\textbackslash{}n(rel. units)"}\hlstd{,}
         \hlkwc{title} \hlstd{= source.name)} \hlopt{+} \hlkwd{geom_line}\hlstd{()} \hlopt{+} \hlkwd{stat_peaks}\hlstd{(}\hlkwc{ignore_threshold} \hlstd{=} \hlnum{0.33}\hlstd{,}
         \hlkwc{colour} \hlstd{=} \hlstr{"red"}\hlstd{,} \hlkwc{span} \hlstd{=} \hlnum{21}\hlstd{)}
-    \hlstd{fig_photon} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= w.length,} \hlkwc{y} \hlstd{= s.q.irrad),} \hlkwc{data} \hlstd{= spectrum.data)} \hlopt{+}
+    \hlstd{fig_photon} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= w.length,} \hlkwc{y} \hlstd{= s.q.irrad),} \hlkwc{data} \hlstd{= spectrum.dt)} \hlopt{+}
         \hlkwd{xlim}\hlstd{(w.low, w.high)} \hlopt{+} \hlkwd{labs}\hlstd{(}\hlkwc{x} \hlstd{=} \hlstr{"Wavelength (nm)"}\hlstd{,} \hlkwc{y} \hlstd{=} \hlstr{"Spectral photon irradiance\textbackslash{}n(rel. units)"}\hlstd{,}
         \hlkwc{title} \hlstd{= source.name)} \hlopt{+} \hlkwd{geom_line}\hlstd{()} \hlopt{+} \hlkwd{stat_peaks}\hlstd{(}\hlkwc{ignore_threshold} \hlstd{=} \hlnum{0.33}\hlstd{,}
         \hlkwc{colour} \hlstd{=} \hlstr{"red"}\hlstd{,} \hlkwc{span} \hlstd{=} \hlnum{21}\hlstd{)}
