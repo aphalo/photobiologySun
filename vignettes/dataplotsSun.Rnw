@@ -38,11 +38,11 @@ We will plot the emission spectra of the different lamps for which data is provi
 
 <<setup, include=FALSE, cache=FALSE>>=
 library(knitr)
-opts_chunk$set(fig.path='figure/pos-', fig.align='center', fig.show='hold', size="footnotesize",
+opts_chunk$set(fig.path='figure/pos-', fig.align='center', fig.show='hold', size="footnotesize", warning=FALSE,
                fig.width=8, fig.height=4, out.width='.95\\textwidth', dev='cairo_pdf')
 @
 
-<<example-0, eval=TRUE>>=
+<<example-0, eval=TRUE, warning=FALSE>>=
 library(ggplot2)
 library(photobiology)
 library(photobiologySun)
@@ -51,49 +51,30 @@ library(photobiologygg)
 
 We define a function to do the actual plotting so as to not repeat code, and to make changes easier in the future.
 
-<<setup-function>>=
-source.plotter <- function(source.name, w.low=250.0, w.high=900, scaled="peak"){
-w.length.out <- seq(from=w.low, to=w.high, length.out=300)
-spectrum.dt <- calc_source_output(w.length.out=w.length.out, source.name=source.name, scaled=scaled)
-spectrum.dt <- na.omit(spectrum.dt)
-fig_energy <- ggplot(aes(x=w.length, y=s.e.irrad), data=spectrum.dt) + xlim(w.low, w.high) +
-  labs(x="Wavelength (nm)", y="Spectral energy irradiance\n(rel. units)", title=source.name) + 
-  geom_line() + stat_peaks(ignore_threshold=0.33, colour="red", span=21)
-fig_photon <- ggplot(aes(x=w.length, y=s.q.irrad), data=spectrum.dt) + xlim(w.low, w.high) +
-  labs(x="Wavelength (nm)", y="Spectral photon irradiance\n(rel. units)", title=source.name) + 
-  geom_line() + stat_peaks(ignore_threshold=0.33, colour="red", span=21)
-print(fig_energy)
-print(fig_photon)
-}
-@
-
-\newpage
-
 \section{Extraterrestrial solar spectra}
 
 <<extraterrestrial>>=
-spectra <- c("WMO_Wehrli_AM0", "ASTM_E490_AM0", "Gueymard_AM0")
-for (spc in spectra) {
-  source.plotter(source.name=spc, w.low=200, w.high=4000)
-}
+  plot(trim_spct(WMO_Wehrli_AM0.spct, high.limit=1000))
+  plot(trim_spct(ASTM_E490_AM0.spct, high.limit=1000))
+  plot(trim_spct(Gueymard_AM0.spct, high.limit=1000))
 @
 
 \section{Standard terrestrial solar spectra}
 
 <<terrestrial-std>>=
-spectra <- c("ASTM_G173_direct", "ASTM_G173_global")
-for (spc in spectra) {
-  source.plotter(source.name=spc)
-}
+  plot(trim_spct(ASTM_G173_direct.spct, high.limit=2000))
+  plot(trim_spct(ASTM_G173_global.spct, high.limit=2000))
+@
+
+<<terrestrial-std-trimmed>>=
+  plot(trim_spct(ASTM_G173_direct.spct, low.limit=250, high.limit=900))
+  plot(trim_spct(ASTM_G173_global.spct, low.limit=250, high.limit=900))
 @
 
 \section{Measured dayligh spectra}
 
 <<terrestrial-meas>>=
-spectra <- c("sun_May_morning")
-for (spc in spectra) {
-  source.plotter(source.name=spc)
-}
+  plot(sun_May_morning.spct)
 @
 
 
