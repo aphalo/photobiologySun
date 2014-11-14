@@ -27,7 +27,24 @@
 
 \begin{document}
 
-\title{\PBSun Version 0.1.2\\ Catalogue of Solar Spectra}
+<<setup, include=FALSE, cache=FALSE>>=
+library(knitr)
+opts_chunk$set(fig.path='figure/pos-', fig.align='center', fig.show='hold', size="footnotesize", warning=FALSE,
+               fig.width=8, fig.height=4, out.width='.9\\textwidth', dev='cairo_pdf')
+@
+
+<<example-0-hiden, eval=TRUE, include=FALSE>>=
+library(ggplot2)
+library(photobiology)
+library(photobiologySun)
+library(photobiologygg)
+@
+
+<<own-set-up, echo=FALSE, include=FALSE>>=
+my_version <- packageVersion("photobiologySun")
+@
+
+\title{\PBSun Version  \Sexpr{my_version}\\ Catalogue of Solar Spectra}
 \author{Pedro J. Aphalo}
 
 \maketitle
@@ -36,13 +53,7 @@
 
 We will plot the emission spectra of the different lamps for which data is provided in the pacakge. We plot side-by-side the lamp output as spectral energy irradiance and as spectral photon irradiance. All spectra are normalized to an area of one under the whole curve.
 
-<<setup, include=FALSE, cache=FALSE>>=
-library(knitr)
-opts_chunk$set(fig.path='figure/pos-', fig.align='center', fig.show='hold', size="footnotesize", warning=FALSE,
-               fig.width=8, fig.height=4, out.width='.95\\textwidth', dev='cairo_pdf')
-@
-
-<<example-0, eval=TRUE, warning=FALSE>>=
+<<example-0, eval=FALSE>>=
 library(ggplot2)
 library(photobiology)
 library(photobiologySun)
