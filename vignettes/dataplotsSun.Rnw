@@ -30,7 +30,7 @@
 <<setup, include=FALSE, cache=FALSE>>=
 library(knitr)
 opts_chunk$set(fig.path='figure/pos-', fig.align='center', fig.show='hold', size="footnotesize", warning=FALSE,
-               fig.width=8, fig.height=4, out.width='.9\\textwidth', dev='cairo_pdf')
+               fig.width=8, fig.height=4, out.width='.9\\textwidth')
 @
 
 <<example-0-hiden, eval=TRUE, include=FALSE>>=
@@ -51,7 +51,7 @@ my_version <- packageVersion("photobiologySun")
 
 \section{Introduction}
 
-We will plot the emission spectra of the different lamps for which data is provided in the pacakge. We plot side-by-side the lamp output as spectral energy irradiance and as spectral photon irradiance. All spectra are normalized to an area of one under the whole curve.
+The plots show the solar spectral irradiance data included in the package.
 
 <<example-0, eval=FALSE>>=
 library(ggplot2)
@@ -64,28 +64,46 @@ We define a function to do the actual plotting so as to not repeat code, and to 
 
 \section{Extraterrestrial solar spectra}
 
-<<extraterrestrial>>=
-  plot(trim_spct(WMO_Wehrli_AM0.spct, high.limit=1000))
-  plot(trim_spct(ASTM_E490_AM0.spct, high.limit=1000))
-  plot(trim_spct(Gueymard_AM0.spct, high.limit=1000))
+<<extraterrestrial-we>>=
+  plot(WMO_Wehrli_AM0.spct, range=c(250, 2000), w.band = NULL)
+@
+
+<<extraterrestrial-as>>=
+  plot(ASTM_E490_AM0.spct, range=c(250, 2000), w.band = NULL)
+@
+
+<<extraterrestrial-gu>>=
+  plot(Gueymard_AM0.spct, range=c(250, 2000), w.band = NULL)
 @
 
 \section{Standard terrestrial solar spectra}
 
+<<terrestrial-std-dir>>=
+  plot(ASTM_G173_direct.spct, annotations="colour.guide")
+@
+
 <<terrestrial-std>>=
-  plot(trim_spct(ASTM_G173_direct.spct, high.limit=2000))
-  plot(trim_spct(ASTM_G173_global.spct, high.limit=2000))
+  plot(ASTM_G173_global.spct, annotations="colour.guide")
+@
+
+
+<<terrestrial-std-trimmed-dir>>=
+  plot(ASTM_G173_direct.spct, range=c(290, 800), w.band=PAR())
 @
 
 <<terrestrial-std-trimmed>>=
-  plot(trim_spct(ASTM_G173_direct.spct, low.limit=250, high.limit=900))
-  plot(trim_spct(ASTM_G173_global.spct, low.limit=250, high.limit=900))
+  plot(ASTM_G173_global.spct, range=c(290, 800), w.band=PAR())
 @
 
-\section{Measured dayligh spectra}
+\newpage
+\section{Measured daylight spectra}
 
 <<terrestrial-meas>>=
   plot(sun_May_morning.spct)
+@
+
+<<terrestrial-meas-q>>=
+  plot(sun_May_morning.spct, unit.out = "photon")
 @
 
 
