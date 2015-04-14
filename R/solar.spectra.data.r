@@ -21,11 +21,6 @@
 #' @keywords datasets
 #' @format A data frame with 1425 rows (250 nm to 900 nm, variable step) and 3 variables.
 #' @name sun_May_morning.spct
-#' @examples
-#' library(photobiologySun)
-#' library(photobiologyVIS)
-#' with(sun_May_morning.spct, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
-#' plot(s.e.irrad~w.length, data=sun_May_morning.spct, main=comment(sun_May_morning.spct), type="l")
 #' @aliases 
 #'   sun_May_morning.spct 
 NULL
@@ -53,11 +48,6 @@ NULL
 #' @keywords datasets
 #' @format A data frame with  rows (119.5 nm to 1E6 nm, variable step) and 3 variables.
 #' @name ASTM_E490_AM0.spct
-#' @examples
-#' library(photobiologySun)
-#' library(photobiologyVIS)
-#' with(ASTM_E490_AM0.spct, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
-#' plot(s.e.irrad~w.length, data=ASTM_E490_AM0.spct, main=comment(ASTM_E490_AM0.spct), type="l")
 #' @aliases 
 #'   ASTM_E490_AM0.spct 
 NULL
@@ -87,11 +77,6 @@ NULL
 #' @keywords datasets
 #' @format A data frame with  rows (119.5 nm to 1E6 nm, variable step) and 3 variables.
 #' @name Gueymard_AM0.spct
-#' @examples
-#' library(photobiologySun)
-#' library(photobiologyVIS)
-#' with(Gueymard_AM0.spct, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
-#' plot(s.e.irrad~w.length, data=Gueymard_AM0.spct, main=comment(Gueymard_AM0.spct), type="l")
 #' @aliases 
 #'   Gueymard_AM0.spct 
 NULL
@@ -119,11 +104,6 @@ NULL
 #' @keywords datasets
 #' @format A data frame with  rows (119.5 nm to 1E6 nm, variable step) and 3 variables.
 #' @name WMO_Wehrli_AM0.spct
-#' @examples
-#' library(photobiologySun)
-#' library(photobiologyVIS)
-#' with(WMO_Wehrli_AM0.spct, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
-#' plot(s.e.irrad~w.length, data=WMO_Wehrli_AM0.spct, main=comment(WMO_Wehrli_AM0.spct), type="l")
 #' @aliases 
 #'   WMO_Wehrli_AM0.spct 
 NULL
@@ -156,11 +136,6 @@ NULL
 #' @keywords datasets
 #' @format A data frame with  rows (119.5 nm to 1E6 nm, variable step) and 3 variables.
 #' @name ASTM_G173_direct.spct
-#' @examples
-#' library(photobiologySun)
-#' library(photobiologyVIS)
-#' with(ASTM_G173_direct.spct, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
-#' plot(s.e.irrad~w.length, data=ASTM_G173_direct.spct, main=comment(ASTM_G173_direct.spct), type="l")
 #' @aliases 
 #'   ASTM_G173_direct.spct, ASTM_G173_global.spct 
 NULL

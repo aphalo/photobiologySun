@@ -11,8 +11,8 @@
 #' \tabular{ll}{
 #' Package: \tab photobiologySun\cr
 #' Type: \tab Package\cr
-#' Version: \tab 0.2.1\cr
-#' Date: \tab 2015-03-083\cr
+#' Version: \tab 0.3.0\cr
+#' Date: \tab 2015-04-13\cr
 #' License: \tab GPL (>= 3.0)\cr
 #' URL: \tab \url{http://www.r4photobiology.info},\cr
 #' \tab \url{https://bitbucket.org/aphalo/photobiologySun}\cr
@@ -29,10 +29,9 @@
 #' \url{http://hdl.handle.net/10138/37558}
 #' 
 #' @examples
-#' library(photobiologySun)
-#' library(photobiologyVIS)
-#' with(sun_May_morning.spct, photon_ratio(w.length, s.e.irrad, Blue(), Green()))
-#' plot(s.e.irrad~w.length, data=sun_May_morning.spct, main=comment(sun_May_morning.spct), type="l")
+#' library(photobiologyWavebands)
+#' q_irrad(sun_May_morning.spct, PAR())
+#' q_ratio(sun_May_morning.spct, Red("Smith10"), Far_red("Smith10"))
 #' 
 #' @import photobiology
 NULL
