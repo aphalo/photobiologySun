@@ -1,6 +1,12 @@
 photobiologySun 0.3.0
 =====================
 
+Added hourly spectral data.
+Updated vignette with an example of the use of these data.
+
+photobiologySun 0.3.0
+=====================
+
 Data rebuilt with photobiology 0.6.0
 
 photobiologySun 0.2.1
