@@ -1,0 +1,61 @@
+#' Ground level solar spectral irradiance
+#' 
+#' Datasets containing the wavelengths at a 0.5 nm to 1.0 nm interval and 
+#' tabulated values of measrued spectral irradiance for the sun.
+#' 
+#' The variables are as follows: 
+#' \itemize{ 
+#' \item w.length numeric (nm) 
+#' \item s.e.irrad numeric (W m-2 nm-1) }
+#' 
+#' @note Instrument used: Maya2000Pro scanning double monochromator
+#' spectroradiometer with a Bentham cosine corrected input optics. Recently
+#' calibrated at STUK. Date and time: . Place: University of Helsinki, Viikki
+#' Campus, Finland. Measurements done by Pedro J. Aphalo. Calibration and
+#' corrections done with package MayaCalc using bracketing and noise reduction
+#' (with filter measurement) and method "sun". Algorithm and calibration data by
+#' Lasse Ylianttila (STUK, Helsinki, Finland).
+#' 
+#' @references  Ylianttila, L.; Visuri, R.; Huurto, L. & Jokela, K. (2005) 
+#'   Evaluation of a single-monochromator diode array spectroradiometer for 
+#'   sunbed UV-radiation measurements. Photochem Photobiol, 81, 333-341
+#'   
+#' @docType data
+#' @keywords datasets
+#' @format A data frame with 1425 rows (250 nm to 900 nm, variable step) and 3
+#'   variables.
+"sun_May_morning.spct"
+
+#' Ground level spectral irradiance at hourly intervals
+#' 
+#' Datasets containing the wavelengths at 1.0 nm interval and tabulated values
+#' spectral irradiance for the sun.
+#' 
+#' The variables are as follows: 
+#' \itemize{ 
+#' \item w.length numeric (nm) 
+#' \item s.e.irrad numeric (W m-2 nm-1) 
+#' \item UTC POSIXct (UTC date and time)
+#' }
+#' 
+#' 
+#' @author Anders K. Lindfors (radiation transfer modelling)
+#'   
+#' @references Morales, L. O.; Brosché, M.; Vainonen, J.; Jenkins, G. I.;
+#' Wargent, J. J.; Sipari, N.; Strid, A.; Lindfors, A. V.; Tegelberg, R. &
+#' Aphalo, P. J. (2013) Multiple roles for UV RESISTANCE LOCUS8 in regulating
+#' gene expression and metabolite accumulation in Arabidopsis under solar
+#' ultraviolet radiation. Plant Physiology, 161, 744-759
+#' 
+#' Lindfors, A.; Heikkilä, A.; Kaurola, J.; Koskela, T. & Lakkala, K. (2009) 
+#' Reconstruction of Solar Spectral Surface UV Irradiances Using Radiative 
+#' Transfer Simulations. Photochemistry and Photobiology, 85: 1233–1239
+#' 
+#' @note A summary of these data has been published in the article by Morales
+#'   et. al (2013). The simualtion methods has been described in
+#'   
+#' @docType data
+#' @keywords datasets
+#' @format A data frame with 1425 rows (250 nm to 900 nm, variable step) and 3
+#'   variables.
+"sun_hourly.spct"

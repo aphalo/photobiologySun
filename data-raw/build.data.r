@@ -2,11 +2,10 @@ library(MayaCalc)
 library(data.table)
 library(photobiology)
 
-oldwd <- setwd("raw.data")
+oldwd <- setwd("data-raw")
 sun_May_morning.spct <- process_maya_files("meas6n_short.txt", "dark6_short.txt",
                                            "pc6_long.txt", "meas6n_long.txt", "dark6_long.txt", method = "sun")
 sun_May_morning.spct$s.q.irrad <- with(sun_May_morning.spct, as_quantum_mol(w.length, s.e.irrad))
-sun_May_morning.spct$s.e.irrad.good <- NULL
 setSourceSpct(sun_May_morning.spct)
 
 # ASTM AM0
@@ -68,6 +67,6 @@ cat(comment(ASTM_G173_global.spct))
 
 setwd(oldwd)
 
-save(sun_May_morning.spct, ASTM_E490_AM0.spct, WMO_Wehrli_AM0.spct, Gueymard_AM0.spct, ASTM_G173_direct.spct, 
-     ASTM_G173_global.spct, file="./data/solar_spectra.spct.rda")
+
+devtools::use_data(sun_May_morning.spct, ASTM_E490_AM0.spct, WMO_Wehrli_AM0.spct, Gueymard_AM0.spct, ASTM_G173_direct.spct, ASTM_G173_global.spct, overwrite = TRUE)
 
