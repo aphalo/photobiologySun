@@ -1,6 +1,6 @@
 %\VignetteEngine{knitr}
 %\VignetteIndexEntry{UV-radiation quantification with R: Catalogue of solar spectra}
-%\VignetteDepends{knitr, photobiology, photobiologySun, photobiologyPlants, photobiologygg, ggplot2}
+%\VignetteDepends{knitr, photobiology, photobiologySun, photobiologygg, ggplot2}
 %\VignetteKeyword{misc}
 
 \documentclass{article}
@@ -37,7 +37,6 @@ opts_chunk$set(fig.path='figure/pos-', fig.align='center', fig.show='hold', size
 library(ggplot2)
 library(photobiology)
 library(photobiologySun)
-library(photobiologyPlants)
 library(photobiologygg)
 @
 
@@ -58,7 +57,6 @@ The plots show the solar spectral irradiance data included in the package.
 library(ggplot2)
 library(photobiology)
 library(photobiologySun)
-library(photobiologyPlants)
 library(photobiologygg)
 @
 
@@ -118,48 +116,25 @@ We define a function to do the actual plotting so as to not repeat code, and to 
 
 Summer in Helsinki, modelled spectra using a radition transfer model.
 
-<<fig.width=10, fig.height=14>>=
-plot(sun_hourly.spct, annotations = NULL) + facet_wrap(~UTC, ncol = 6)
+<<fig.width=10, fig.height=14, out.width='.98\\textwidth'>>=
+plot(subset(sun_hourly.spct, !is.na(s.e.irrad)), annotations = NULL) + 
+  facet_wrap(~UTC, ncol = 6)
 @
 
 \newpage
 
 <<warning=FALSE>>=
-night22b.spct <- data.table(w.length = 293:800, 
-                            s.e.irrad = NA, 
-                            UTC = ymd_h("2010-06-22 19"))
-night23a.spct <- data.table(w.length = 293:800, 
-                            s.e.irrad = NA, 
-                            UTC = ymd_h("2010-06-23 1"))
-night23b.spct <- data.table(w.length = 293:800, 
-                            s.e.irrad = NA, 
-                            UTC = ymd_h("2010-06-23 19"))
-night24a.spct <- data.table(w.length = 293:800, 
-                            s.e.irrad = NA, 
-                            UTC = ymd_h("2010-06-24 1"))
-setSourceSpct(night22b.spct)
-setSourceSpct(night23a.spct)
-setSourceSpct(night23b.spct)
-setSourceSpct(night24a.spct)
-@
-
-<<warning=FALSE>>=
-day_night_hourly.spct <- rbindspct(list(copy(sun_hourly.spct),
-                                        night22b.spct,
-                                        night23a.spct,
-                                        night23b.spct,
-                                        night24a.spct))
-@
-
-<<warning=FALSE>>=
 ratios.dt <- 
-  day_night_hourly.spct[ , list(RFR  = R_FR(.SD),
-                                BG   = B_G(.SD),
-                                BR   = q_ratio(.SD, Blue("Sellaro"), Red("Sellaro")),
-                                UVAPAR = q_ratio(.SD, UVA(), PAR()),
-                                UVBPAR = q_ratio(.SD, UVB(), PAR()),
-                                PPFD = q_irrad(.SD, PAR()) * 1e6),
-                         by = UTC]
+  sun_hourly.spct[ , list(RFR  = q_ratio(.SD, Red("Smith10"), Far_red("Smith10")),
+                          BG   = q_ratio(.SD, Blue("Sellaro"), Green("Sellaro")),
+                          BR   = q_ratio(.SD, Blue("Sellaro"), Red("Sellaro")),
+                          UVAsl = q_ratio(.SD, waveband(c(min(UVA()), 350)), 
+                                          waveband(c(350, max(UVA())))),
+                          UVBUVA = q_ratio(.SD, UVB(), UVA()),
+                          UVAPAR = q_ratio(.SD, UVA(), PAR()),
+                          UVBPAR = q_ratio(.SD, UVB(), PAR()),
+                          PPFD = q_irrad(.SD, PAR()) * 1e6 ),
+                   by = UTC]
 @
 
 <<>>=
@@ -169,13 +144,13 @@ ggplot(data = ratios.dt, aes(x = UTC + hours(2), y = PPFD)) +
        y = expression(PAR~~photon~~irradiance~~(mu*mol~m^{-2}~s^{-1})) )
 @
 
-\newpage
-
 <<>>=
 ggplot(data = ratios.dt, aes(x = UTC  + hours(2), y = RFR)) + 
   geom_line() + ylim(0, NA) +
   labs(x = "Time of day, EEST", y = "Red:Far-red photon ratio")
 @
+
+\newpage
 
 <<>>=
 ggplot(data = ratios.dt, aes(x = UTC + hours(2), y = BG)) + 
@@ -183,13 +158,27 @@ ggplot(data = ratios.dt, aes(x = UTC + hours(2), y = BG)) +
   labs(x = "Time of day, EEST", y = "Blue:Green photon ratio")
 @
 
-\newpage
-
 <<>>=
 ggplot(data = ratios.dt, aes(x = UTC + hours(2), y = BR)) + 
   geom_line() + ylim(0, NA) +
   labs(x = "Time of day, EEST", y = "Blue:Red photon ratio")
 @
+
+\newpage
+
+<<>>=
+ggplot(data = ratios.dt, aes(x = UTC + hours(2), y = UVBUVA)) + 
+  geom_line() + ylim(0, NA) +
+  labs(x = "Time of day, EEST", y = "UVB:UVA photon ratio")
+@
+
+<<>>=
+ggplot(data = ratios.dt, aes(x = UTC + hours(2), y = UVAsl)) + 
+  geom_line() + ylim(0, NA) +
+  labs(x = "Time of day, EEST", y = "UVA(short):UVA(long) photon ratio")
+@
+
+\newpage
 
 <<>>=
 ggplot(data = ratios.dt, aes(x = UTC + hours(2), y = UVAPAR)) + 
@@ -197,7 +186,6 @@ ggplot(data = ratios.dt, aes(x = UTC + hours(2), y = UVAPAR)) +
   labs(x = "Time of day, EEST", y = "UVA:PAR photon ratio")
 @
 
-\newpage
 
 <<>>=
 ggplot(data = ratios.dt, aes(x = UTC + hours(2), y = UVBPAR)) + 
