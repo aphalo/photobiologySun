@@ -29,15 +29,18 @@
 #' Ground level spectral irradiance at hourly intervals
 #' 
 #' Datasets containing the wavelengths at 1.0 nm interval and tabulated values
-#' spectral irradiance for the sun.
+#' spectral irradiance for the sun for late June in Helsinki.
 #' 
+#' @details 
 #' The variables are as follows: 
 #' \itemize{ 
 #' \item w.length numeric (nm) 
 #' \item s.e.irrad numeric (W m-2 nm-1) 
 #' \item UTC POSIXct (UTC date and time)
+#' \item EEST POSIXct (EEST date and time)
 #' }
-#' 
+#' The data set includes NAs for missing night-time spectral irardiance 
+#' values.
 #' 
 #' @author Anders K. Lindfors (radiation transfer modelling)
 #'   
@@ -52,10 +55,42 @@
 #' Transfer Simulations. Photochemistry and Photobiology, 85: 1233–1239
 #' 
 #' @note A summary of these data has been published in the article by Morales
-#'   et. al (2013). The simualtion methods has been described in
+#'   et al. (2013). The simualtion methods has been described in Lindfors
+#'   et al. (2009).
 #'   
 #' @docType data
 #' @keywords datasets
-#' @format A data frame with 1425 rows (250 nm to 900 nm, variable step) and 3
+#' @format A data frame with 29464 rows  (293 nm to 800 nm at 1 nm interval) and
+#'   3 variables.
+"sun_hourly_june.spct"
+
+#' Ground level spectral irradiance at hourly intervals
+#' 
+#' Datasets containing the wavelengths at 1.0 nm interval and tabulated values
+#' spectral irradiance for the sun for late August in Helsinki..
+#' 
+#' @details 
+#' The variables are as follows: 
+#' \itemize{ 
+#' \item w.length numeric (nm) 
+#' \item s.e.irrad numeric (W m-2 nm-1) 
+#' \item UTC POSIXct (UTC date and time)
+#' \item EEST POSIXct (EEST date and time)
+#' }
+#' The data set includes NAs for missing night-time spectral irardiance 
+#' values.
+#' 
+#' @author Anders K. Lindfors (radiation transfer modelling)
+#'   
+#' @references 
+#' Lindfors, A.; Heikkilä, A.; Kaurola, J.; Koskela, T. & Lakkala, K. (2009) 
+#' Reconstruction of Solar Spectral Surface UV Irradiances Using Radiative 
+#' Transfer Simulations. Photochemistry and Photobiology, 85: 1233–1239
+#' 
+#' @note The simualtion methods has been described in Lindfors et al. (2009).
+#'   
+#' @docType data
+#' @keywords datasets
+#' @format A data frame with 15841 rows (290 nm to 800 nm at 1 nm interval) and 3
 #'   variables.
-"sun_hourly.spct"
+"sun_hourly_august.spct"

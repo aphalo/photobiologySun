@@ -26,13 +26,14 @@ night23b.spct <- data.table(w.length = 293:800,
 night24a.spct <- data.table(w.length = 293:800, 
                             s.e.irrad = NA, 
                             UTC = ymd_hm("2010-06-24 1:22"))
-sun_hourly.spct <- rbindlist(list(hourly.spct,
+sun_hourly_june.spct <- rbindlist(list(hourly.spct,
                                   night22b.spct,
                                   night23a.spct,
                                   night23b.spct,
                                   night24a.spct))
 
-sun_hourly.spct <- setSourceSpct(sun_hourly.spct, multiple.wl = 58)
-setkey(sun_hourly.spct, UTC, w.length)
+sun_hourly_june.spct[ , EEST := with_tz(UTC, "EET")]
+sun_hourly_june.spct <- setSourceSpct(sun_hourly_june.spct, multiple.wl = 58)
+setkey(sun_hourly_june.spct, UTC, w.length)
 
-devtools::use_data(sun_hourly.spct, overwrite = TRUE)
+devtools::use_data(sun_hourly_june.spct, overwrite = TRUE)

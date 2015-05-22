@@ -1,10 +1,14 @@
+photobiologySun 0.3.1.9000
+=====================
+
+Added hourly spectral data for August.
+Updated vignette.
+
 photobiologySun 0.3.1
 =====================
 
 Added hourly spectral data.
 Updated vignette with an example of the use of these data.
-
-More to come.
 
 photobiologySun 0.3.0
 =====================
