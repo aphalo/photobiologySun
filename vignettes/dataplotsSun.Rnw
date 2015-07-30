@@ -38,6 +38,7 @@ library(ggplot2)
 library(photobiology)
 library(photobiologySun)
 library(photobiologygg)
+library(lubridate)
 @
 
 <<own-set-up, echo=FALSE, include=FALSE>>=
@@ -53,11 +54,7 @@ my_version <- packageVersion("photobiologySun")
 
 The plots show the solar spectral irradiance data included in the package.
 
-<<example-0, eval=FALSE>>=
-library(ggplot2)
-library(photobiology)
-library(photobiologySun)
-library(photobiologygg)
+<<example-0-hiden, eval=FALSE>>=
 @
 
 <<>>=
@@ -116,115 +113,10 @@ We define a function to do the actual plotting so as to not repeat code, and to 
 
 Late summer in Helsinki, modelled spectra using a radiation transfer model.
 
-<<fig.width=10, fig.height=14, out.width='.98\\textwidth'>>=
-plot(subset(sun_hourly_august.spct, !is.na(s.e.irrad)), annotations = NULL) + 
-  facet_wrap(~EEST, ncol = 5)
-@
-
-\newpage
-
-We now show an example of how to calculate and plot hourly values for photon ratios. We also demonstret how to annotate the plots with the exact times for sunrise, solar noon and sunset.
-
-<<warning=FALSE>>=
-ratios.dt <- 
-  sun_hourly_august.spct[ , list(RFR  = q_ratio(.SD, Red("Smith10"), Far_red("Smith10")),
-                          BG   = q_ratio(.SD, Blue("Sellaro"), Green("Sellaro")),
-                          BR   = q_ratio(.SD, Blue("Sellaro"), Red("Sellaro")),
-                          UVAPAR = q_ratio(.SD, UVA(), PAR()),
-                          UVBPAR = q_ratio(.SD, UVB(), PAR()),
-                          PPFD = q_irrad(.SD, PAR()) * 1e6 ),
-                   by = EEST]
-@
-
-<<>>=
-sun_positions_21 <- 
-  day_night(ymd("2014-08-21", tz = "EET"), lat = 60.22, lon = 25.02)
-sun_positions_22 <-
-  day_night(ymd("2014-08-22", tz = "EET"), lat = 60.22, lon = 25.02)
-
-solar_noon <- c(sun_positions_21[["noon"]], sun_positions_22[["noon"]])
-sunrise    <- c(sun_positions_21[["sunrise"]], sun_positions_22[["sunrise"]])
-sunset     <- c(sun_positions_21[["sunset"]], sun_positions_22[["sunset"]])
-@
-
-\newpage
-
-<<>>=
-ggplot(data = ratios.dt, aes(x = EEST, y = PPFD)) + 
-  geom_line() + ylim(0, NA) +
-  labs(x = "Time of day, EEST", 
-       y = expression(PAR~~photon~~irradiance~~(mu*mol~m^{-2}~s^{-1})) ) +
-  annotate(geom="point", colour="red", shape=21, fill="yellow", 
-           x = solar_noon, y = 0, size=4) +
-  annotate(geom="point", colour="red", shape=21, fill="grey50", 
-           x = sunrise, y = 0, size=4) +
-  annotate(geom="point", colour="red", shape=21, fill="grey50", 
-           x = sunset, y = 0, size=4) 
-@
-
-<<>>=
-ggplot(data = ratios.dt, aes(x = EEST, y = RFR)) + 
-  geom_line() + ylim(0, NA) +
-  labs(x = "Time of day, EEST", y = "Red:Far-red photon ratio") +
-  annotate(geom="point", colour="red", shape=21, fill="yellow", 
-           x = solar_noon, y = 0, size=4) +
-  annotate(geom="point", colour="red", shape=21, fill="grey50", 
-           x = sunrise, y = 0, size=4) +
-  annotate(geom="point", colour="red", shape=21, fill="grey50", 
-           x = sunset, y = 0, size=4) 
-@
-
-\newpage
-
-<<>>=
-ggplot(data = ratios.dt, aes(x = EEST, y = BG)) + 
-  geom_line() + ylim(0, NA) +
-  labs(x = "Time of day, EEST", y = "Blue:Green photon ratio") +
-  annotate(geom="point", colour="red", shape=21, fill="yellow", 
-           x = solar_noon, y = 0, size=4) +
-  annotate(geom="point", colour="red", shape=21, fill="grey50", 
-           x = sunrise, y = 0, size=4) +
-  annotate(geom="point", colour="red", shape=21, fill="grey50", 
-           x = sunset, y = 0, size=4) 
-@
-
-<<>>=
-ggplot(data = ratios.dt, aes(x = EEST, y = BR)) + 
-  geom_line() + ylim(0, NA) +
-  labs(x = "Time of day, EEST", y = "Blue:Red photon ratio") +
-  annotate(geom="point", colour="red", shape=21, fill="yellow", 
-           x = solar_noon, y = 0, size=4) +
-  annotate(geom="point", colour="red", shape=21, fill="grey50", 
-           x = sunrise, y = 0, size=4) +
-  annotate(geom="point", colour="red", shape=21, fill="grey50", 
-           x = sunset, y = 0, size=4) 
-@
-
-\newpage
-
-<<>>=
-ggplot(data = ratios.dt, aes(x = EEST, y = UVAPAR)) + 
-  geom_line() + ylim(0, NA) +
-  labs(x = "Time of day, EEST", y = "UVA:PAR photon ratio") +
-  annotate(geom="point", colour="red", shape=21, fill="yellow", 
-           x = solar_noon, y = 0, size=4) +
-  annotate(geom="point", colour="red", shape=21, fill="grey50", 
-           x = sunrise, y = 0, size=4) +
-  annotate(geom="point", colour="red", shape=21, fill="grey50", 
-           x = sunset, y = 0, size=4) 
-@
-
-
-<<>>=
-ggplot(data = ratios.dt, aes(x = EEST, y = UVBPAR)) + 
-  geom_line() + ylim(0, NA) +
-  labs(x = "Time of day, EEST", y = "UVB:PAR photon ratio") +
-  annotate(geom="point", colour="red", shape=21, fill="yellow", 
-           x = solar_noon, y = 0, size=4) +
-  annotate(geom="point", colour="red", shape=21, fill="grey50", 
-           x = sunrise, y = 0, size=4) +
-  annotate(geom="point", colour="red", shape=21, fill="grey50", 
-           x = sunset, y = 0, size=4) 
+<<fig.width=7, fig.height=9, out.width='.98\\textwidth'>>=
+plot(subset(sun_hourly_august.spct, day(EEST) == 21 & hour(EEST) < 21), 
+     annotations = "colour.guide") +   
+  facet_wrap(~EEST, ncol = 3)
 @
 
 \end{document}
