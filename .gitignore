@@ -9,3 +9,4 @@ man
 *.log
 vignettes/figure/*.pdf
 
+vignettes/dataplotsSun.pdf
