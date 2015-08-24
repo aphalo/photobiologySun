@@ -109,6 +109,30 @@ We define a function to do the actual plotting so as to not repeat code, and to 
 @
 
 \newpage
+April in Helsinki, under birch trees, in a sunfleck.
+
+<<>>=
+  ppfd.df <- q_irrad(gap.mspct, PAR())
+  ppfd.df$time <- seq(from = 1, by = attr(gap.mspct, "time.step"), 
+                      length.out = nrow(ppfd.df))
+  ggplot(ppfd.df, aes(time, q_irrad_PAR * 1e6)) + 
+    geom_line() + ylim(0, NA) +
+    labs(x = "Time (s)", 
+         y = expression(PAR~~photon~~irradiance~~(mu*mol~m^{-2}~s^{-1})) )
+@
+
+<<>>=
+  R_FR.df <- q_ratio(gap.mspct, Red("Smith10"), Far_red("Smith10"))
+  names(R_FR.df)[2] <- "R_FR"
+  R_FR.df$time <- seq(from = 1, by = attr(gap.mspct, "time.step"), 
+                      length.out = nrow(R_FR.df))
+  ggplot(R_FR.df, aes(time, R_FR)) + 
+    geom_line() + 
+    labs(x = "Time (s)", 
+         y = "R:FR photon ratio (fraction of one)")
+@
+
+\newpage
 \section{Simulated hourly daylight spectra}
 
 Late summer in Helsinki, modelled spectra using a radiation transfer model.

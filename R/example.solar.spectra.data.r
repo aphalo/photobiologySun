@@ -1,4 +1,4 @@
-#' Ground level solar spectral irradiance
+#' Ground level solar spectral irradiance (measured)
 #' 
 #' Datasets containing the wavelengths at a 0.5 nm to 1.0 nm interval and 
 #' tabulated values of measrued spectral irradiance for the sun.
@@ -94,3 +94,32 @@
 #' @format A data frame with 15841 rows (290 nm to 800 nm at 1 nm interval) and 3
 #'   variables.
 "sun_hourly_august.spct"
+
+#' @title Solar spectral irradiance in a tree canopy gap (measured)
+#'
+#' @description A dataset containing a sequence of 72 spectra measured with an 
+#'   Ocean Optics Maya2000 Pro spectrometer and a Bentham DH-7-SM cosine 
+#'   diffuser. Values measured on 30 April 2014, in the late morning, in 
+#'   Helsinki, Finland, under clear sky conditions. The whole sequence was 
+#'   measured in 39 seconds in a sunfleck under young silver birch trees. Place:
+#'   University of Helsinki, Viikki Campus, Finland. Calibration and corrections
+#'   done with package MayaCalc using bracketing and noise reduction (with
+#'   filter measurement) and method "sun". Algorithm and calibration data by 
+#'   Lasse Ylianttila (STUK, Helsinki, Finland).
+#' 
+#' @references  Ylianttila, L.; Visuri, R.; Huurto, L. & Jokela, K. (2005) 
+#'   Evaluation of a single-monochromator diode array spectroradiometer for 
+#'   sunbed UV-radiation measurements. Photochem Photobiol, 81, 333-341
+#'   
+#' @details \itemize{ \item w.length (nm), range 293 to 800 nm. \item s.e.irrad
+#'   (W m-2 nm-1) \item s.q.irrad (mol m-2 nm-1) }
+#'
+#' @author T. Matthew Robson and Saara Hartikainen (data)
+#'
+#' @docType data
+#' @keywords datasets
+#' @format A \code{source_mspct} object containing a collection of 72
+#'   source_spct objects.
+#'   
+"gap.mspct"
+
