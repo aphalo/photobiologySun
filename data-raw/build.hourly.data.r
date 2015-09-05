@@ -1,7 +1,8 @@
 library(lubridate)
 library(photobiology)
 library(dplyr)
-hourly.spct <- read.table(file="data-raw/hourly_spectra.txt", col.names = c("date", "time", "w.length", "s.e.irrad"))
+hourly.spct <- read.table(file="data-raw/hourly_spectra.txt", 
+                          col.names = c("date", "time", "w.length", "s.e.irrad"))
 hourly.spct <- mutate(hourly.spct, UTC = ymd(date) + seconds(trunc(time * 60)))
 hourly.spct <- transmute(hourly.spct,
                          w.length = w.length * 1e-1,

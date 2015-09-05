@@ -12,7 +12,7 @@
 #' Package: \tab photobiologySun\cr
 #' Type: \tab Package\cr
 #' Version: \tab 0.3.4\cr
-#' Date: \tab 2015-08-24\cr
+#' Date: \tab 2015-09-05\cr
 #' License: \tab GPL (>= 3.0)\cr
 #' URL: \tab \url{http://www.r4photobiology.info},\cr
 #' \tab \url{https://bitbucket.org/aphalo/photobiologySun}\cr
