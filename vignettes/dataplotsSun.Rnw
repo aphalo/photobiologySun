@@ -78,6 +78,7 @@ We define a function to do the actual plotting so as to not repeat code, and to 
   plot(Gueymard_AM0.spct, range=c(250, 2000), w.band = NULL)
 @
 
+\newpage
 \section{Standard terrestrial solar spectra}
 
 <<terrestrial-std-dir>>=
@@ -108,7 +109,7 @@ We define a function to do the actual plotting so as to not repeat code, and to 
   plot(sun_May_morning.spct, unit.out = "photon")
 @
 
-\newpage
+%\newpage
 April in Helsinki, under birch trees, in a sunfleck.
 
 <<>>=
@@ -141,6 +142,56 @@ Late summer in Helsinki, modelled spectra using a radiation transfer model.
 plot(subset(sun_hourly_august.spct, day(EEST) == 21 & hour(EEST) < 21), 
      annotations = "colour.guide") +   
   facet_wrap(~EEST, ncol = 3)
+@
+
+\section{Measured irradiance data}
+
+Late summer in Helsinki, 2015.
+
+<<>>=
+ppfd_label <- expression(PAR~~photon~~irradiance~~(mu*mol~s^{-1}~m^{-2}))
+irrad_label <- expression(Global~~irradiance~~(W~m^{-2}))
+time_label <- "Time EEST"
+ppfd_labels <- labs(x = time_label, y = ppfd_label)
+irrad_labels <- labs(x = time_label, y = irrad_label)
+@
+
+<<>>=
+ggplot(ppfd.LICOR.data, aes(time_EET, ppfd_mean)) + geom_line() +
+  ppfd_labels
+@
+
+<<>>=
+ggplot(ppfd.BF.data, aes(time_EET, ppfd_tot_mean)) + geom_line() +
+  ppfd_labels
+@
+
+<<>>=
+ggplot(ppfd.BF.data, aes(time_EET, ppfd_diff_mean)) + geom_line() +
+  ppfd_labels
+@
+
+<<>>=
+ggplot(irrad.Kipp.data, aes(time_EET, e_irrad_mean)) + geom_line() +
+  irrad_labels
+@
+
+<<>>=
+sunny.day.data <- subset(ppfd.LICOR.data, 
+                           time_EET >= ymd_hms("2015-08-22 00:00:00") &
+                             time_EET < ymd_hms("2015-08-23 00:00:00") )
+ggplot(sunny.day.data, aes(time_EET, ppfd_max)) + 
+  geom_area(fill = "orange", alpha = 0.3, colour = "tomato") +
+  ylim(-0.3, 1600) + ppfd_labels
+@
+
+<<>>=
+cloudy.day.data <- subset(ppfd.LICOR.data, 
+                           time_EET >= ymd_hms("2015-09-07 00:00:00") &
+                             time_EET < ymd_hms("2015-09-08 00:00:00") )
+ggplot(cloudy.day.data, aes(time_EET, ppfd_max)) + 
+  geom_area(fill = "orange", alpha = 0.3, colour = "tomato") +
+  ylim(-0.3, 1600) + ppfd_labels
 @
 
 \end{document}

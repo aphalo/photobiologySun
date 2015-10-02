@@ -1,21 +1,22 @@
 #' Ground level solar spectral irradiance (measured)
 #' 
 #' Datasets containing the wavelengths at a 0.5 nm to 1.0 nm interval and 
-#' tabulated values of measrued spectral irradiance for the sun.
+#' tabulated values of measured spectral irradiance for the sun.
 #' 
 #' The variables are as follows: 
 #' \itemize{ 
 #' \item w.length numeric (nm) 
 #' \item s.e.irrad numeric (W m-2 nm-1) }
 #' 
-#' @note Instrument used: Maya2000Pro scanning double monochromator
-#' spectroradiometer with a Bentham cosine corrected input optics. Recently
-#' calibrated at STUK. Date and time: . Place: University of Helsinki, Viikki
-#' Campus, Finland. Measurements done by Pedro J. Aphalo. Calibration and
-#' corrections done with package MayaCalc using bracketing and noise reduction
-#' (with filter measurement) and method "sun". Algorithm and calibration data by
-#' Lasse Ylianttila (STUK, Helsinki, Finland).
-#' 
+#' @note Instrument used: Maya2000Pro scanning double monochromator 
+#'   spectroradiometer with a Bentham cosine corrected input optics. Recently 
+#'   calibrated at STUK. Date and time: 31 May 2013, 11:23 EEST. Place:
+#'   University of Helsinki, Viikki Campus, Finland. Coordinates: 60.226183 N,
+#'   25.018302 E. Measurements done by Pedro J. Aphalo. Calibration and
+#'   corrections done with package MayaCalc using bracketing and noise reduction
+#'   (with filter measurement) and method "sun". Algorithm and calibration data
+#'   by Lasse Ylianttila (STUK, Helsinki, Finland).
+#'   
 #' @references  Ylianttila, L.; Visuri, R.; Huurto, L. & Jokela, K. (2005) 
 #'   Evaluation of a single-monochromator diode array spectroradiometer for 
 #'   sunbed UV-radiation measurements. Photochem Photobiol, 81, 333-341
@@ -29,7 +30,7 @@
 #' Ground level spectral irradiance at hourly intervals
 #' 
 #' Datasets containing the wavelengths at 1.0 nm interval and tabulated values
-#' spectral irradiance for the sun for late June in Helsinki.
+#' spectral irradiance for the sun for 22 to 24 June 2010 in Helsinki, Finland.
 #' 
 #' @details 
 #' The variables are as follows: 
@@ -67,7 +68,7 @@
 #' Ground level spectral irradiance at hourly intervals
 #' 
 #' Datasets containing the wavelengths at 1.0 nm interval and tabulated values
-#' spectral irradiance for the sun for late August in Helsinki..
+#' spectral irradiance for the sun for 21 and 22 August in Helsinki, Finland.
 #' 
 #' @details 
 #' The variables are as follows: 
@@ -99,13 +100,13 @@
 #'
 #' @description A dataset containing a sequence of 72 spectra measured with an 
 #'   Ocean Optics Maya2000 Pro spectrometer and a Bentham DH-7-SM cosine 
-#'   diffuser. Values measured on 30 April 2014, in the late morning, in 
-#'   Helsinki, Finland, under clear sky conditions. The whole sequence was 
-#'   measured in 39 seconds in a sunfleck under young silver birch trees. Place:
-#'   University of Helsinki, Viikki Campus, Finland. Calibration and corrections
-#'   done with package MayaCalc using bracketing and noise reduction (with
-#'   filter measurement) and method "sun". Algorithm and calibration data by 
-#'   Lasse Ylianttila (STUK, Helsinki, Finland).
+#'   diffuser. Values measured on 30 April 2014, in the late morning, under
+#'   clear sky conditions. The whole sequence was measured in 39 seconds in a
+#'   sunfleck under young silver birch trees. Place: University of Helsinki,
+#'   Viikki Campus, Finland. Coordinates: 60.227162 N, 25.019429 E. Calibration
+#'   and corrections done with package MayaCalc using bracketing and noise
+#'   reduction (with filter measurement) and method "sun". Algorithm and
+#'   calibration data by Lasse Ylianttila (STUK, Helsinki, Finland).
 #' 
 #' @references  Ylianttila, L.; Visuri, R.; Huurto, L. & Jokela, K. (2005) 
 #'   Evaluation of a single-monochromator diode array spectroradiometer for 
