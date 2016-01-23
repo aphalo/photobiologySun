@@ -1,6 +1,6 @@
 %\VignetteEngine{knitr}
 %\VignetteIndexEntry{UV-radiation quantification with R: Catalogue of solar spectra}
-%\VignetteDepends{knitr, photobiology, photobiologySun, photobiologygg, ggplot2}
+%\VignetteDepends{knitr, photobiology, photobiologyWavebands, photobiologySun, ggspectra, ggplot2}
 %\VignetteKeyword{misc}
 
 \documentclass{article}
@@ -35,9 +35,10 @@ opts_chunk$set(fig.path='figure/pos-', fig.align='center', fig.show='hold', size
 
 <<example-0-hiden, eval=TRUE, include=FALSE>>=
 library(ggplot2)
+library(ggspectra)
 library(photobiology)
+library(photobiologyWavebands)
 library(photobiologySun)
-library(photobiologygg)
 library(lubridate)
 @
 
