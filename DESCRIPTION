@@ -1,10 +1,16 @@
 Package: photobiologySun
 Type: Package
 Title: Data for sunlight spectra
-Version: 0.4.0
+Version: 0.3.7
 Date: 2017-11-15
-Author: Pedro J. Aphalo <pedro.aphalo@helsinki.fi>
-Maintainer: Pedro J. Aphalo <pedro.aphalo@helsinki.fi>
+Authors@R:
+   c(
+    person("Pedro J.", "Aphalo", email = "pedro.aphalo@helsinki.fi", role = c("aut", "trl", "cre")),
+    person("T. Matthew", "Robson", role = c("ctb")),
+    person("Sara", "Hartiakinen", role = c("ctb")),
+    person("Anders", "Lindfors", role = c("ctb")),
+    person("Titta K.", "Kotilainen", role = "ctb")
+    )
 Description: This package provides data for the extraterrestrial solar spectral 
     irradiance and ground level solar spectral irradiance and irradiance. It 
     also provides data for shade light under vegetation.

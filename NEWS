@@ -1,7 +1,7 @@
 photobiologySun 0.3.7
 =====================
 
-Convert vignette to R markdown.
+Convert vignette to R markdown. Add pkgdown support.
 
 photobiologySun 0.3.6
 =====================
