@@ -1,0 +1,193 @@
+---
+title: "`photobiologySun` `r packageVersion('photobiologySun')`<br>Data Catalogue"
+author: "Pedro J. Aphalo"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: yes
+vignette: >
+  %\VignetteIndexEntry{Data Catalogue}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+knitr::opts_chunk$set(fig.width=8, fig.height=4)
+```
+
+## Introduction
+
+This is a catalogue of all data sets included in the package. You will find below plots of spectral irradiance for sunlight. All spectra a expressed in absolute units. Some are from standards, and other have been measured or simulated. 
+
+Of the measured spectra, not all of them have been measured with the same instruments. The fine sructure of spectral data depends on the spectral resolution of the monochromator. Lower resolution results in smoother spectra through averaging over nearby wavelengths. Similar averaging can be done in software, but such averaging was not used.
+
+Some of the spectral data extend far into the infra-red region. Plots of these data sets do not include the whole range of wavelengths. In the case of time series of spectra, only a few time points are plotted. The step between succesive wavelengths can vary as a function of wavelength with in the case of measured data and standards. In all cases wavelengths are expressed in nanometres and energy irradiances in watt per square metre.
+
+```{r}
+library(photobiology)
+library(photobiologyWavebands)
+library(photobiologySun)
+library(ggplot2)
+library(ggspectra)
+library(lubridate)
+```
+
+
+```{r}
+options(photobiology.plot.annotations =
+          c("boxes", "labels", "colour.guide", "peaks", "title"))
+```
+
+## Extraterrrestrial solar spectrum or AM0
+
+Air Mass zero or AM0 means sunlight that has not travelled through the air.
+
+```{r}
+stepsize(WMO_Wehrli_AM0.spct)
+range(WMO_Wehrli_AM0.spct)
+```
+
+```{r}
+plot(WMO_Wehrli_AM0.spct, range=c(250, 2000), w.band = NULL)
+```
+
+```{r}
+stepsize(ASTM_E490_AM0.spct)
+range(ASTM_E490_AM0.spct)
+```
+
+```{r}
+plot(ASTM_E490_AM0.spct, range=c(250, 2000), w.band = NULL)
+```
+
+```{r}
+stepsize(Gueymard_AM0.spct)
+range(Gueymard_AM0.spct)
+```
+
+```{r}
+plot(Gueymard_AM0.spct, range=c(250, 2000), w.band = NULL)
+```
+
+## Standard terrestrial solar spectra or AM1.5
+
+Air Mass 1.5 (AM1.5) assumes such a solar elevation angle that sunlight travels through 1.5 times the thickness of the atmosphere. The plane of incidence is assumed to be at 37 degrees rather than horizontal. This is considered as typical for the USA. Global radiation includes both direct radiation from the sun and scattered radiation from the sky and clouds. 
+
+```{r}
+stepsize(ASTM_G173_direct.spct)
+range(ASTM_G173_direct.spct)
+```
+
+```{r}
+plot(ASTM_G173_direct.spct, range=c(250, 2000), w.band = NULL)
+```
+
+```{r}
+stepsize(ASTM_G173_global.spct)
+range(ASTM_G173_global.spct)
+```
+
+```{r}
+plot(ASTM_G173_global.spct, range=c(250, 2000), w.band = NULL)
+```
+
+## Measured daylight spectra
+
+### Under clear sky
+
+```{r}
+stepsize(sun_May_morning.spct)
+range(sun_May_morning.spct)
+```
+
+```{r}
+plot(sun_May_morning.spct, annotations = c("+", "title:objct:when"))
+```
+
+### Under vegetation
+
+```{r}
+length(gap.mspct)
+stepsize(gap.mspct[[1]])
+range(gap.mspct[[1]])
+```
+
+```{r}
+plot(rbindspct(gap.mspct[1:5]), annotations = c("-", "peaks")) +
+  aes(linetype = spct.idx)
+```
+
+```{r}
+plot(sun_May_morning.spct, annotations = c("+", "title:objct:when"))
+```
+
+## Simulated hourly daylight spectra
+
+### Late summer in Helsinki
+
+```{r}
+plot(subset(sun_hourly_august.spct, day(EEST) == 21 &
+             hour(EEST) > 7 & 
+              hour(EEST) < 13), 
+     annotations = "colour.guide") +   
+  facet_wrap(~EEST, ncol = 3)
+```
+
+## Measured time-series of irradiance data
+
+Late summer in Helsinki, 2015.
+
+```{r}
+ppfd_label <- expression(PAR~~photon~~irradiance~~(mu*mol~s^{-1}~m^{-2}))
+irrad_label <- expression(Global~~irradiance~~(W~m^{-2}))
+time_label <- "Time EEST"
+ppfd_labels <- labs(x = time_label, y = ppfd_label)
+irrad_labels <- labs(x = time_label, y = irrad_label)
+```
+
+```{r}
+ggplot(ppfd.LICOR.data, aes(time_EET, ppfd_mean)) + geom_line() +
+  ppfd_labels
+```
+
+Global PAR radiaition
+
+```{r}
+ggplot(ppfd.BF.data, aes(time_EET, ppfd_tot_mean)) + geom_line() +
+  ppfd_labels
+```
+
+Diffuse PAR radiation
+
+```{r}
+ggplot(ppfd.BF.data, aes(time_EET, ppfd_diff_mean)) + geom_line() +
+  ppfd_labels
+```
+
+Global radiation (UV + VIS + IR)
+
+```{r}
+ggplot(irrad.Kipp.data, aes(time_EET, e_irrad_mean)) + geom_line() +
+  irrad_labels
+```
+
+Detail time courses for two days with contrasting cloudiness.
+
+```{r}
+sunny.day.data <- subset(ppfd.LICOR.data, 
+                           time_EET >= ymd_hms("2015-08-22 00:00:00") &
+                             time_EET < ymd_hms("2015-08-23 00:00:00") )
+ggplot(sunny.day.data, aes(time_EET, ppfd_max)) + 
+  geom_area(fill = "orange", alpha = 0.3, colour = "tomato") +
+  ylim(-0.3, 1600) + ppfd_labels
+```
+
+```{r}
+cloudy.day.data <- subset(ppfd.LICOR.data, 
+                           time_EET >= ymd_hms("2015-09-07 00:00:00") &
+                             time_EET < ymd_hms("2015-09-08 00:00:00") )
+ggplot(cloudy.day.data, aes(time_EET, ppfd_max)) + 
+  geom_area(fill = "orange", alpha = 0.3, colour = "tomato") +
+  ylim(-0.3, 1600) + ppfd_labels
+```
+
