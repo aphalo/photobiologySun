@@ -17,8 +17,8 @@ Description: This package provides data for the extraterrestrial solar spectral
 License: GPL (>= 2)
 VignetteBuilder: knitr
 Depends:
-    R (>= 3.3.0),
-    photobiology (>= 0.9.1)
+    R (>= 3.3.3),
+    photobiology (>= 0.9.16)
 Suggests:
     knitr (>= 0.1.17),
     rmarkdown (>= 1.7),
