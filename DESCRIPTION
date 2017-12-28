@@ -1,11 +1,11 @@
 Package: photobiologySun
 Type: Package
 Title: Data for sunlight spectra
-Version: 0.3.7
-Date: 2017-11-15
+Version: 0.3.7.9000
+Date: 2017-12-27
 Authors@R:
    c(
-    person("Pedro J.", "Aphalo", email = "pedro.aphalo@helsinki.fi", role = c("aut", "trl", "cre")),
+    person("Pedro J.", "Aphalo", email = "pedro.aphalo@helsinki.fi", role = c("aut", "trl", "cre"), comment = c(ORCID = "https://orcid.org/0000-0003-3385-972X")),
     person("T. Matthew", "Robson", role = c("ctb")),
     person("Sara", "Hartiakinen", role = c("ctb")),
     person("Anders", "Lindfors", role = c("ctb")),
@@ -17,14 +17,14 @@ Description: This package provides data for the extraterrestrial solar spectral
 License: GPL (>= 2)
 VignetteBuilder: knitr
 Depends:
-    R (>= 3.3.3),
-    photobiology (>= 0.9.16)
+    R (>= 3.3.0),
+    photobiology (>= 0.9.18)
 Suggests:
     knitr (>= 0.1.17),
     rmarkdown (>= 1.7),
     photobiologyWavebands (>= 0.4.2),
     ggplot2 (>= 2.2.1),
-    ggspectra (>= 0.2.2),
+    ggspectra (>= 0.2.3),
     lubridate (>= 1.7.1)
 LazyLoad: yes
 LazyData: yes
