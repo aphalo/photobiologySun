@@ -7,6 +7,4 @@ man
 *.synctex.gz
 *.synctex
 *.log
-vignettes/figure/*.pdf
-
-vignettes/dataplotsSun.pdf
+docs
