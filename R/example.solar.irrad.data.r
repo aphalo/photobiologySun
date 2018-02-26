@@ -26,7 +26,7 @@
 #' @keywords datasets
 #' @format A data frame with 24479 rows and 5 variables.
 #'   variables.
-"irrad.Kipp.data"
+"irrad_Kipp.data"
 
 #' Ground level solar PAR photon irradiance (measured)
 #' 
@@ -57,7 +57,7 @@
 #' @keywords datasets
 #' @format A data frame with 24479 rows and 5 variables.
 #'
-"ppfd.LICOR.data"
+"ppfd_LICOR.data"
 
 #' Ground level solar PAR photon irradiance, direct and diffuse (measured)
 #' 
@@ -93,5 +93,5 @@
 #' @keywords datasets
 #' @format A data frame with 24479 rows and 9 variables.
 #'   variables.
-"ppfd.BF.data"
+"ppfd_BF.data"
 

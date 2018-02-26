@@ -25,7 +25,7 @@
 #' @keywords datasets
 #' @format A data frame with 1425 rows (250 nm to 900 nm, variable step) and 3
 #'   variables.
-"sun_May_morning.spct"
+"sun_may_morning.spct"
 
 #' Ground level spectral irradiance at hourly intervals
 #' 
@@ -38,7 +38,6 @@
 #' \item w.length numeric (nm) 
 #' \item s.e.irrad numeric (W m-2 nm-1) 
 #' \item UTC POSIXct (UTC date and time)
-#' \item EEST POSIXct (EEST date and time)
 #' }
 #' The data set includes NAs for missing night-time spectral irardiance 
 #' values.
@@ -76,7 +75,6 @@
 #' \item w.length numeric (nm) 
 #' \item s.e.irrad numeric (W m-2 nm-1) 
 #' \item UTC POSIXct (UTC date and time)
-#' \item EEST POSIXct (EEST date and time)
 #' }
 #' The data set includes NAs for missing night-time spectral irardiance 
 #' values.
@@ -113,7 +111,7 @@
 #'   sunbed UV-radiation measurements. Photochem Photobiol, 81, 333-341
 #'   
 #' @details \itemize{ \item w.length (nm), range 293 to 800 nm. \item s.e.irrad
-#'   (W m-2 nm-1) \item s.q.irrad (mol m-2 nm-1) }
+#'   (W m-2 nm-1) }
 #'
 #' @author T. Matthew Robson and Saara Hartikainen (data)
 #'

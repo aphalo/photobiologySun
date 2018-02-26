@@ -3,21 +3,19 @@ reference:
     contents:
     - '`photobiologySun-package`'
   - title: Standard and reference spectral irradiance data
-    desc: source_spct objects containing spectral irradiance data.
+    desc: collection of source_spct objects containing reference spectral irradiance data.
     contents:
-    - ASTM_E490_AM0.spct
-    - Gueymard_AM0.spct
-    - WMO_Wehrli_AM0.spct
+    - sun_reference.mspct
   - title: Measured and simulated spectral irradiance data
     desc: source_spct objects and collections of such objects, containing spectral irradiance data.
     contents:
-    - sun_May_morning.spct
+    - sun_may_morning.spct
     - sun_hourly_june.spct
     - sun_hourly_august.spct
     - gap.mspct
   - title: Measured irradiance data
     desc: Data frames containing irradiance data acquired with different broad band sensors.
     contents:
-    - irrad.Kipp.data
-    - ppfd.LICOR.data
-    - ppfd.BF.data
+    - irrad_Kipp.data
+    - ppfd_LICOR.data
+    - ppfd_BF.data

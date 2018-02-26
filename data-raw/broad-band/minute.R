@@ -12,12 +12,11 @@ minute.data <- subset(minute.data,
                       time_EET > ymd_hms("2015-08-22 00:00:00 EET") &
                         time_EET < ymd_hms("2015-09-08 00:00:00 EET") )
 
-irrad.Kipp.data <- select(minute.data, time_EET,
+irrad_Kipp.data <- select(minute.data, time_EET,
                            e_irrad_mean = Solar_irrad_Avg,
                           e_irrad_max = Solar_irrad_Max,
                           e_irrad_min = Solar_irrad_Min,
                            e_irrad_sd = Solar_irrad_Std)
-devtools::use_data(irrad.Kipp.data, overwrite = TRUE)
 
 minute.LICOR.summaries.data <- select(minute.data, time_EET,
                                       ppfd_mean = PAR_Den_Avg,
@@ -25,12 +24,10 @@ minute.LICOR.summaries.data <- select(minute.data, time_EET,
                                       ppfd_min = PAR_Den_Min,
                                       ppfd_sd = PAR_Den_Std)
 
-ppfd.LICOR.data <- mutate(minute.LICOR.summaries.data,
+ppfd_LICOR.data <- mutate(minute.LICOR.summaries.data,
                           ppfd_mean = ppfd_mean + 0.03,
                           ppfd_min = ppfd_min + 0.03,
                           ppfd_max = ppfd_max + 0.03)
-devtools::use_data(ppfd.LICOR.data, overwrite = TRUE)
-
 
 minute.BF.summaries.data <- select(minute.data, time_EET,
                                    ppfd_tot_mean = PAR_BF_tot_Avg,
@@ -42,12 +39,13 @@ minute.BF.summaries.data <- select(minute.data, time_EET,
                                    ppfd_diff_max = PAR_BF_diff_Max,
                                    ppfd_diff_sd = PAR_BF_diff_Std)
 
-ppfd.BF.data <- mutate(minute.BF.summaries.data,
+ppfd_BF.data <- mutate(minute.BF.summaries.data,
                        ppfd_tot_mean = ppfd_tot_mean - 0.7,
                        ppfd_tot_max = ppfd_tot_max - 0.7,
                        ppfd_tot_min = ppfd_tot_min - 0.7,
                        ppfd_diff_mean = ppfd_diff_mean - 0.81,
                        ppfd_diff_max = ppfd_diff_max - 0.81,
                        ppfd_diff_min = ppfd_diff_min - 0.81)
-devtools::use_data(ppfd.BF.data, overwrite = TRUE)
+
+save(ppfd_BF.data, ppfd_LICOR.data, irrad_Kipp.data, file = "./data/broad-band.rda")
 

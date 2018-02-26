@@ -14,8 +14,8 @@
 #' library(photobiology)
 #' library(photobiologyWavebands)
 #' 
-#' q_irrad(sun_May_morning.spct, PAR())
-#' q_ratio(sun_May_morning.spct, Red("Smith10"), Far_red("Smith10"))
+#' q_irrad(sun_may_morning.spct, PAR())
+#' q_ratio(sun_may_morning.spct, Red("Smith10"), Far_red("Smith10"))
 #'
 #' @import photobiology
 #'
