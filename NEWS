@@ -1,12 +1,10 @@
-TODO
-===
-Rewrite vignette.
-
 photobiologySun 0.4.0
 =====================
 
 Group reference spectra into a collection.
 Rebuild all data objects adding metadata.
+New vignette.
+First CRAN version.
 
 photobiologySun 0.3.7
 =====================

@@ -17,6 +17,7 @@ irrad_Kipp.data <- select(minute.data, time_EET,
                           e_irrad_max = Solar_irrad_Max,
                           e_irrad_min = Solar_irrad_Min,
                            e_irrad_sd = Solar_irrad_Std)
+comment(irrad_Kipp.data) <- "Measured with Kipp & zonen SMP3 Pyranometer"
 
 minute.LICOR.summaries.data <- select(minute.data, time_EET,
                                       ppfd_mean = PAR_Den_Avg,
@@ -28,6 +29,7 @@ ppfd_LICOR.data <- mutate(minute.LICOR.summaries.data,
                           ppfd_mean = ppfd_mean + 0.03,
                           ppfd_min = ppfd_min + 0.03,
                           ppfd_max = ppfd_max + 0.03)
+comment(ppfd_LICOR.data) <- "Measured with LI-COR LI-190 PAR quantum sensor"
 
 minute.BF.summaries.data <- select(minute.data, time_EET,
                                    ppfd_tot_mean = PAR_BF_tot_Avg,
@@ -46,6 +48,7 @@ ppfd_BF.data <- mutate(minute.BF.summaries.data,
                        ppfd_diff_mean = ppfd_diff_mean - 0.81,
                        ppfd_diff_max = ppfd_diff_max - 0.81,
                        ppfd_diff_min = ppfd_diff_min - 0.81)
+comment(ppfd_LICOR.data) <- "Measured with Delta-T BF5 Sunshine Sensor"
 
 save(ppfd_BF.data, ppfd_LICOR.data, irrad_Kipp.data, file = "./data/broad-band.rda")
 

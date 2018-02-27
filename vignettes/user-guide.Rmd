@@ -1,0 +1,136 @@
+---
+title: "User Guide"
+subtitle: "Package 'photobiologySun' `r packageVersion('photobiologySun')` "
+author: "Pedro J. Aphalo"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: yes
+vignette: >
+  %\VignetteIndexEntry{User Guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(fig.width=8, fig.height=4)
+```
+
+
+## Introduction
+
+This package, is a data only package, part of a suite, which has package 
+'photobiology' at its core. Please visit (http://www.r4photobiology.info/) 
+for more details. For information on plotting spectra, please consult the 
+documentation for package 'ggspectra', and for information on the calculation 
+of summaries and maths operations between spectra, please, consult the 
+documentation for package 'photobiology'.
+
+```{r, message=FALSE}
+library(photobiology)
+library(photobiologyWavebands)
+library(photobiologySun)
+library(lubridate)
+library(ggplot2)
+library(ggspectra)
+```
+
+One collection of spectra, `sun_reference.mspct`, contains published reference solar spectra used in model simulations and for calculations. Another collection, `gap.mspct` contains a rapid sequence of spectra measured in a forest gap. Another two
+time series of simulated hourly spectra `sun_hourly_june.spct` and `sun_hourly_august.spct`, are each in the format of a single spectral object. Other measured spectra is inlcuded, as well as energy- and photon-irradiance time series from broadband sensors.
+
+## Accessing individual spectra
+
+The `source_spct` member objects in `sun_reference.mspct`  and `gap.mspct` can be accessed through their
+names or through a numeric index. As the numeric indexes are likely to change 
+with updates to the package, their use is discouraged. Names as character
+strings should be used instead. They can also be retrieved with method `names()`.
+
+```{r}
+names(sun_reference.mspct)
+```
+
+We can use a character string as index to extract an individual `source_spct`
+object.
+
+```{r}
+sun_reference.mspct$Gueymard.AM0
+```
+
+```{r}
+sun_reference.mspct[["Gueymard.AM0"]]
+```
+
+Be aware that according to R's rules, using single square brackets will return
+a `source_mspct` object possibly of length one. This statement is not equivalent
+to the one in the chunk immediately above.
+
+```{r}
+sun_reference.mspct["Gueymard.AM0"]
+```
+
+## Accessing subsets of spectra
+
+We can subset `sensors.mspct` object by indexing with vectors of character strings. More generally one can search for matching names within the collection of spectra.
+
+```{r}
+sun_reference.mspct[grep("AM0", names(sun_reference.mspct), ignore.case = TRUE)]
+```
+
+## Plotting the spectra
+
+Using `plot()` methods for spectra defined in package 'ggspectra' annotated plotting is automatic. The defaults can be easily changed, please see the documentation
+in package 'ggspectra'.
+
+```{r}
+plot(gap.mspct$spct.1)
+```
+
+Using the `ggplot()` method for spectra from package 'ggspectra' plus _geometries_
+and _statistics_ from package 'ggplot2' we gain additional control on the design.
+
+```{r}
+ggplot(gap.mspct$spct.1, unit.out = "photon") +
+  geom_line(linetype = "dashed") +
+  theme_classic()
+```
+
+In the case of spectral objects containing a time series of spectra, the index variable `UTC` containing time and date in universal time coordinates ("UTC") can be used to select and/or highlight individual spectra.
+
+```{r}
+ggplot(subset(sun_hourly_august.spct, 
+              UTC %in% 
+                ymd_hms(c("2014-08-21 06:30:00",
+                          "2014-08-21 09:30:00",
+                          "2014-08-21 12:30:00"))),
+       unit.out = "photon",
+       aes(w.length, s.e.irrad, color = factor(UTC))) +
+  geom_line() +
+  theme_classic()
+```
+
+## Using the data in other contexts
+
+As `source_spct` is a class derived from `list`, and `source_spct` is derived from
+`tibble::tible` which is a compatible reimplementation of `data.frame` the
+data can be used very easily with any R function.
+
+```{r}
+head(as.data.frame(gap.mspct$spct.1))
+```
+
+Of course `attach` and `with` also work as expected.
+```{r}
+attach(gap.mspct)
+q_response(spct.1, Red())
+detach(gap.mspct)
+```
+
+```{r}
+attach(gap.mspct)
+with(spct.1, max(w.length))
+detach(gap.mspct)
+```
+
+```{r}
+with(gap.mspct, q_response(spct.1, Red()))
+```
