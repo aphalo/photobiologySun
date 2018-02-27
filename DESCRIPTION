@@ -12,9 +12,9 @@ Authors@R:
     person("Titta K.", "Kotilainen", role = "ctb")
     )
 Description: Data for the extraterrestrial solar spectral irradiance and ground 
-    level solar spectral irradiance and irradiance. It also provides data for 
-    shade light under vegetation.  Part of the 'r4photobiology' suite, 
-    Aphalo P. J. (2015) <doi:10.19232/uv4pb.2015.1.14>.
+    level solar spectral irradiance and irradiance. In addition data for 
+    shade light under vegetation and irradiance time series.  Part of the 
+    'r4photobiology' suite, Aphalo P. J. (2015) <doi:10.19232/uv4pb.2015.1.14>.
 License: GPL (>= 2)
 VignetteBuilder: knitr
 Depends:
@@ -32,7 +32,7 @@ LazyData: yes
 ByteCompile: true
 Encoding: UTF-8
 URL: http://www.r4photobiology.info,
-    https://bitbucket.org/aphalo/photobiology
-BugReports: https://bitbucket.org/aphalo/photobiology
+    https://bitbucket.org/aphalo/photobiologySun
+BugReports: https://bitbucket.org/aphalo/photobiologySun/issues
 Roxygen: list(wrap = FALSE)
 RoxygenNote: 6.0.1
