@@ -27,7 +27,7 @@
 #'   (AM1.5). Reference Spectrum Derived from SMARTS v. 2.9.2 for AM1.5. (solar
 #'   zenith angle 48.19)
 #'
-#' @source \url{http://rredc.nrel.gov/solar/spectra/am1.5/}.
+#' @source \url{https://rredc.nrel.gov/solar/spectra/am1.5/}.
 #'
 #' @references ASTM (2012) ASTM G173 Standard Tables for Reference Solar
 #' Spectral Irradiances: Direct Normal and Hemispherical on 37 degrees Tilted

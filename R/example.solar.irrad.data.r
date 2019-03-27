@@ -20,7 +20,7 @@
 #' Coordinates: 60.226803 N, 25.019205 E.
 #' 
 #' @references  
-#' \url{http://www.kippzonen.com/}
+#' \url{https://www.kippzonen.com/}
 #'   
 #' @docType data
 #' @keywords datasets
@@ -51,7 +51,7 @@
 #' Coordinates: 60.226803 N, 25.019205 E.
 #' 
 #' @references  
-#' \url{http://www.licor.com/}
+#' \url{https://www.licor.com/}
 #'   
 #' @docType data
 #' @keywords datasets
@@ -87,7 +87,7 @@
 #' Coordinates: 60.226803 N, 25.019205 E.
 #' 
 #' @references  
-#' \url{http://www.delta-t.co.uk/}
+#' \url{https://www.delta-t.co.uk/}
 #'   
 #' @docType data
 #' @keywords datasets
