@@ -6,10 +6,10 @@ Date: 2019-03-27
 Authors@R:
    c(
     person("Pedro J.", "Aphalo", email = "pedro.aphalo@helsinki.fi", role = c("aut", "trl", "cre"), comment = c(ORCID = "https://orcid.org/0000-0003-3385-972X")),
-    person("T. Matthew", "Robson", role = c("ctb")),
+    person("T. Matthew", "Robson", role = c("ctb"), comment = c(ORCID = "https://orcid.org/0000-0002-8631-796X")),
     person("Sara", "Hartiakinen", role = c("ctb")),
     person("Anders", "Lindfors", role = c("ctb")),
-    person("Titta K.", "Kotilainen", role = "ctb")
+    person("Titta K.", "Kotilainen", role = "ctb", comment = c(ORCID = "https://orcid.org/0000-0002-2822-9734"))
     )
 Description: Data for the extraterrestrial solar spectral irradiance and ground 
     level solar spectral irradiance and irradiance. In addition data for 
