@@ -8,6 +8,7 @@ library(photobiologySun)
 library(lubridate)
 library(ggplot2)
 library(ggspectra)
+theme_set(theme_bw())
 
 ## ------------------------------------------------------------------------
 names(sun_reference.mspct)
@@ -25,23 +26,21 @@ sun_reference.mspct["Gueymard.AM0"]
 sun_reference.mspct[grep("AM0", names(sun_reference.mspct), ignore.case = TRUE)]
 
 ## ------------------------------------------------------------------------
-plot(gap.mspct$spct.1)
+autoplot(gap.mspct$spct.1)
 
 ## ------------------------------------------------------------------------
 ggplot(gap.mspct$spct.1, unit.out = "photon") +
-  geom_line(linetype = "dashed") +
-  theme_classic()
+  geom_line(linetype = "dashed")
 
 ## ------------------------------------------------------------------------
-ggplot(subset(sun_hourly_august.spct, 
+autoplot(subset(sun_hourly_august.spct, 
               UTC %in% 
                 ymd_hms(c("2014-08-21 06:30:00",
                           "2014-08-21 09:30:00",
                           "2014-08-21 12:30:00"))),
-       unit.out = "photon",
-       aes(w.length, s.e.irrad, color = factor(UTC))) +
-  geom_line() +
-  theme_classic()
+       unit.out = "photon") +
+       aes(linetype = factor(UTC)) +
+  labs(linetype = "Day and time (UTC)")
 
 ## ------------------------------------------------------------------------
 head(as.data.frame(gap.mspct$spct.1))

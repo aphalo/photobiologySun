@@ -31,6 +31,7 @@ library(photobiology)
 library(photobiologyWavebands)
 library(photobiologySun)
 library(lubridate)
+library(ggplot2)
 library(ggspectra)
 theme_set(theme_bw())
 ```
@@ -78,11 +79,11 @@ sun_reference.mspct[grep("AM0", names(sun_reference.mspct), ignore.case = TRUE)]
 
 ## Plotting the spectra
 
-Using `plot()` methods for spectra defined in package 'ggspectra' annotated plotting is automatic. The defaults can be easily changed, please see the documentation
+Using `autoplot()` methods for spectra defined in package 'ggspectra' annotated plotting is automatic. The defaults can be easily changed, please see the documentation
 in package 'ggspectra'.
 
 ```{r}
-plot(gap.mspct$spct.1)
+autoplot(gap.mspct$spct.1)
 ```
 
 Using the `ggplot()` method for spectra from package 'ggspectra' plus _geometries_
@@ -90,22 +91,20 @@ and _statistics_ from package 'ggplot2' we gain additional control on the design
 
 ```{r}
 ggplot(gap.mspct$spct.1, unit.out = "photon") +
-  geom_line(linetype = "dashed") +
-  theme_classic()
+  geom_line(linetype = "dashed")
 ```
 
 In the case of spectral objects containing a time series of spectra, the index variable `UTC` containing time and date in universal time coordinates ("UTC") can be used to select and/or highlight individual spectra.
 
 ```{r}
-ggplot(subset(sun_hourly_august.spct, 
+autoplot(subset(sun_hourly_august.spct, 
               UTC %in% 
                 ymd_hms(c("2014-08-21 06:30:00",
                           "2014-08-21 09:30:00",
                           "2014-08-21 12:30:00"))),
-       unit.out = "photon",
-       aes(w.length, s.e.irrad, color = factor(UTC))) +
-  geom_line() +
-  theme_classic()
+       unit.out = "photon") +
+       aes(linetype = factor(UTC)) +
+  labs(linetype = "Day and time (UTC)")
 ```
 
 ## Using the data in other contexts
