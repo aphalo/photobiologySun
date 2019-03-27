@@ -6,7 +6,7 @@
 #' download available at \url{http://hdl.handle.net/10138/37558}
 #'
 #' Aphalo, Pedro J. (2015) The r4photobiology suite. UV4Plants Bulletin, 2015:1,
-#' 21-29. \url{http://doi.org/10.19232/uv4pb.2015.1.14}.
+#' 21-29. \url{https://doi.org/10.19232/uv4pb.2015.1.14}.
 #'
 #' \url{https://www.nrel.gov/rredc/} \url{http://www.astm.org/}
 #'

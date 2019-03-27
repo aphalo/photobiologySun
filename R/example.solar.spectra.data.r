@@ -52,7 +52,7 @@
 #' 
 #' Lindfors, A.; Heikkilä, A.; Kaurola, J.; Koskela, T. & Lakkala, K. (2009) 
 #' Reconstruction of Solar Spectral Surface UV Irradiances Using Radiative 
-#' Transfer Simulations. Photochemistry and Photobiology, 85: 1233–1239
+#' Transfer Simulations. Photochemistry and Photobiology, 85: 1233-1239
 #' 
 #' @note A summary of these data has been published in the article by Morales
 #'   et al. (2013). The simualtion methods has been described in Lindfors
@@ -84,7 +84,7 @@
 #' @references 
 #' Lindfors, A.; Heikkilä, A.; Kaurola, J.; Koskela, T. & Lakkala, K. (2009) 
 #' Reconstruction of Solar Spectral Surface UV Irradiances Using Radiative 
-#' Transfer Simulations. Photochemistry and Photobiology, 85: 1233–1239
+#' Transfer Simulations. Photochemistry and Photobiology, 85: 1233-1239
 #' 
 #' @note The simualtion methods has been described in Lindfors et al. (2009).
 #'   

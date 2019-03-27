@@ -41,13 +41,16 @@ rm(hourly.spct, night22b.spct, night23a.spct, night23b.spct, night24a.spct)
 
 # sun_hourly_june.spct <- mutate(sun_hourly_june.spct, EEST = with_tz(UTC, "EET"))
 sun_hourly_june.spct <- subset(sun_hourly_june.spct, !is.na(w.length) & !is.na(UTC))
-sun_hourly_june.spct <- setSourceSpct(sun_hourly_june.spct, multiple.wl = 58)
+sun_hourly_june.spct <- setSourceSpct(sun_hourly_june.spct, 
+                                      multiple.wl = 58,
+                                      idfactor = "UTC")
 setWhereMeasured(sun_hourly_june.spct, 
                  geocode = data.frame(lat = 60.20388, 
                                       lon = 24.96082, 
                                       address = "Kumpula, Helsinki, Finland"))
 setWhatMeasured(sun_hourly_june.spct,
                 "Radiation transfer model (LibRadtran) simulation of solar spectrum\nby Anders K. Lindfors")
+
 
 # August 2014 -------------------------------------------------------------
 
@@ -76,7 +79,9 @@ night22.spct <- data_frame(w.length = 290:800,
 sun_hourly_august.spct <- rbind(hourly.spct, night21.spct, night22.spct)
 # sun_hourly_august.spct <- mutate(sun_hourly_august.spct, EEST = with_tz(UTC, "EET"))
 
-sun_hourly_august.spct <- setSourceSpct(sun_hourly_august.spct, multiple.wl = 31)
+sun_hourly_august.spct <- setSourceSpct(sun_hourly_august.spct, 
+                                        multiple.wl = 31,
+                                        idfactor = "UTC")
 setWhereMeasured(sun_hourly_august.spct, 
                  geocode = data.frame(lat = 60.20388, 
                                       lon = 24.96082, 
