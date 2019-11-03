@@ -18,9 +18,9 @@ sun_may_morning.spct <- s_irrad_corrected(file.names,
 setWhatMeasured(sun_may_morning.spct, "Solar spectrum, clear with some clouds")
 getWhenMeasured(sun_may_morning.spct)
 setWhereMeasured(sun_may_morning.spct,
-                 geocode = data.frame(lon = 25.01673, 
-                                      lat = 60.2253, 
-                                      address = "Viikki, Helsinki, Finland"))
+                 lon = 25.01673, 
+                 lat = 60.2253, 
+                 address = "Viikki, Helsinki, Finland")
 trimInstrDesc(sun_may_morning.spct)
 getInstrDesc(sun_may_morning.spct)
 getInstrSettings(sun_may_morning.spct)

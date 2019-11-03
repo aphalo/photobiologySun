@@ -1,8 +1,8 @@
 Package: photobiologySun
 Type: Package
 Title: Data for Sunlight Spectra
-Version: 0.4.1
-Date: 2019-03-27
+Version: 0.4.1.9000
+Date: 2019-11-03
 Authors@R:
    c(
     person("Pedro J.", "Aphalo", email = "pedro.aphalo@helsinki.fi", role = c("aut", "trl", "cre"), comment = c(ORCID = "0000-0003-3385-972X")),
@@ -18,14 +18,13 @@ Description: Data for the extraterrestrial solar spectral irradiance and ground
 License: GPL (>= 2)
 VignetteBuilder: knitr
 Depends:
-    R (>= 3.4.0),
-    photobiology (>= 0.9.26)
+    R (>= 3.5.0),
+    photobiology (>= 0.9.29)
 Suggests:
-    knitr (>= 0.1.22),
-    rmarkdown (>= 1.12),
-    photobiologyWavebands (>= 0.4.2),
-    ggplot2 (>= 3.1.0),
-    ggspectra (>= 0.3.2),
+    knitr (>= 1.25),
+    rmarkdown (>= 1.15),
+    photobiologyWavebands (>= 0.4.3),
+    ggspectra (>= 0.3.4),
     lubridate (>= 1.7.4)
 LazyLoad: yes
 LazyData: yes

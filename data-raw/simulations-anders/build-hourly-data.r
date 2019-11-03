@@ -19,18 +19,18 @@ hourly.spct <- transmute(hourly.spct,
 # lines get interrupted during nights, we insert NAs
 # at the begging and end of the night.
 # 
-night22b.spct <- data_frame(w.length = 293:800, 
-                            s.e.irrad = NA_real_, 
-                            UTC = ymd_hm("2010-06-22 19:22"))
-night23a.spct <- data_frame(w.length = 293:800, 
-                            s.e.irrad = NA_real_, 
-                            UTC = ymd_hm("2010-06-23 1:22"))
-night23b.spct <- data_frame(w.length = 293:800, 
-                            s.e.irrad = NA_real_, 
-                            UTC = ymd_hm("2010-06-23 19:22"))
-night24a.spct <- data_frame(w.length = 293:800, 
-                            s.e.irrad = NA_real_, 
-                            UTC = ymd_hm("2010-06-24 1:22"))
+night22b.spct <- tibble(w.length = 293:800, 
+                        s.e.irrad = NA_real_, 
+                        UTC = ymd_hm("2010-06-22 19:22"))
+night23a.spct <- tibble(w.length = 293:800, 
+                        s.e.irrad = NA_real_, 
+                        UTC = ymd_hm("2010-06-23 1:22"))
+night23b.spct <- tibble(w.length = 293:800, 
+                        s.e.irrad = NA_real_, 
+                        UTC = ymd_hm("2010-06-23 19:22"))
+night24a.spct <- tibble(w.length = 293:800, 
+                        s.e.irrad = NA_real_, 
+                        UTC = ymd_hm("2010-06-24 1:22"))
 sun_hourly_june.spct <- rbind(hourly.spct,
                                   night22b.spct,
                                   night23a.spct,
@@ -44,10 +44,10 @@ sun_hourly_june.spct <- subset(sun_hourly_june.spct, !is.na(w.length) & !is.na(U
 sun_hourly_june.spct <- setSourceSpct(sun_hourly_june.spct, 
                                       multiple.wl = 58,
                                       idfactor = "UTC")
-setWhereMeasured(sun_hourly_june.spct, 
-                 geocode = data.frame(lat = 60.20388, 
-                                      lon = 24.96082, 
-                                      address = "Kumpula, Helsinki, Finland"))
+setWhereMeasured(sun_hourly_june.spct,
+                 lat = 60.20388, 
+                 lon = 24.96082, 
+                 address = "Kumpula, Helsinki, Finland")
 setWhatMeasured(sun_hourly_june.spct,
                 "Radiation transfer model (LibRadtran) simulation of solar spectrum\nby Anders K. Lindfors")
 
@@ -70,12 +70,12 @@ hourly.spct <- transmute(hourly.spct,
 # lines get interrupted during nights, we insert NAs
 # at the start and end of the night.
 # 
-night21.spct <- data_frame(w.length = 290:800,
-                           s.e.irrad = NA, 
-                           UTC = ymd_hm("2014-08-21 19:22"))
-night22.spct <- data_frame(w.length = 290:800, 
-                           s.e.irrad = NA, 
-                           UTC = ymd_hm("2014-08-22 1:22"))
+night21.spct <- tibble(w.length = 290:800,
+                       s.e.irrad = NA, 
+                       UTC = ymd_hm("2014-08-21 19:22"))
+night22.spct <- tibble(w.length = 290:800, 
+                       s.e.irrad = NA, 
+                       UTC = ymd_hm("2014-08-22 1:22"))
 sun_hourly_august.spct <- rbind(hourly.spct, night21.spct, night22.spct)
 # sun_hourly_august.spct <- mutate(sun_hourly_august.spct, EEST = with_tz(UTC, "EET"))
 
@@ -83,9 +83,9 @@ sun_hourly_august.spct <- setSourceSpct(sun_hourly_august.spct,
                                         multiple.wl = 31,
                                         idfactor = "UTC")
 setWhereMeasured(sun_hourly_august.spct, 
-                 geocode = data.frame(lat = 60.20388, 
-                                      lon = 24.96082, 
-                                      address = "Kumpula, Helsinki, Finland"))
+                 lat = 60.20388, 
+                 lon = 24.96082, 
+                 address = "Kumpula, Helsinki, Finland")
 setWhatMeasured(sun_hourly_august.spct,
                 "Radiation transfer model (LibRadtran) simulation of solar spectrum\nby Anders K. Lindfors")
 

@@ -31,7 +31,6 @@ library(photobiology)
 library(photobiologyWavebands)
 library(photobiologySun)
 library(lubridate)
-library(ggplot2)
 library(ggspectra)
 theme_set(theme_bw())
 ```
