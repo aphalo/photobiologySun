@@ -1,10 +1,3 @@
 .Rproj.user
 .Rhistory
 .RData
-NAMESPACE
-man
-*.tex
-*.synctex.gz
-*.synctex
-*.log
-docs
