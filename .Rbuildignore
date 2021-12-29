@@ -5,3 +5,5 @@
 ^vignettes/figure/*
 ^_pkgdown\.yml$
 ^.*\.sh$
+^CITATION\.cff$
+^\.github$
