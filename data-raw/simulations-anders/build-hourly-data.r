@@ -60,7 +60,7 @@ first.day.spct[["UTC"]] <-  with(first.day.spct, as.POSIXct(ymd("2014-08-21")) +
 second.day.spct <- read.table(file="data-raw/simulations-anders/2014-08-22.hel", col.names = c("time", "w.length", "s.e.irrad"))
 second.day.spct[["UTC"]] <-  with(second.day.spct, as.POSIXct(ymd("2014-08-22")) + seconds(trunc(time * 60)))
 
-hourly.spct <- rbind(tbl_df(first.day.spct), tbl_df(second.day.spct))
+hourly.spct <- rbind(as_tibble(first.day.spct), as_tibble(second.day.spct))
 hourly.spct <- transmute(hourly.spct, 
                          w.length = w.length * 1e-1,
                          s.e.irrad = s.e.irrad * 1e-3, 
@@ -91,3 +91,4 @@ setWhatMeasured(sun_hourly_august.spct,
 
 save(sun_hourly_june.spct, sun_hourly_august.spct,
      file = "./data/sun-hourly-spct.rda")
+

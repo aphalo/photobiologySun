@@ -2,20 +2,21 @@ TODO
 ====
 
 Add some of Titta's simulations for different sun elevations!!
+Add some of own measurements for different sun elevations!!
 
-photobiologySun 0.4.2 (2019-11-03)
-====================================
+photobiologySun 0.4.2
+=====================
 
-* Rebuild data objects with 'photobiology' 0.9.29.9000.
+* Rebuild data objects with 'photobiology' 0.11.0.
 
-photobiologySun 0.4.1 (2019-03-27)
-==================================
+photobiologySun 0.4.1
+=====================
 
 * Rebuild data objects with 'photobiology' 0.9.26 to fix minor bugs.
 * Replace non-ASCII characters in documentation.
 
-photobiologySun 0.4.0 (2018-02-27)
-==================================
+photobiologySun 0.4.0
+=====================
 
 Group reference spectra into a collection.
 Rebuild all data objects adding metadata.

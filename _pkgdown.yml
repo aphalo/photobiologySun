@@ -1,4 +1,4 @@
-destination: ../photobiologySun-docs
+destination: ../docs/photobiologySun
 
 home:
   strip_header: true

@@ -4,6 +4,7 @@
 ^\.git/*
 ^vignettes/figure/*
 ^_pkgdown\.yml$
+pkgdown
 ^.*\.sh$
 ^CITATION\.cff$
 ^\.github$
