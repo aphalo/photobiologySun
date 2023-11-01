@@ -21,14 +21,14 @@ photosynthetically active radiation expresed as photon irradiance. Each value is
 The variables are as follows: 
 \itemize{ 
 \item time_EEST POSIXct Local time according to EET coordinates. 
-\item ppfd_tot_mean numeric (mol m-2 m-2) 
-\item ppfd_tot_min numeric (mol m-2 m-2) 
-\item ppfd_tot_max numeric (mol m-2 m-2) 
-\item ppfd_tot_sd numeric (mol m-2 m-2)
-\item ppfd_diff_mean numeric (mol m-2 m-2) 
-\item ppfd_diff_min numeric (mol m-2 m-2) 
-\item ppfd_diff_max numeric (mol m-2 m-2) 
-\item ppfd_diff_sd numeric (mol m-2 m-2)
+\item ppfd_tot_mean numeric (umol m-2 m-2) 
+\item ppfd_tot_min numeric (umol m-2 m-2) 
+\item ppfd_tot_max numeric (umol m-2 m-2) 
+\item ppfd_tot_sd numeric (umol m-2 m-2)
+\item ppfd_diff_mean numeric (umol m-2 m-2) 
+\item ppfd_diff_min numeric (umol m-2 m-2) 
+\item ppfd_diff_max numeric (umol m-2 m-2) 
+\item ppfd_diff_sd numeric (umol m-2 m-2)
 }
 }
 \note{

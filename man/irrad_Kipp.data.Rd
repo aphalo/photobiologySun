@@ -13,8 +13,8 @@ irrad_Kipp.data
 }
 \description{
 Dataset containing mean, maximum, minimum and standard deviation values for 
-global radiation data expresed as (energy) irradiance. Each value is a summary
-60 consecutive readings acquired once every second.
+global radiation data expressed as (energy) irradiance. Each value is a summary
+12 consecutive readings acquired once every 5 s.
 }
 \details{
 The variables are as follows: 

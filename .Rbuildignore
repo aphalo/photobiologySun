@@ -6,5 +6,5 @@
 ^_pkgdown\.yml$
 pkgdown
 ^.*\.sh$
-^CITATION\.cff$
 ^\.github$
+^README.Rmd

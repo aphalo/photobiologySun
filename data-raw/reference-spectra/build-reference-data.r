@@ -7,10 +7,10 @@ raw.path <- "data-raw/reference-spectra"
 
 # ASTM AM0
 
-E490.raw.data <- tbl_df(read.csv(paste(raw.path, "E490_00a_AM0.csv", sep = "/")))
+E490.raw.data <- tibble::as_tibble(read.csv(paste(raw.path, "E490_00a_AM0.csv", sep = "/")))
 ASTM_E490_AM0.spct <- transmute(E490.raw.data, 
                                 w.length = Wavelength.microns * 1e3,
-                                s.e.irrad = E.490.W.m2.micron * 1e3)
+                                s.e.irrad = E.490.W.m2.micron * 1e-3)
 setSourceSpct(ASTM_E490_AM0.spct)
 
 # set comment

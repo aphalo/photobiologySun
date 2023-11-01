@@ -19,10 +19,10 @@ photosynthetically active radiaition expresed as photon irradiance. Each value i
 The variables are as follows: 
 \itemize{ 
 \item time_EEST POSIXct Local time according to EET coordinates. 
-\item ppfd_mean numeric (mol m-2 m-2) 
-\item ppfd_min numeric (mol m-2 m-2) 
-\item ppfd_max numeric (mol m-2 m-2) 
-\item ppfd_sd numeric (mol m-2 m-2)
+\item ppfd_mean numeric (umol m-2 m-2) 
+\item ppfd_min numeric (umol m-2 m-2) 
+\item ppfd_max numeric (umol m-2 m-2) 
+\item ppfd_sd numeric (umol m-2 m-2)
 }
 }
 \note{
