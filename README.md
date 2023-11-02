@@ -35,13 +35,15 @@ library(ggspectra)
 library(photobiologySun)
 ```
 
-How many spectra are included in the current version of
-‘photobiologySun’?
+How many spectra are contained in the collection of spectra `gap.mspct`?
+In this case the spectra are from a fast time series of measurements.
 
 ``` r
 length(gap.mspct)
 #> [1] 72
 ```
+
+What are their names?
 
 ``` r
 names(gap.mspct)
@@ -58,13 +60,17 @@ names(gap.mspct)
 #> [71] "spct.71" "spct.72"
 ```
 
+How many spectra are contained in the collection of spectra
+`sun_reference.mspct`?
+
 ``` r
 length(sun_reference.mspct)
 #> [1] 5
 ```
 
-What are the names of available spectra. We use `head()` to limit the
-output.
+What are their names? (The three “AM0” spectra are for the
+extraterrestrial solar spectrum, AM0 = zero atmosphera. ASTM G173
+corresponds to AM1.5 and frequently used in engineering.)
 
 ``` r
 names(sun_reference.mspct)
@@ -73,7 +79,8 @@ names(sun_reference.mspct)
 ```
 
 Summary calculations can be easily done with methods from package
-‘photobiology’. Here we calculate photon irradiance. As the spectra are
+‘photobiology’. Here we calculate photon irradiance with function
+`q_irrad()` for another collection of spectra. As the spectra are
 normalised we pass `allow.scaled = TRUE`,
 
 ``` r
