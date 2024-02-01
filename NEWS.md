@@ -1,8 +1,3 @@
-## TODO
-
-Add some of Titta's simulations for different sun elevations!!
-Add some of own measurements for different sun elevations!!
-
 ## photobiologySun 0.5.0
 
 * Fix scaling error (10<sup>6</sup>) in _ASTM E490 AM0_ spectrum included in `sun_reference.mspct`.
