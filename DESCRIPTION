@@ -34,4 +34,4 @@ Encoding: UTF-8
 URL: http://www.r4photobiology.info,
     https://github.com/aphalo/photobiologySun
 BugReports: https://github.com/aphalo/photobiologySun/issues
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1

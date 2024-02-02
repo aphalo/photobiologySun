@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Data for the extraterrestrial solar spectral irradiance and ground level solar spectral irradiance and irradiance. In addition data for shade light under vegetation and irradiance time series. Part of the 'r4photobiology' suite, Aphalo P. J. (2015) \doi{10.19232/uv4pb.2015.1.14}.
+Data for the extraterrestrial solar spectral irradiance and ground level solar spectral irradiance and irradiance. In addition data for shade light under vegetation and irradiance time series from different broadband sensors. Part of the 'r4photobiology' suite, Aphalo P. J. (2015) \doi{10.19232/uv4pb.2015.1.14}.
 }
 \examples{
 library(photobiology)
@@ -35,8 +35,8 @@ Aphalo, Pedro J. (2015) The r4photobiology suite. UV4Plants Bulletin, 2015:1,
 Useful links:
 \itemize{
   \item \url{http://www.r4photobiology.info}
-  \item \url{https://bitbucket.org/aphalo/photobiologySun}
-  \item Report bugs at \url{https://bitbucket.org/aphalo/photobiologySun/issues}
+  \item \url{https://github.com/aphalo/photobiologySun}
+  \item Report bugs at \url{https://github.com/aphalo/photobiologySun/issues}
 }
 
 }
