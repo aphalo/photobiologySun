@@ -82,6 +82,14 @@ Installation of the most recent stable version from CRAN:
 install.packages("photobiologySun")
 ```
 
+Installation of the current unstable version from R-Universe CRAN-like repository:
+
+```{r, eval=FALSE}
+install.packages('photobiologySun', 
+                 repos = c('https://aphalo.r-universe.dev', 
+                           'https://cloud.r-project.org'))
+```
+
 Installation of the current unstable version from GitHub:
 
 ```{r, eval=FALSE}
@@ -117,4 +125,4 @@ citation("photobiologySun")
 
 ## License
 
-© 2012-2023 Pedro J. Aphalo (pedro.aphalo@helsinki.fi). Released under the GPL, version 2 or greater. This software carries no warranty of any kind.
+© 2012-2024 Pedro J. Aphalo (pedro.aphalo@helsinki.fi). Released under the GPL, version 2 or greater. This software carries no warranty of any kind.
