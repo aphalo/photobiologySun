@@ -23,14 +23,21 @@
 #'   
 #' @docType data
 #' @keywords datasets
-#' @format A data frame with 1425 rows (250 nm to 900 nm, variable step) and 3
-#'   variables.
+#' @format A \code{source_spct} object with 1421 rows (250 nm to 899 nm,
+#'   variable step) and 2 variables.
+#'   
+#' @examples
+#' sun_may_morning.spct
+#' wl_range(sun_may_morning.spct)
+#' e_irrad(sun_may_morning.spct)
+#' 
 "sun_may_morning.spct"
 
 #' Ground level spectral irradiance at hourly intervals
 #' 
 #' Datasets containing the wavelengths at 1.0 nm interval and tabulated values
-#' spectral irradiance for the sun for 22 to 24 June 2010 in Helsinki, Finland.
+#' of spectral irradiance for the sun for 22 to 24 June 2010 in Helsinki,
+#' Finland.
 #' 
 #' @details 
 #' The variables are as follows: 
@@ -38,8 +45,9 @@
 #' \item w.length numeric (nm) 
 #' \item s.e.irrad numeric (W m-2 nm-1) 
 #' \item UTC POSIXct (UTC date and time)
+#' \item spct.idx factor with one level per spectrum
 #' }
-#' The data set includes NAs for missing night-time spectral irardiance 
+#' The data set includes NAs for missing night-time spectral irradiance 
 #' values.
 #' 
 #' @author Anders K. Lindfors (radiation transfer modelling)
@@ -55,19 +63,26 @@
 #' Transfer Simulations. Photochemistry and Photobiology, 85: 1233-1239
 #' 
 #' @note A summary of these data has been published in the article by Morales
-#'   et al. (2013). The simualtion methods has been described in Lindfors
+#'   et al. (2013). The simulation methods has been described in Lindfors
 #'   et al. (2009).
 #'   
 #' @docType data
 #' @keywords datasets
-#' @format A data frame with 29464 rows  (293 nm to 800 nm at 1 nm interval) and
-#'   3 variables.
+#' @format A \code{source_spct} containing 58 spectra in long form (293 nm to
+#'   800 nm at 1 nm interval) and 4 variables \code{w.length}, \code{s.e.irrad},
+#'   \code{UTC}, and \code{spct.idx}.
+#'   
+#' @examples
+#' e_irrad(sun_hourly_june.spct)
+#' wl_range(sun_hourly_june.spct)
+#' getMultipleWl(sun_hourly_june.spct) # number of spectra
+#' 
 "sun_hourly_june.spct"
 
 #' Ground level spectral irradiance at hourly intervals
 #' 
 #' Datasets containing the wavelengths at 1.0 nm interval and tabulated values
-#' spectral irradiance for the sun for 21 and 22 August in Helsinki, Finland.
+#' of spectral irradiance for the sun for 21 and 22 August in Helsinki, Finland.
 #' 
 #' @details 
 #' The variables are as follows: 
@@ -75,8 +90,9 @@
 #' \item w.length numeric (nm) 
 #' \item s.e.irrad numeric (W m-2 nm-1) 
 #' \item UTC POSIXct (UTC date and time)
+#' \item spct.idx factor with one level per spectrum
 #' }
-#' The data set includes NAs for missing night-time spectral irardiance 
+#' The data set includes NAs for missing night-time spectral irradiance 
 #' values.
 #' 
 #' @author Anders K. Lindfors (radiation transfer modelling)
@@ -90,8 +106,15 @@
 #'   
 #' @docType data
 #' @keywords datasets
-#' @format A data frame with 15841 rows (290 nm to 800 nm at 1 nm interval) and 3
-#'   variables.
+#' @format A \code{source_spct} containing 31 spectra in long form (293 nm to
+#'   800 nm at 1 nm interval) and 4 variables \code{w.length}, \code{s.e.irrad},
+#'   \code{UTC}, and \code{spct.idx}.
+#'   
+#' @examples
+#' e_irrad(sun_hourly_august.spct)
+#' wl_range(sun_hourly_august.spct)
+#' getMultipleWl(sun_hourly_august.spct) # number of spectra
+#' 
 "sun_hourly_august.spct"
 
 #' @title Solar spectral irradiance in a tree canopy gap (measured)
@@ -113,12 +136,17 @@
 #' @details \itemize{ \item w.length (nm), range 293 to 800 nm. \item s.e.irrad
 #'   (W m-2 nm-1) }
 #'
-#' @author T. Matthew Robson and Saara Hartikainen (data)
+#' @author T. Matthew Robson and Saara Hartikainen (data).
 #'
 #' @docType data
 #' @keywords datasets
 #' @format A \code{source_mspct} object containing a collection of 72
-#'   source_spct objects.
+#'   \code{source_spct} objects.
+#'   
+#' @examples
+#' length(gap.mspct)
+#' summary(gap.mspct)
+#' e_irrad(gap.mspct, attr2tb = "when.measured")
 #'   
 "gap.mspct"
 

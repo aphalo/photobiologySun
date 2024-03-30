@@ -5,15 +5,17 @@
 \alias{sun_hourly_june.spct}
 \title{Ground level spectral irradiance at hourly intervals}
 \format{
-A data frame with 29464 rows  (293 nm to 800 nm at 1 nm interval) and
-  3 variables.
+A \code{source_spct} containing 58 spectra in long form (293 nm to
+  800 nm at 1 nm interval) and 4 variables \code{w.length}, \code{s.e.irrad},
+  \code{UTC}, and \code{spct.idx}.
 }
 \usage{
 sun_hourly_june.spct
 }
 \description{
 Datasets containing the wavelengths at 1.0 nm interval and tabulated values
-spectral irradiance for the sun for 22 to 24 June 2010 in Helsinki, Finland.
+of spectral irradiance for the sun for 22 to 24 June 2010 in Helsinki,
+Finland.
 }
 \details{
 The variables are as follows: 
@@ -21,14 +23,21 @@ The variables are as follows:
 \item w.length numeric (nm) 
 \item s.e.irrad numeric (W m-2 nm-1) 
 \item UTC POSIXct (UTC date and time)
+\item spct.idx factor with one level per spectrum
 }
-The data set includes NAs for missing night-time spectral irardiance 
+The data set includes NAs for missing night-time spectral irradiance 
 values.
 }
 \note{
 A summary of these data has been published in the article by Morales
-  et al. (2013). The simualtion methods has been described in Lindfors
+  et al. (2013). The simulation methods has been described in Lindfors
   et al. (2009).
+}
+\examples{
+e_irrad(sun_hourly_june.spct)
+wl_range(sun_hourly_june.spct)
+getMultipleWl(sun_hourly_june.spct) # number of spectra
+
 }
 \references{
 Morales, L. O.; Brosché, M.; Vainonen, J.; Jenkins, G. I.;

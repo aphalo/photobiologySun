@@ -5,8 +5,8 @@
 \alias{sun_may_morning.spct}
 \title{Ground level solar spectral irradiance (measured)}
 \format{
-A data frame with 1425 rows (250 nm to 900 nm, variable step) and 3
-  variables.
+A \code{source_spct} object with 1421 rows (250 nm to 899 nm,
+  variable step) and 2 variables.
 }
 \usage{
 sun_may_morning.spct
@@ -30,6 +30,12 @@ Instrument used: Maya2000Pro scanning double monochromator
   corrections done with package MayaCalc using bracketing and noise reduction
   (with filter measurement) and method "sun". Algorithm and calibration data
   by Lasse Ylianttila (STUK, Helsinki, Finland).
+}
+\examples{
+sun_may_morning.spct
+wl_range(sun_may_morning.spct)
+e_irrad(sun_may_morning.spct)
+
 }
 \references{
 Ylianttila, L.; Visuri, R.; Huurto, L. & Jokela, K. (2005) 

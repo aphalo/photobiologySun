@@ -1,7 +1,13 @@
 ## photobiologySun 0.5.0
 
-* Fix scaling error (10<sup>6</sup>) in _ASTM E490 AM0_ spectrum included in `sun_reference.mspct`.
-* Rebuild data objects with 'photobiology' 0.11.0.
+This update may break some existing code because of changes to naming of factor
+levels and addition of attributes.
+
+* Fix scaling error (10<sup>6</sup>) in _ASTM E490 AM0_ spectrum included in 
+  `sun_reference.mspct`.
+* Rebuild data objects with 'photobiology' 0.11.2 adding metadata and `spct.idx` 
+  when previsously missing.
+* Add some examples to documentation.
 
 ## photobiologySun 0.4.1
 

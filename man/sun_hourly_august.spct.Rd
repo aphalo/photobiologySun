@@ -5,15 +5,16 @@
 \alias{sun_hourly_august.spct}
 \title{Ground level spectral irradiance at hourly intervals}
 \format{
-A data frame with 15841 rows (290 nm to 800 nm at 1 nm interval) and 3
-  variables.
+A \code{source_spct} containing 31 spectra in long form (293 nm to
+  800 nm at 1 nm interval) and 4 variables \code{w.length}, \code{s.e.irrad},
+  \code{UTC}, and \code{spct.idx}.
 }
 \usage{
 sun_hourly_august.spct
 }
 \description{
 Datasets containing the wavelengths at 1.0 nm interval and tabulated values
-spectral irradiance for the sun for 21 and 22 August in Helsinki, Finland.
+of spectral irradiance for the sun for 21 and 22 August in Helsinki, Finland.
 }
 \details{
 The variables are as follows: 
@@ -21,12 +22,19 @@ The variables are as follows:
 \item w.length numeric (nm) 
 \item s.e.irrad numeric (W m-2 nm-1) 
 \item UTC POSIXct (UTC date and time)
+\item spct.idx factor with one level per spectrum
 }
-The data set includes NAs for missing night-time spectral irardiance 
+The data set includes NAs for missing night-time spectral irradiance 
 values.
 }
 \note{
 The simualtion methods has been described in Lindfors et al. (2009).
+}
+\examples{
+e_irrad(sun_hourly_august.spct)
+wl_range(sun_hourly_august.spct)
+getMultipleWl(sun_hourly_august.spct) # number of spectra
+
 }
 \references{
 Lindfors, A.; Heikkilä, A.; Kaurola, J.; Koskela, T. & Lakkala, K. (2009) 

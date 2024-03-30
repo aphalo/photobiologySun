@@ -62,7 +62,7 @@ names(sun_reference.mspct)
 Summary calculations can be easily done with methods from package 'photobiology'. Here we calculate photon irradiance with function `q_irrad()` for another collection of spectra. As the spectra are normalised we pass `allow.scaled = TRUE`, 
 
 ```{r example-06}
-q_irrad(sun_hourly_august.spct, scale.factor = 1e6) # umol m-2 s-1
+q_irrad(sun_hourly_august.spct, scale.factor = 1e6) # Q_Total: umol m-2 s-1
 ```
 
 The `autoplot()` methods from package 'ggspectra' can be used for plotting one or more spectra at a time.

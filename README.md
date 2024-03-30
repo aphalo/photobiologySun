@@ -47,8 +47,8 @@ What are their names?
 
 ``` r
 names(gap.mspct)
-#>  [1] "spct.1"  "spct.2"  "spct.3"  "spct.4"  "spct.5"  "spct.6"  "spct.7" 
-#>  [8] "spct.8"  "spct.9"  "spct.10" "spct.11" "spct.12" "spct.13" "spct.14"
+#>  [1] "spct.01" "spct.02" "spct.03" "spct.04" "spct.05" "spct.06" "spct.07"
+#>  [8] "spct.08" "spct.09" "spct.10" "spct.11" "spct.12" "spct.13" "spct.14"
 #> [15] "spct.15" "spct.16" "spct.17" "spct.18" "spct.19" "spct.20" "spct.21"
 #> [22] "spct.22" "spct.23" "spct.24" "spct.25" "spct.26" "spct.27" "spct.28"
 #> [29] "spct.29" "spct.30" "spct.31" "spct.32" "spct.33" "spct.34" "spct.35"
@@ -84,20 +84,20 @@ Summary calculations can be easily done with methods from package
 normalised we pass `allow.scaled = TRUE`,
 
 ``` r
-q_irrad(sun_hourly_august.spct, scale.factor = 1e6) # umol m-2 s-1
-#> # A tibble: 31 × 2
-#>    spct.idx            Q_Total
-#>    <fct>                 <dbl>
-#>  1 2014-08-21 03:30:00    98.9
-#>  2 2014-08-21 04:30:00   169. 
-#>  3 2014-08-21 05:30:00   564. 
-#>  4 2014-08-21 06:30:00   780. 
-#>  5 2014-08-21 07:30:00   534. 
-#>  6 2014-08-21 08:30:00  1255. 
-#>  7 2014-08-21 09:30:00  1889. 
-#>  8 2014-08-21 10:30:00  1914. 
-#>  9 2014-08-21 11:30:00  1482. 
-#> 10 2014-08-21 12:30:00  1264. 
+q_irrad(sun_hourly_august.spct, scale.factor = 1e6) # Q_Total: umol m-2 s-1
+#> # A tibble: 31 × 3
+#>    Q_Total spct.idx when.measured      
+#>      <dbl> <chr>    <dttm>             
+#>  1    98.9 spct.01  2014-08-21 03:30:00
+#>  2   169.  spct.02  2014-08-21 04:30:00
+#>  3   564.  spct.03  2014-08-21 05:30:00
+#>  4   780.  spct.04  2014-08-21 06:30:00
+#>  5   534.  spct.05  2014-08-21 07:30:00
+#>  6  1255.  spct.06  2014-08-21 08:30:00
+#>  7  1889.  spct.07  2014-08-21 09:30:00
+#>  8  1914.  spct.08  2014-08-21 10:30:00
+#>  9  1482.  spct.09  2014-08-21 11:30:00
+#> 10  1264.  spct.10  2014-08-21 12:30:00
 #> # ℹ 21 more rows
 ```
 
@@ -121,6 +121,15 @@ Installation of the most recent stable version from CRAN:
 
 ``` r
 install.packages("photobiologySun")
+```
+
+Installation of the current unstable version from R-Universe CRAN-like
+repository:
+
+``` r
+install.packages('photobiologySun', 
+                 repos = c('https://aphalo.r-universe.dev', 
+                           'https://cloud.r-project.org'))
 ```
 
 Installation of the current unstable version from GitHub:
@@ -190,6 +199,6 @@ citation("photobiologySun")
 
 ## License
 
-© 2012-2023 Pedro J. Aphalo (<pedro.aphalo@helsinki.fi>). Released under
+© 2012-2024 Pedro J. Aphalo (<pedro.aphalo@helsinki.fi>). Released under
 the GPL, version 2 or greater. This software carries no warranty of any
 kind.
