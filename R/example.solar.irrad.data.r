@@ -51,7 +51,8 @@
 #' Coordinates: 60.226803 N, 25.019205 E.
 #' 
 #' @references  
-#' \url{https://www.licor.com/}
+#' \url{https://www.licor.com/env/}
+#' \url{https://www.campbellsci.com/}
 #'   
 #' @docType data
 #' @keywords datasets
@@ -87,7 +88,8 @@
 #' Coordinates: 60.226803 N, 25.019205 E.
 #' 
 #' @references  
-#' \url{https://www.delta-t.co.uk/}
+#' \url{https://delta-t.co.uk/}
+#' \url{https://www.campbellsci.com/}
 #'   
 #' @docType data
 #' @keywords datasets

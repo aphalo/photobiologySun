@@ -12,7 +12,7 @@ A \code{"source_mspct"} object containing 51 \code{"source_spct"}
   \item w.length (nm) \item s.e.irrad (W m-2 nm-1) }
 }
 \source{
-\url{https://rredc.nrel.gov/solar/spectra/am1.5/}.
+\emph{https://rredc.nrel.gov/solar/spectra/am1.5/} (no longer on-line).
 }
 \usage{
 sun_reference.mspct

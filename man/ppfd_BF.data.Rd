@@ -40,6 +40,7 @@ is 400 nm to 700 nm. Location: Viikki campus of the University of Helsinki.
 Coordinates: 60.226803 N, 25.019205 E.
 }
 \references{
-\url{https://www.delta-t.co.uk/}
+\url{https://delta-t.co.uk/}
+\url{https://www.campbellsci.com/}
 }
 \keyword{datasets}
