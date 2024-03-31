@@ -7,7 +7,10 @@
 version](https://www.r-pkg.org/badges/version-last-release/photobiologySun)](https://cran.r-project.org/package=photobiologySun)
 [![cran
 checks](https://badges.cranchecks.info/worst/photobiologySun.svg)](https://cran.r-project.org/web/checks/check_results_photobiologySun.html)
-[![R-CMD-check](https://github.com/aphalo/photobiologySun/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/aphalo/photobiologySun/actions/workflows/R-CMD-check.yaml)
+[![R Universe
+vwersion](https://aphalo.r-universe.dev/badges/photobiologySun)](https://aphalo.r-universe.dev/photobiologySun)
+[![R build
+status](https://github.com/aphalo/photobiologySun/workflows/R-CMD-check/badge.svg)](https://github.com/aphalo/photobiologySun/actions)
 <!-- badges: end -->
 
 Package ‘**photobiologySun**’ complements other packages in the [*R for
@@ -178,7 +181,7 @@ publications, please cite according to:
 
 ``` r
 citation("photobiologySun")
-#> To cite package 'photobiologySun' in publications, please use:
+#> To cite package ‘photobiologySun’ in publications use:
 #> 
 #>   Aphalo, Pedro J. (2015) The r4photobiology suite. UV4Plants Bulletin,
 #>   2015:1, 21-29. DOI:10.19232/uv4pb.2015.1.14
