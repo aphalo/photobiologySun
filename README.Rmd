@@ -76,13 +76,13 @@ The classes of the objects used to store the spectral data are derived from `"da
 
 ## Installation
 
-Installation of the most recent stable version from CRAN:
+Installation of the most recent stable version from CRAN (source and binaries available):
 
 ```{r, eval=FALSE}
 install.packages("photobiologySun")
 ```
 
-Installation of the current unstable version from R-Universe CRAN-like repository:
+Installation of the current unstable version from R-Universe CRAN-like repository (source and binaries available):
 
 ```{r, eval=FALSE}
 install.packages('photobiologySun', 
@@ -90,7 +90,7 @@ install.packages('photobiologySun',
                            'https://cloud.r-project.org'))
 ```
 
-Installation of the current unstable version from GitHub:
+Installation of the current unstable version from GitHub (only source available):
 
 ```{r, eval=FALSE}
 # install.packages("devtools")

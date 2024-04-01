@@ -120,14 +120,15 @@ methods from base R and various packages easy.
 
 ## Installation
 
-Installation of the most recent stable version from CRAN:
+Installation of the most recent stable version from CRAN (source and
+binaries available):
 
 ``` r
 install.packages("photobiologySun")
 ```
 
 Installation of the current unstable version from R-Universe CRAN-like
-repository:
+repository (source and binaries available):
 
 ``` r
 install.packages('photobiologySun', 
@@ -135,7 +136,8 @@ install.packages('photobiologySun',
                            'https://cloud.r-project.org'))
 ```
 
-Installation of the current unstable version from GitHub:
+Installation of the current unstable version from GitHub (only source
+available):
 
 ``` r
 # install.packages("devtools")
