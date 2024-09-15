@@ -17,6 +17,8 @@ reference:
     - sun_may_morning.spct
     - sun_hourly_june.spct
     - sun_hourly_august.spct
+    - sun_hourly_ozone.spct
+    - sun_elevation.spct
     - gap.mspct
   - title: Measured irradiance data
     desc: Data frames containing irradiance data acquired with different broad band sensors.

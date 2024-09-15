@@ -117,6 +117,46 @@
 #' 
 "sun_hourly_august.spct"
 
+#' Ground level spectral irradiance at hourly intervals
+#' 
+#' Datasets containing the wavelengths at 1.0 nm interval and tabulated values
+#' of spectral irradiance for the sun for 21 May, at Jokioinen, Finland, under
+#' climatology-based mean ozone column and with a 20% depletion. Simulated with
+#' 'libradtran' assuming clear sky.
+#' 
+#' @details 
+#' The variables are as follows: 
+#' \itemize{ 
+#' \item w.length numeric (nm).
+#' \item s.e.irrad numeric (W m-2 nm-1).
+#' \item UTC POSIXct (UTC date and time).
+#' \item ozone Factor with two levels.
+#' \item sun.elevation Angle above the astronomical horizon (degrees).
+#' \item spct.idx factor with one level per spectrum.
+#' }
+#' The data set includes spectra for day-time, not 24 h.
+#' 
+#' @author Anders K. Lindfors (radiation transfer modelling)
+#'   
+#' @references 
+#' Lindfors, A.; Heikkilä, A.; Kaurola, J.; Koskela, T. & Lakkala, K. (2009) 
+#' Reconstruction of Solar Spectral Surface UV Irradiances Using Radiative 
+#' Transfer Simulations. Photochemistry and Photobiology, 85: 1233-1239
+#' 
+#' @note The simualtion methods has been described in Lindfors et al. (2009).
+#'   
+#' @docType data
+#' @keywords datasets
+#' @format A \code{source_spct} containing 32 spectra in long form (293 nm to
+#'   800 nm at 1 nm interval) and 6 variables.
+#'   
+#' @examples
+#' e_irrad(sun_hourly_ozone.spct)
+#' wl_range(sun_hourly_ozone.spct)
+#' getMultipleWl(sun_hourly_ozone.spct) # number of spectra
+#' 
+"sun_hourly_ozone.spct"
+
 #' @title Solar spectral irradiance in a tree canopy gap (measured)
 #'
 #' @description A dataset containing a sequence of 72 spectra measured with an 
@@ -149,4 +189,41 @@
 #' e_irrad(gap.mspct, attr2tb = "when.measured")
 #'   
 "gap.mspct"
+
+#' Ground level spectral irradiance and sun elevation
+#' 
+#' Datasets containing the wavelengths at 1.0 nm interval and tabulated values
+#' of spectral irradiance and its direct and diffuse components at different 
+#' sun elevation angles under clear sky conditions.
+#' 
+#' @details 
+#' The variables are as follows: 
+#' \itemize{ 
+#' \item w.length numeric (nm) 
+#' \item s.e.irrad numeric (W m-2 nm-1) 
+#' \item s.e.irrad.dir numeric (W m-2 nm-1)
+#' \item s.e.irrad.diff.down numeric (W m-2 nm-1)
+#' \item s.e.irrad.diff.up numeric (W m-2 nm-1)
+#' \item sun.elevation factor with one level per spectrum
+#' }
+#' 
+#' @author Pedro J. Aphalo (radiation transfer modelling with Quick TUV 
+#' calculator, TUV 5.3)
+#'   
+#' @references
+#' 
+#' Quick TUV calculator 
+#' \url{https://www.acom.ucar.edu/Models/TUV/Interactive_TUV/}.
+#'   
+#' @docType data
+#' @keywords datasets
+#' @format A \code{source_spct} containing 34 spectra in long form (290.5 nm to
+#'   699.5 nm at 1 nm interval) and 6 variables.
+#'   
+#' @examples
+#' e_irrad(sun_elevation.spct)
+#' wl_range(sun_elevation.spct)
+#' getMultipleWl(sun_elevation.spct) # number of spectra
+#' 
+"sun_elevation.spct"
 
