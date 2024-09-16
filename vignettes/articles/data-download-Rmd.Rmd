@@ -87,7 +87,9 @@ subset(Viikki_1min_2023_Version_1.0.tb,
   geom_line()
 ```
 
-```{r}
+If we do no longer need the downloaded file, it can be deleted.
+
+```{r, eval=FALSE}
 unlink("Viikki_1min_2023.rda")
 ```
 
