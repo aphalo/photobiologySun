@@ -3,7 +3,7 @@
 #' Dataset containing mean, maximum, minimum and standard deviation values for 
 #' global radiation data expressed as (energy) irradiance. Values are summaries
 #' of 12 consecutive readings acquired once every 5 s. The data set covers 17
-#' consequtive days.
+#' consecutive days.
 #' 
 #' The variables are as follows: 
 #' \itemize{ 
@@ -47,7 +47,7 @@
 #' Dataset containing mean, maximum, minimum and standard deviation values for
 #' photosynthetically active radiaition expresed as photon irradiance. Values
 #' are summaries of 12 consecutive readings acquired once every 5 s. The data
-#' set covers 17 consequtive days.
+#' set covers 17 consecutive days.
 #' 
 #' The variables are as follows: 
 #' \itemize{ 
@@ -93,7 +93,7 @@
 #' Dataset containing mean, maximum, minimum and standard deviation values for
 #' total, direct and difusse photosynthetically active radiation expresed as
 #' photon irradiance. Values are summaries of 12 consecutive readings acquired
-#' once every 5 s. The data set covers 17 consequtive days.
+#' once every 5 s. The data set covers 17 consecutive days.
 #' 
 #' The variables are as follows: 
 #' \itemize{ 

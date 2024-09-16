@@ -119,6 +119,15 @@ below (here not run).
 unlink("Viikki_1min_2023.rda")
 ```
 
+## Using interpolation
+
+Here I demonstrate how to use interpolation with `sun_elevation.data`. The 
+approach can be extended to other data sets.
+
+```{r}
+# TO BE ADDED
+```
+
 ## Simulated spectral data
 
 Package

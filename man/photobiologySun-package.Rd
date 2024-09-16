@@ -32,7 +32,7 @@ Aphalo, Pedro J. (2015) The r4photobiology suite. UV4Plants Bulletin, 2015:1,
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://www.r4photobiology.info}
+  \item \url{https://docs.r4photobiology.info/photobiologySun}
   \item \url{https://github.com/aphalo/photobiologySun}
   \item Report bugs at \url{https://github.com/aphalo/photobiologySun/issues}
 }

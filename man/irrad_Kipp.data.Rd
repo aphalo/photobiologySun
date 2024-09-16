@@ -15,7 +15,7 @@ irrad_Kipp.data
 Dataset containing mean, maximum, minimum and standard deviation values for 
 global radiation data expressed as (energy) irradiance. Values are summaries
 of 12 consecutive readings acquired once every 5 s. The data set covers 17
-consequtive days.
+consecutive days.
 }
 \details{
 The variables are as follows: 

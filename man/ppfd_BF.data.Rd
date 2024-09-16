@@ -14,7 +14,7 @@ ppfd_BF.data
 Dataset containing mean, maximum, minimum and standard deviation values for
 total, direct and difusse photosynthetically active radiation expresed as
 photon irradiance. Values are summaries of 12 consecutive readings acquired
-once every 5 s. The data set covers 17 consequtive days.
+once every 5 s. The data set covers 17 consecutive days.
 }
 \details{
 The variables are as follows: 

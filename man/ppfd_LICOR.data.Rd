@@ -14,7 +14,7 @@ ppfd_LICOR.data
 Dataset containing mean, maximum, minimum and standard deviation values for
 photosynthetically active radiaition expresed as photon irradiance. Values
 are summaries of 12 consecutive readings acquired once every 5 s. The data
-set covers 17 consequtive days.
+set covers 17 consecutive days.
 }
 \details{
 The variables are as follows: 
