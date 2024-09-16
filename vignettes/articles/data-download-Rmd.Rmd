@@ -16,8 +16,7 @@ vignette: >
 knitr::opts_chunk$set(fig.width=8, 
                       fig.height=4,  
                       collapse = TRUE,
-                      comment = "#>"
-)
+                      comment = "#>")
 ```
 
 ```{r, message=FALSE}
@@ -37,12 +36,25 @@ if (eval_plots) {
 
 ## High frequency irradiance data
 
-The irradiance data in object `four_days_1min.data` are only four days out of several years of data. The whole data set can be downloaded at \url{https://osf.io/e4vau/}.
+The irradiance data in object `four_days_1min.data` are only for four days out
+of a time-series of data started in 2017 (Aphalo, 2023). The whole data set can
+be downloaded at \url{https://osf.io/e4vau/}. Data logged at 1 min intervals or
+at 1 h intervals are available. Objects `ppfd_LICOR.data`, `ppfd_BF.data` and
+`irrad_Kipp.data` contain earlier data from the same weather station for a
+period of 17 days.
 
-At the moment I do not know how to retrieve the download URL programmatically.  Files are large, so in many cases it will be necessary to increase the value of the `timeout` R option temporarily to several minutes from its default of 60 s.
+At the moment I do not know how to retrieve the download URL of the individual
+data files programmatically. It can be found through the web interface, or the
+files can be manually downloaded through this same interface. The example in 
+this section does the file download directly in R.
 
-If the download timeouts, a smaller and corrupted file is saved. The code below downloads the file once, in the case of a truncated or corrupted file a new
-download requires the local file to be deleted.
+Files are large, so in many cases it will be necessary to increase the value of
+the `timeout` R option temporarily to several minutes from its default of 60 s.
+
+When the download time-outs before completion, a smaller and corrupted file is
+saved to disk. The code below downloads the file only once. In the case of a
+truncated or corrupted file a new download requires the local file to be
+deleted.
 
 ```{r}
 old.timeout <- options(timeout = 180L)
@@ -54,6 +66,9 @@ if (!file.exists("Viikki_1min_2023.rda")) {
 }
 options(old.timeout)
 ```
+
+We can now load the file into the R workspace.
+
 ```{r}
 load("Viikki_1min_2023.rda")
 class(Viikki_1min_2023_Version_1.0.tb)
@@ -61,9 +76,14 @@ ncol(Viikki_1min_2023_Version_1.0.tb)
 nrow(Viikki_1min_2023_Version_1.0.tb)
 ```
 
+The file contains data for one year.
+
 ```{r}
 range(Viikki_1min_2023_Version_1.0.tb$time)
 ```
+The file contains in addition to solar radiation, data for other weather
+variables, both measured and derived by calculation.
+
 ```{r}
 cat(colnames(Viikki_1min_2023_Version_1.0.tb), sep = "\n")
 ```
@@ -76,7 +96,12 @@ cat(comment(Viikki_1min_2023_Version_1.0.tb))
 print(object.size(Viikki_1min_2023_Version_1.0.tb), 
       standard = "SI", units = "MB")
 ```
-Given the size of the object, it is best to subset rows and select columns that are of interest before plotting or computing summaries from the data set.
+
+Given the size of the object, it is best to subset rows and select columns that
+are of interest before plotting or computing summaries from the data set. This
+is specially important for 'ggplot2' as a copy of the argument passed to `data`
+is added to the ggplot (`"gg"`) object. Here we plot data for a single day,
+against local solar time.
 
 ```{r, eval=eval_plots}
 subset(Viikki_1min_2023_Version_1.0.tb,
@@ -87,9 +112,21 @@ subset(Viikki_1min_2023_Version_1.0.tb,
   geom_line()
 ```
 
-If we do no longer need the downloaded file, it can be deleted.
+If we do no longer need the downloaded file, it can be deleted running the code
+below (here not run).
 
 ```{r, eval=FALSE}
 unlink("Viikki_1min_2023.rda")
 ```
 
+## Simulated spectral data
+
+Package
+['photobiologyInOut'](https://docs.r4photobiology.info/photobiologyInOut)
+supports the import of irradiance and spectral irradiance data from various file
+formats as well as direct calls to the Quick TUV calculator.
+
+## References
+
+Aphalo, Pedro J. (2023) _High frequency weather data for Viikki, Helsinki, 
+Finland._ OSF, \doi{10.17605/OSF.IO/E4VAU}.

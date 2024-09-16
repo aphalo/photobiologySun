@@ -31,6 +31,6 @@ LazyLoad: yes
 LazyData: yes
 ByteCompile: true
 Encoding: UTF-8
-URL: http://www.r4photobiology.info, https://github.com/aphalo/photobiologySun
+URL: https://docs.r4photobiology.info/photobiologySun, https://github.com/aphalo/photobiologySun
 BugReports: https://github.com/aphalo/photobiologySun/issues
 RoxygenNote: 7.3.2

@@ -1,5 +1,8 @@
-## ----echo=FALSE---------------------------------------------------------------
-knitr::opts_chunk$set(fig.width=8, fig.height=4)
+## ----include=FALSE------------------------------------------------------------
+knitr::opts_chunk$set(fig.width=8, 
+                      fig.height=4,  
+                      collapse = TRUE,
+                      comment = "#>")
 
 ## ----message=FALSE------------------------------------------------------------
 library(photobiology)
