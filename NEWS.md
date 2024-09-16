@@ -1,8 +1,8 @@
 ## photobiologySun 0.5.1
 
-* Add data for terrestrial solar spectra for 20% ozone depletion under clear sky.
-* Spectra from TUV simulations under clear sky conditions for different sun elevation angles.
-* [pending] Add data for irradiances of UV-B, UV-A2, UV-A1, Blue radiation measured at a frequency of 0.5 s.
+* Add `sun_hourly_ozone.spct` with simulated spectral data for terrestrial solar radiation computed for climatology mean ozone column and for a 20% depletion, both under clear sky.
+* Add `sun_elevation.spct` with spectral data from TUV simulations under clear sky conditions for different sun elevation angles.
+* Add `four_days_1min.data` containing data for photon irradiances of UV-B, UV-A2, UV-A1, Blue, Red, Far-red and PAR and energy irradiance of global radiation for four days logged at a frequency of 1 min.
 
 ## photobiologySun 0.5.0
 

@@ -11,29 +11,42 @@ A data frame with 24479 rows and 5 variables.
 ppfd_LICOR.data
 }
 \description{
-Dataset containing mean, maximum, minimum and standard deviation values for 
-photosynthetically active radiaition expresed as photon irradiance. Each value is a summary
-60 consecutive readings acquired once every second.
+Dataset containing mean, maximum, minimum and standard deviation values for
+photosynthetically active radiaition expresed as photon irradiance. Values
+are summaries of 12 consecutive readings acquired once every 5 s. The data
+set covers 17 consequtive days.
 }
 \details{
 The variables are as follows: 
 \itemize{ 
 \item time_EEST POSIXct Local time according to EET coordinates. 
+\item UTC POSIXct Local time according to UTC. 
 \item ppfd_mean numeric (umol m-2 m-2) 
 \item ppfd_min numeric (umol m-2 m-2) 
 \item ppfd_max numeric (umol m-2 m-2) 
 \item ppfd_sd numeric (umol m-2 m-2)
 }
-}
-\note{
-Instrument used: LI-COR LI-190 quantum sensor,  mounted 
+
+These data are part of a much larger data set (Aphalo, 2023).
 on tripod at approximately 2 m height. Data collected with a Campbell
 Scientific CR6 datalogger. Sensor connected through a LI-COR millivolt adaptor
 (604 ohm). Wavelength sensitivity range of the quantum sensor
 is 400 nm to 700 nm. Location: Viikki campus of the University of Helsinki.
-Coordinates: 60.226803 N, 25.019205 E.
+}
+\examples{
+colnames(ppfd_LICOR.data)
+nrow(ppfd_LICOR.data)
+range(ppfd_LICOR.data$time_EET)
+where_measured(ppfd_LICOR.data)
+how_measured(ppfd_LICOR.data)
+what_measured(ppfd_LICOR.data)
+comment(ppfd_LICOR.data)
+  
 }
 \references{
+Aphalo, Pedro J. (2023) High frequency weather data for Viikki, Helsinki, 
+Finland. \doi{10.17605/OSF.IO/E4VAU}.
+
 \url{https://www.licor.com/env/}
 \url{https://www.campbellsci.com/}
 }

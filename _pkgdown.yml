@@ -1,4 +1,5 @@
 destination: ../docs/photobiologySun
+url: https://docs.r4photobiology.info/photobiologySun/
 
 template:
   bootstrap: 5
@@ -26,6 +27,7 @@ reference:
     - irrad_Kipp.data
     - ppfd_LICOR.data
     - ppfd_BF.data
+    - four_days_1min.data
 
 navbar:
   structure:
@@ -35,6 +37,7 @@ navbar:
     intro:
       icon: fas fa-home fa-lg
       href: index.html
+      aria-label: "Home"
     reference:
       text: Reference
       href: reference/index.html

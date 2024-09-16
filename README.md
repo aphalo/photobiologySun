@@ -11,6 +11,8 @@ checks](https://badges.cranchecks.info/worst/photobiologySun.svg)](https://cran.
 vwersion](https://aphalo.r-universe.dev/badges/photobiologySun)](https://aphalo.r-universe.dev/photobiologySun)
 [![R build
 status](https://github.com/aphalo/photobiologySun/workflows/R-CMD-check/badge.svg)](https://github.com/aphalo/photobiologySun/actions)
+[![Documentation](https://img.shields.io/badge/documentation-photobiologySun-informational.svg)](https://docs.r4photobiology.info/photobiologySun/)
+[![doi](https://img.shields.io/badge/doi-10.32614/CRAN.package.photobiologySun-blue.svg)](https://doi.org/10.32614/CRAN.package.photobiologySun)
 <!-- badges: end -->
 
 Package ‘**photobiologySun**’ complements other packages in the [*R for

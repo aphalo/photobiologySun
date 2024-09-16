@@ -136,14 +136,14 @@
 #' }
 #' The data set includes spectra for day-time, not 24 h.
 #' 
-#' @author Anders K. Lindfors (radiation transfer modelling)
+#' @author Anders K. Lindfors (radiation transfer modelling).
 #'   
 #' @references 
 #' Lindfors, A.; Heikkilä, A.; Kaurola, J.; Koskela, T. & Lakkala, K. (2009) 
 #' Reconstruction of Solar Spectral Surface UV Irradiances Using Radiative 
 #' Transfer Simulations. Photochemistry and Photobiology, 85: 1233-1239
 #' 
-#' @note The simualtion methods has been described in Lindfors et al. (2009).
+#' @note The simulation methods has been described in Lindfors et al. (2009).
 #'   
 #' @docType data
 #' @keywords datasets
@@ -173,8 +173,12 @@
 #'   Evaluation of a single-monochromator diode array spectroradiometer for 
 #'   sunbed UV-radiation measurements. Photochem Photobiol, 81, 333-341
 #'   
-#' @details \itemize{ \item w.length (nm), range 293 to 800 nm. \item s.e.irrad
-#'   (W m-2 nm-1) }
+#' @details 
+#' The variables are as follows: 
+#' \itemize{ 
+#' \item w.length (nm), range 293 to 800 nm. 
+#' \item s.e.irrad (W m-2 nm-1)
+#' }
 #'
 #' @author T. Matthew Robson and Saara Hartikainen (data).
 #'

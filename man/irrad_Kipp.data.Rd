@@ -13,27 +13,40 @@ irrad_Kipp.data
 }
 \description{
 Dataset containing mean, maximum, minimum and standard deviation values for 
-global radiation data expressed as (energy) irradiance. Each value is a summary
-12 consecutive readings acquired once every 5 s.
+global radiation data expressed as (energy) irradiance. Values are summaries
+of 12 consecutive readings acquired once every 5 s. The data set covers 17
+consequtive days.
 }
 \details{
 The variables are as follows: 
 \itemize{ 
 \item time_EEST POSIXct Local time according to EET coordinates. 
+\item UTC POSIXct Local time according to UTC. 
 \item e_irrad_mean numeric (W m-2) 
 \item e_irrad_min numeric (W m-2) 
 \item e_irrad_max numeric (W m-2) 
 \item e_irrad_sd numeric (W m-2)
 }
-}
-\note{
-Instrument used: Kipp SMP3 smart pyranometer, factory calibrated, mounted 
+
+These data are part of a much larger data set (Aphalo, 2023).
 on tripod at approximately 2 m height. Data collected with a Campbell
 Scientific CR6 datalogger. Wavelength sensitivity range of the pyranometer
 is 300 nm to 2800 nm. Location: Viikki campus of the University of Helsinki.
-Coordinates: 60.226803 N, 25.019205 E.
+}
+\examples{
+colnames(irrad_Kipp.data)
+nrow(irrad_Kipp.data)
+range(irrad_Kipp.data$time_EET)
+where_measured(irrad_Kipp.data)
+how_measured(irrad_Kipp.data)
+what_measured(irrad_Kipp.data)
+comment(irrad_Kipp.data)
+  
 }
 \references{
+Aphalo, Pedro J. (2023) High frequency weather data for Viikki, Helsinki, 
+Finland. \doi{10.17605/OSF.IO/E4VAU}.
+
 \url{https://www.kippzonen.com/}
 }
 \keyword{datasets}

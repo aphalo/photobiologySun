@@ -1,0 +1,93 @@
+---
+title: "Additional daylight data"
+subtitle: "Package 'photobiologySun' `r packageVersion('photobiologySun')` "
+author: "Pedro J. Aphalo"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: yes
+vignette: >
+  %\VignetteIndexEntry{Additional daylight data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(fig.width=8, 
+                      fig.height=4,  
+                      collapse = TRUE,
+                      comment = "#>"
+)
+```
+
+```{r, message=FALSE}
+library(photobiology)
+library(photobiologyWavebands)
+library(photobiologyInOut)
+library(photobiologySun)
+library(lubridate)
+library(ggspectra)
+
+eval_plots <- requireNamespace("ggspectra", quietly = TRUE)
+if (eval_plots) {
+  library(ggspectra)
+  theme_set(theme_bw())
+}
+```
+
+## High frequency irradiance data
+
+The irradiance data in object `four_days_1min.data` are only four days out of several years of data. The whole data set can be downloaded at \url{https://osf.io/e4vau/}.
+
+At the moment I do not know how to retrieve the download URL programmatically.  Files are large, so in many cases it will be necessary to increase the value of the `timeout` R option temporarily to several minutes from its default of 60 s.
+
+If the download timeouts, a smaller and corrupted file is saved. The code below downloads the file once, in the case of a truncated or corrupted file a new
+download requires the local file to be deleted.
+
+```{r}
+old.timeout <- options(timeout = 180L)
+if (!file.exists("Viikki_1min_2023.rda")) {
+  download.file("https://osf.io/download/3rbd9/",
+                destfile = "Viikki_1min_2023.rda",
+                cacheOK = TRUE,
+                mode = "wb")
+}
+options(old.timeout)
+```
+```{r}
+load("Viikki_1min_2023.rda")
+class(Viikki_1min_2023_Version_1.0.tb)
+ncol(Viikki_1min_2023_Version_1.0.tb)
+nrow(Viikki_1min_2023_Version_1.0.tb)
+```
+
+```{r}
+range(Viikki_1min_2023_Version_1.0.tb$time)
+```
+```{r}
+cat(colnames(Viikki_1min_2023_Version_1.0.tb), sep = "\n")
+```
+
+```{r}
+cat(comment(Viikki_1min_2023_Version_1.0.tb))
+```
+
+```{r}
+print(object.size(Viikki_1min_2023_Version_1.0.tb), 
+      standard = "SI", units = "MB")
+```
+Given the size of the object, it is best to subset rows and select columns that are of interest before plotting or computing summaries from the data set.
+
+```{r, eval=eval_plots}
+subset(Viikki_1min_2023_Version_1.0.tb,
+       subset = time >= ymd_hms("2023-6-21 00:00:00") &
+         time < ymd_hms("2023-6-22 00:00:00"),
+       select = c(solar_time, PAR_umol)) |>
+  ggplot(aes(solar_time, PAR_umol)) +
+  geom_line()
+```
+
+```{r}
+unlink("Viikki_1min_2023.rda")
+```
+

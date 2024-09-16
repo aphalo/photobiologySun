@@ -30,7 +30,7 @@ The variables are as follows:
 The data set includes spectra for day-time, not 24 h.
 }
 \note{
-The simualtion methods has been described in Lindfors et al. (2009).
+The simulation methods has been described in Lindfors et al. (2009).
 }
 \examples{
 e_irrad(sun_hourly_ozone.spct)
@@ -44,6 +44,6 @@ Reconstruction of Solar Spectral Surface UV Irradiances Using Radiative
 Transfer Simulations. Photochemistry and Photobiology, 85: 1233-1239
 }
 \author{
-Anders K. Lindfors (radiation transfer modelling)
+Anders K. Lindfors (radiation transfer modelling).
 }
 \keyword{datasets}

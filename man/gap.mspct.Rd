@@ -23,8 +23,11 @@ A dataset containing a sequence of 72 spectra measured with an
   calibration data by Lasse Ylianttila (STUK, Helsinki, Finland).
 }
 \details{
-\itemize{ \item w.length (nm), range 293 to 800 nm. \item s.e.irrad
-  (W m-2 nm-1) }
+The variables are as follows: 
+\itemize{ 
+\item w.length (nm), range 293 to 800 nm. 
+\item s.e.irrad (W m-2 nm-1)
+}
 }
 \examples{
 length(gap.mspct)
