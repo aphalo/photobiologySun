@@ -119,6 +119,19 @@ subset(Viikki_1min_2023_Version_1.0.tb,
   geom_line()
 ```
 
+```{r}
+subset(Viikki_1min_2023_Version_1.0.tb,
+       subset = time >= ymd_hms("2023-6-21 00:00:00") &
+         time < ymd_hms("2023-6-22 00:00:00"),
+       select = c(solar_time, global_watt)) -> one_day.tb
+
+one_day.tb[["global_watt"]] <- 
+  ifelse(one_day.tb[["global_watt"]] < 0, 0, one_day.tb[["global_watt"]])
+
+daily_MJ_on_site <- sum(one_day.tb[["global_watt"]]) * 60 * 1e-6 # MJ m-2 d-1
+daily_MJ_on_site
+```
+
 ```{r, eval=eval_plots}
 subset(Viikki_1min_2023_Version_1.0.tb,
        subset = time >= ymd_hms("2023-6-21 00:00:00") &
@@ -127,7 +140,7 @@ subset(Viikki_1min_2023_Version_1.0.tb,
   ggplot(aes(solar_time, global_watt)) +
   geom_line() +
   expand_limits(y = 900) +
-    labs(y = expression("Global radiation "*(W~m^{-2})),
+  labs(y = expression("Global radiation "*(W~m^{-2})),
        x = "Solar time (h)")
 ```
 
@@ -165,7 +178,7 @@ kumpula.global_watt.tb <-
   get_power(community = "ag",
             pars = c("ALLSKY_SFC_SW_DWN", "CLRSKY_SFC_SW_DWN", "ALLSKY_SFC_PAR_TOT", "CLRSKY_SFC_PAR_TOT"), 
             temporal_api = "hourly",
-            lonlat = c(60.2, 25.0), # Kumpula, Helsinki, Finland
+            lonlat = c(25.01673, 60.2253), # Viikki, Helsinki, Finland
             dates = "2023-6-21",
             time_standard = "LST"
   )
@@ -174,8 +187,16 @@ colnames(kumpula.global_watt.tb)
 
 ```{r}
 str(pars.available$ALLSKY_SFC_SW_DWN)
-ggplot(kumpula.global_watt.tb, aes(HR, 
-                                   ALLSKY_SFC_SW_DWN * 1e6 / 3.6e3)) +
+kumpula.global_watt.tb[["global_watt"]] <- 
+  kumpula.global_watt.tb[["ALLSKY_SFC_SW_DWN"]] * 1e6 / 3.6e3
+
+daily_MJ_NASA_Power <- sum(kumpula.global_watt.tb[["global_watt"]]) * 3600 * 1e-6 # MJ m-2 d-1
+daily_MJ_NASA_Power
+daily_MJ_NASA_Power / daily_MJ_on_site
+```
+
+```{r}
+ggplot(kumpula.global_watt.tb, aes(HR, global_watt)) +
   expand_limits(y = 900) +
   geom_line() +
     labs(y = expression("Global radiation "*(W~m^{-2})),
@@ -191,6 +212,72 @@ ggplot(kumpula.global_watt.tb, aes(HR,
        x = "Solar time (h)")
 ```
 
+
+## EUMETSAT CAMS radiation service
+
+Data from the [EUMETSAT CAMS radiation service](https://ads-beta.atmosphere.copernicus.eu/datasets/cams-solar-radiation-timeseries?tab=overview)
+can be downloaded interactively or using API calls.
+The global radiation data available through this service is rather similar
+to that in NASA Power. However, one important difference is that data are
+natively at 1 min intervals in the time series, although also available 
+for download integrated over longer time periods. Data are available both in .CSV (using
+English conventions for separators and decimal mark) and in netDCF format. To be
+able to download data, a free account should be created. For this example
+I downloaded the data interactively.
+
+```{r}
+library(tidync)
+```
+
+```{r}
+Viikki_CAMS.tnc <- tidync("Viikki-CAMS-solar-radiation-1min.nc")
+Viikki_CAMS.tnc
+```
+Function `hyper_dims()` returns a description of the grid for which observations
+are available.
+
+```{r}
+hyper_dims(Viikki_CAMS.tnc)
+
+```
+
+Function `hyper_vars()` returns a description of the observations or variables
+available at each grid point.
+
+```{r}
+hyper_vars(Viikki_CAMS.tnc)
+```
+
+Function `hyper_tibble()` extracts a subset of the data into a tibble in long (or
+"tidy") format. The selection of the grid point can be done in the same operation. 
+A pipe is used to add the decoded dates, using the pipe operator
+(|>) and methods from ‘dplyr’. The decoding of
+dates is done using functions from package ‘lubridate’.
+
+```{r}
+Viikki_CAMS.tb <- hyper_tibble(Viikki_CAMS.tnc) 
+Viikki_CAMS.tb[["solar.time"]] <- 
+  with(Viikki_CAMS.tb, tst_hour + tst_minute / 60 + tst_second / 3600)
+Viikki_CAMS.tb[["global.watt"]] <- 
+  with(Viikki_CAMS.tb, GHI * 60)
+```
+
+
+```{r}
+daily_MJ_CAMS <- sum(Viikki_CAMS.tb[["global.watt"]]) * 60 * 1e-6 # MJ m-2 d-1
+daily_MJ_CAMS
+daily_MJ_CAMS / daily_MJ_on_site
+```
+
+```{r}
+Viikki_CAMS.tb |>
+  subset(select = c(solar.time, global.watt)) |>
+  ggplot(aes(solar.time, global.watt)) +
+  geom_line() +
+  expand_limits(y = 900) +
+  labs(y = expression("Global radiation "*(W~m^{-2})),
+       x = "Solar time (h)")
+```
 
 ## Interpolation functions for diffuse fraction
 

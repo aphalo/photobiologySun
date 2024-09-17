@@ -4,4 +4,6 @@
 vignettes/*.html
 vignettes/*.R
 
-vignettes/articles/Viikki_1min_2023.rda
+vignettes/articles/*.rda
+
+vignettes/articles/*.nc
