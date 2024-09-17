@@ -215,15 +215,19 @@ ggplot(kumpula.global_watt.tb, aes(HR,
 
 ## EUMETSAT CAMS radiation service
 
-Data from the [EUMETSAT CAMS radiation service](https://ads-beta.atmosphere.copernicus.eu/datasets/cams-solar-radiation-timeseries?tab=overview)
-can be downloaded interactively or using API calls.
-The global radiation data available through this service is rather similar
-to that in NASA Power. However, one important difference is that data are
-natively at 1 min intervals in the time series, although also available 
-for download integrated over longer time periods. Data are available both in .CSV (using
-English conventions for separators and decimal mark) and in netDCF format. To be
-able to download data, a free account should be created. For this example
-I downloaded the data interactively.
+Data from the [EUMETSAT CAMS radiation
+service](https://ads-beta.atmosphere.copernicus.eu/datasets/cams-solar-radiation-timeseries?tab=overview)
+can be downloaded interactively or using API calls. The global radiation data
+available through this service is rather similar to that in NASA Power. However,
+one important difference is that data are natively at 1 min intervals in the
+time series, although also available for download integrated over longer time
+periods. Data are available both in .CSV (using English conventions for
+separators and decimal mark) and in netDCF format. To be able to download data,
+a free account should be created. For this example I downloaded the data
+interactively as a netCDF file. The maximum number of queries per day and user
+is enforced to 100. A single query can include many grid points and times. For
+this example I downloaded data for the same day as in the examples above, with
+a 1 min time resolution.
 
 ```{r}
 library(tidync)
@@ -262,12 +266,19 @@ Viikki_CAMS.tb[["global.watt"]] <-
   with(Viikki_CAMS.tb, GHI * 60)
 ```
 
+We can calculate the daily global radiation and compare it to that measured on
+site. The difference of less than 3% is well within the calibration tolerance
+of the pyranometer used.
 
 ```{r}
 daily_MJ_CAMS <- sum(Viikki_CAMS.tb[["global.watt"]]) * 60 * 1e-6 # MJ m-2 d-1
 daily_MJ_CAMS
 daily_MJ_CAMS / daily_MJ_on_site
 ```
+The time-course matches closely that measured on-site, with clouds near 5:00 
+local solar time. This is an incredibly good match for a satellite-based
+estimate to a ISO 9060 spectrally flat **Class C** pyranometer, designed for
+routine measurements.
 
 ```{r}
 Viikki_CAMS.tb |>
@@ -464,21 +475,47 @@ ggplot(AM.df, aes(SEA, AM)) +
   expand_limits(y = 0)
 ``` 
 
-## Additional simulated spectral data
+## E-OBS gridded surface measurements
+
+The [E-OBS](https://surfobs.climate.copernicus.eu/dataaccess/access_eobs.php)
+of daily data from weather stations across Europe includes mean daily global
+radiation since 1950. As measurements are sparser than for variables like
+temperature in some regions the uncertainty of the spatial interpolation is
+significant and larger than for other more frequently measured variables.
+
+The data can be downloaded in netCDF format, and read similarly as described 
+above for CAMS radiation data.
+
+## Generating simulated spectral data
 
 Package
 ['photobiologyInOut'](https://docs.r4photobiology.info/photobiologyInOut)
 supports the import of irradiance and spectral irradiance data from various file
 formats as well as direct calls to the Quick TUV calculator. Data similar to
 those in `sun_elevation.spct` used in the section above, for other conditions
-or variation in other variables can be, thus, easily obtained if needed.
+or variation in other variables can be, thus, easily obtained if needed. For
+running fewer than 100 simulations per day most convenient is to use functions
+`qtuv_s.e.irrad()` or `qtuv_m_s.e.irrad()` from R package ['photobiologyInOut'](https://docs.r4photobiology.info/photobiologyInOut).
+
+It is also possible, and necessary for more tha 100 simulated spectra per day,
+to install TUV locally and import the results of simulations
+into R with functions `read_tuv_usrout()` or `read_tuv_usrout2mspct()` from package ['photobiologyInOut'](https://docs.r4photobiology.info/photobiologyInOut). 
+
+The same is true for libradtran,
+which should also be run locally and the output imported into R with functions
+`read_uvspec_disort()` or `read_uvspec_disort_vesa()` from package ['photobiologyInOut'](https://docs.r4photobiology.info/photobiologyInOut).
 
 ## References
 
 Aphalo, Pedro J. (2023) _High frequency weather data for Viikki, Helsinki, 
 Finland._ OSF, \doi{10.17605/OSF.IO/E4VAU}.
 
+Qu, Z., Oumbe, A., Blanc, P., Espinar, B., Gesell, G., Gschwind, B., Klüser, L., Lefèvre, M., Saboret, L., Schroedter-Homscheidt, M., and Wald L. (2017) _Fast radiative transfer parameterisation for assessing the surface solar irradiance: The Heliosat-4 method_, Meteorol. Z., 26, 33-57, doi: 10.1127/metz/2016/0781.
+
 Madronich, Sasha (n.d.) _Tropospheric Ultraviolet and Visible (TUV) Radiation Model._
 [https://www2.acom.ucar.edu/modeling/](https://www2.acom.ucar.edu/modeling/tropospheric-ultraviolet-and-visible-tuv-radiation-model).
 
 Madronich, Sasha, and Siri Flocke (1999), The role of solar radiation in atmospheric chemistry, in Handbook of Environmental Chemistry, edited by P. Boule, pp. 1-26, Springer-Verlag, Heidelberg.
+
+Schroedter-Homscheidt, M., Azam, F., Betcke, J., Hanrieder, N., Lefèvre, M., Saboret, L., Saint-Drenan, Y.-M. (2022) _Surface solar irradiation retrieval from MSG/SEVIRI based on APOLLO Next Generation and HELIOSAT-4 methods_, Contrib. Atm. Sci./Meteorol. Z., doi:10.1127/metz/2022/1132.
+
