@@ -119,6 +119,18 @@ subset(Viikki_1min_2023_Version_1.0.tb,
   geom_line()
 ```
 
+```{r, eval=eval_plots}
+subset(Viikki_1min_2023_Version_1.0.tb,
+       subset = time >= ymd_hms("2023-6-21 00:00:00") &
+         time < ymd_hms("2023-6-22 00:00:00"),
+       select = c(solar_time, global_watt)) |>
+  ggplot(aes(solar_time, global_watt)) +
+  geom_line() +
+  expand_limits(y = 900) +
+    labs(y = expression("Global radiation "*(W~m^{-2})),
+       x = "Solar time (h)")
+```
+
 If we do no longer need the downloaded file, it can be deleted running the code
 below (here not run).
 
@@ -134,6 +146,51 @@ with daily spectral data for solar radiation at the top of the atmosphere;
 [EUMETSAT CM SAF](https://www.cmsaf.eu/EN/Overview/OurProducts/Surface_Radiation_Albedo/Surface_Radiation_Products_node.html) includes surface radiation products for climatology but no real-time data;
 [EUMETSAT CAMS](https://atmosphere.copernicus.eu/) provides global radiation and its components with a delay
 of 2 d with coverage of Europe and nearby regions (see R package 'camsRad'), data accessible through [SoDa](https://www.soda-pro.com/web-services/radiation/cams-radiation-service).
+
+## NASA Power data
+
+Data available through [NASA Power](https://power.larc.nasa.gov/) are mainly
+intended for estimates of renewable energy generation, but also include some
+meteorological data. The API supports arbitrary geographic coordinates as
+input.
+
+```{r}
+library(nasapower)
+pars.available <- query_parameters(community = "ag", temporal_api = "hourly")
+str(pars.available, max.level = 1)
+```
+
+```{r}
+kumpula.global_watt.tb <-
+  get_power(community = "ag",
+            pars = c("ALLSKY_SFC_SW_DWN", "CLRSKY_SFC_SW_DWN", "ALLSKY_SFC_PAR_TOT", "CLRSKY_SFC_PAR_TOT"), 
+            temporal_api = "hourly",
+            lonlat = c(60.2, 25.0), # Kumpula, Helsinki, Finland
+            dates = "2023-6-21",
+            time_standard = "LST"
+  )
+colnames(kumpula.global_watt.tb)
+```
+
+```{r}
+str(pars.available$ALLSKY_SFC_SW_DWN)
+ggplot(kumpula.global_watt.tb, aes(HR, 
+                                   ALLSKY_SFC_SW_DWN * 1e6 / 3.6e3)) +
+  expand_limits(y = 900) +
+  geom_line() +
+    labs(y = expression("Global radiation "*(W~m^{-2})),
+       x = "Solar time (h)")
+```
+
+```{r}
+str(pars.available$ALLSKY_SFC_PAR_TOT)
+ggplot(kumpula.global_watt.tb, aes(HR, 
+                                   ALLSKY_SFC_PAR_TOT)) +
+  geom_line() +
+    labs(y = expression("PhR "*(W~m^{-2})),
+       x = "Solar time (h)")
+```
+
 
 ## Interpolation functions for diffuse fraction
 
