@@ -1,0 +1,340 @@
+---
+title: "Advanced Examples"
+subtitle: "Package 'photobiologySun' `r packageVersion('photobiologySun')` "
+author: "Pedro J. Aphalo"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: yes
+vignette: >
+  %\VignetteIndexEntry{Advanced Examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(fig.width=8, 
+                      fig.height=4,  
+                      collapse = TRUE,
+                      comment = "#>")
+```
+
+```{r, message=FALSE}
+library(photobiology)
+library(photobiologyWavebands)
+library(photobiologyInOut)
+library(photobiologySun)
+library(lubridate)
+library(ggspectra)
+
+eval_plots <- requireNamespace("ggspectra", quietly = TRUE)
+if (eval_plots) {
+  library(ggspectra)
+  theme_set(theme_bw())
+}
+```
+## Introduction
+
+This article is included in the on-line documentation, but not in the package
+distribution, as doing its rendering a large file is downloaded. It also 
+requires additional R packages to be installed.
+
+## High frequency irradiance data
+
+The irradiance data in object `four_days_1min.data` are only for four days out
+of a time-series of data started in 2017 and still continuing (Aphalo, 2023).
+The whole data set can be downloaded at 
+[doi:10.17605/OSF.IO/E4VAU](https://doi.org/10.17605/OSF.IO/E4VAU) or 
+[https://osf.io/e4vau/](https://osf.io/e4vau/). Data logged
+at 1 min intervals or at 1 h intervals are available. Objects `ppfd_LICOR.data`,
+`ppfd_BF.data` and `irrad_Kipp.data` contain earlier data from the same weather
+station for a period of 17 days.
+
+At the moment I do not know how to retrieve the download URL of the individual
+data files programmatically. It can be found through the web interface, or the
+files can be manually downloaded through this same interface. The example in 
+this section does the file download directly in R.
+
+Files are large, so in many cases it will be necessary to increase the value of
+the `timeout` R option temporarily to several minutes from its default of 60 s.
+
+When the download time-outs before completion, a smaller and corrupted file is
+saved to disk. The code below downloads the file only once. In the case of a
+truncated or corrupted file a new download requires the local file to be
+deleted.
+
+```{r}
+old.timeout <- options(timeout = 180L)
+if (!file.exists("Viikki_1min_2023.rda")) {
+  download.file("https://osf.io/download/3rbd9/",
+                destfile = "Viikki_1min_2023.rda",
+                cacheOK = TRUE,
+                mode = "wb")
+}
+options(old.timeout)
+```
+
+We can now load the file into the R workspace.
+
+```{r}
+load("Viikki_1min_2023.rda")
+class(Viikki_1min_2023_Version_1.0.tb)
+ncol(Viikki_1min_2023_Version_1.0.tb)
+nrow(Viikki_1min_2023_Version_1.0.tb)
+```
+
+The file contains data for one year.
+
+```{r}
+range(Viikki_1min_2023_Version_1.0.tb$time)
+```
+The file contains in addition to solar radiation, data for other weather
+variables, both measured and derived by calculation.
+
+```{r}
+cat(colnames(Viikki_1min_2023_Version_1.0.tb), sep = "\n")
+```
+
+```{r}
+cat(comment(Viikki_1min_2023_Version_1.0.tb))
+```
+
+```{r}
+print(object.size(Viikki_1min_2023_Version_1.0.tb), 
+      standard = "SI", units = "MB")
+```
+
+Given the size of the object, it is best to subset rows and select columns that
+are of interest before plotting or computing summaries from the data set. This
+is specially important for 'ggplot2' as a copy of the argument passed to `data`
+is added to the ggplot (`"gg"`) object. Here we plot data for a single day,
+against local solar time.
+
+```{r, eval=eval_plots}
+subset(Viikki_1min_2023_Version_1.0.tb,
+       subset = time >= ymd_hms("2023-6-21 00:00:00") &
+         time < ymd_hms("2023-6-22 00:00:00"),
+       select = c(solar_time, PAR_umol)) |>
+  ggplot(aes(solar_time, PAR_umol)) +
+  geom_line()
+```
+
+If we do no longer need the downloaded file, it can be deleted running the code
+below (here not run).
+
+```{r, eval=FALSE}
+unlink("Viikki_1min_2023.rda")
+```
+
+Other sources of irradiance data include:
+[NASA Power](https://power.larc.nasa.gov/) (see R packages 'nasapower' and
+'photobiologyInOut'), with
+worldwide coverage at ground level; [SORCE](https://lasp.colorado.edu/sorce/data/ssi-data/),
+with daily spectral data for solar radiation at the top of the atmosphere;
+[EUMETSAT CM SAF](https://www.cmsaf.eu/EN/Overview/OurProducts/Surface_Radiation_Albedo/Surface_Radiation_Products_node.html) includes surface radiation products for climatology but no real-time data;
+[EUMETSAT CAMS](https://atmosphere.copernicus.eu/) provides global radiation and its components with a delay
+of 2 d with coverage of Europe and nearby regions (see R package 'camsRad'), data accessible through [SoDa](https://www.soda-pro.com/web-services/radiation/cams-radiation-service).
+
+## Interpolation functions for diffuse fraction
+
+In this section we will use the example spectral irradiance data in 
+`sun_elevation.spct` obtained as a simulation with the TUV model under clear
+sky conditions. We will compute the diffuse fraction for different regions
+of the spectrum and construct interpolation functions for them.
+
+We can plot all the spectra included in `sun_elevation.spct` for 
+`r length(levels(sun_elevation.spct$sun.elevation))` different sun elevation 
+angles.
+
+```{r}
+autoplot(sun_elevation.spct, 
+         annotations = c("-", "peaks"))
+```
+
+
+We can convert the `source_spct` object into a `source_mspct` to make easier
+the extraction of individual spectra.
+
+```{r}
+sun_elevation.mspct <- subset2mspct(sun_elevation.spct, drop.idx = FALSE)
+```
+
+Below we plot the spectrum for a sun elevation angle of 45 degrees.
+
+```{r}
+autoplot(sun_elevation.mspct[["tuv-45"]], 
+         annotations = c("-", "peaks"))
+```
+We can also plot them as _photon irradiances_.
+
+```{r}
+autoplot(sun_elevation.mspct[["tuv-45"]], 
+         annotations = c("-", "peaks"), 
+         unit.out = "photon")
+```
+
+In the next plot, the black line describes total spectral irradiance, with the sky blue area showing the diffuse component and the orange area the direct component. The diffuse or scattered light comes from the sky after being scattered in the atmosphere while direct radiation arrives directly from the sun without being scattered in the way.
+
+```{r}
+ggplot(sun_elevation.mspct[["tuv-45"]]) +
+  geom_spct(fill = "skyblue", colour = "black") +
+  geom_spct(aes(y = s.e.irrad.dir), fill = "orange") +
+  scale_x_wl_continuous() +
+  scale_y_s.e.irrad_continuous()
+```
+
+```{r, message = FALSE, warning = FALSE}
+# each spectrum contains three columns with spectral data that we separate
+sun_elevation_tot.mspct <- source_mspct()
+sun_elevation_diff.mspct <- source_mspct()
+sun_elevation_dir.mspct <- source_mspct()
+for (n in names(sun_elevation.mspct)) {
+  sun_elevation_tot.mspct[[n]] <-
+    sun_elevation.mspct[[n]][ , c("w.length", "s.e.irrad")]
+  sun_elevation_diff.mspct[[n]] <-
+    with(sun_elevation.mspct[[n]], 
+         source_spct(w.length = w.length, 
+                     s.e.irrad = s.e.irrad.diff.down))
+  sun_elevation_dir.mspct[[n]] <-
+    with(sun_elevation.mspct[[n]], 
+         source_spct(w.length = w.length, 
+                     s.e.irrad = s.e.irrad.dir))
+}
+```
+
+Compute irradiances and the diffuse fraction for different SZAs.
+
+```{r}
+wavebands <- c(list(PAR = PAR()), Plant_bands("sensory"))
+wbands_tot.tb <- 
+  q_irrad(sun_elevation_tot.mspct, wavebands, scale.factor = 1e6)
+wbands_dir.tb <- 
+  q_irrad(sun_elevation_dir.mspct, wavebands, scale.factor = 1e6)
+wbands_diff.tb <- 
+  q_irrad(sun_elevation_diff.mspct, wavebands, scale.factor = 1e6)
+
+wbands.tb <-
+  data.frame(
+    SZA = as.numeric(gsub("tuv-", "", wbands_tot.tb$spct.idx)),
+    SEA = 90 - as.numeric(gsub("tuv-", "", wbands_tot.tb$spct.idx))
+  )
+
+for (col in setdiff(colnames(wbands_tot.tb), "spct.idx")) {
+  wbands.tb[[paste(col, "tot", sep = ".")]] <- wbands_tot.tb[[col]]
+  wbands.tb[[paste(col, "dir", sep = ".")]] <- wbands_dir.tb[[col]]
+  wbands.tb[[paste(col, "diff", sep = ".")]] <- wbands_diff.tb[[col]]
+  wbands.tb[[paste(col, "diff_fr", sep = ".")]] <- 
+    wbands_diff.tb[[col]] / wbands_tot.tb[[col]]
+}
+
+# shorten column names
+colnames(wbands.tb) <- 
+  gsub("Q_]|Q_|\\.ISO|\\.CIE|\\.Sellaro|\\.Smith20", "", colnames(wbands.tb))
+
+colnames(wbands.tb) # irradiances in umol m-2 s-1
+```
+
+next, we plot of PAR and UV photon irradiances, normalized to sun at the zenith, against solar elevation angle. The proportion of UV-B and to a lesser extent UV-A2 radiation is smaller when the sun is lower above the horizon. 
+
+```{r}
+ggplot(wbands.tb, aes(x = SEA)) +
+  geom_line(aes(y = PAR.tot / max(PAR.tot)), colour = "orange") +
+  geom_line(aes(y = UVA1.tot / max(UVA1.tot)), colour = "violet") +
+  geom_line(aes(y = UVA2.tot / max(UVA2.tot)), colour = "purple") +
+  geom_line(aes(y = UVB.tot / max(UVB.tot)), colour = "black") +
+  expand_limits(y = 0) +
+  labs(x = "Sun elevation angle (degrees)",
+       y = expression("Photon irradiance, "*italic(Q)~~("rel. units")))
+```
+
+In this example I was interested in the diffuse fraction. However, splines can be fitted to any of the components, if we desire to estimate new values in-between observed ones.
+
+```{r}
+# We fit splines to the diffuse fraction obtaining functions 
+# that can be used to obtain by interpolation estimates for 
+# any solar elevation.
+
+spl_funs.ls <- list()
+diff_fr_cols <- grep("diff[_]fr", colnames(wbands.tb), value = TRUE)
+
+for (col in diff_fr_cols) {
+  spl_funs.ls[[col]] <- splinefun(wbands.tb[["SEA"]], wbands.tb[[col]])
+}
+```
+
+Using PAR as example, we plot the spline as a line and the diffuse fraction 
+values from the TUV model as orange points. (Near an elevation angle of 0 
+degrees I run TUV simulations at closer values of sun elevation to ensure
+that the fitted interpolation spline does not overshoot a diffuse fraction
+of 1 (100%).)
+
+```{r}
+ggplot(wbands.tb, aes(SEA, PAR.diff_fr)) +
+  geom_hline(yintercept = c(0, 1), linetype = "dashed") +
+  stat_function(fun = spl_funs.ls[["PAR.diff_fr"]], xlim = c(-10, 90), colour = "black") +
+  geom_point(na.rm = TRUE, colour =  "orange") +
+  scale_x_continuous(name = "Solar elevation angle (degrees)",
+                     breaks = c(-10, 0, 15, 30, 45, 60, 75, 90)) +
+  scale_y_continuous(name = expression("Diffuse fraction, "*Q[s] / Q[t]~~(""/1)),
+       sec.axis = sec_axis(name = expression("Direct fraction, "*Q[d] / Q[t]~~(""/1)),
+       transform = function(x) {1 - x} )) +
+  expand_limits(y = 0)
+```
+
+We have created a named list of function definitions, each of them implementing
+a different interpolation spline.
+
+```{r}
+names(spl_funs.ls)
+```
+
+A plot using the splines functions for single "colour" wavebands can now be easily created using the spline functions, which work like a normal function.
+
+``` {r}
+ggplot(wbands.tb, aes(SEA)) +
+  geom_hline(yintercept = c(0, 1), linetype = "dashed") +
+  stat_function(fun = spl_funs.ls[["UVB.diff_fr"]], xlim = c(-10, 90), colour = "black") +
+  stat_function(fun = spl_funs.ls[["UVA2.diff_fr"]], xlim = c(-10, 90), colour = "purple") +
+  stat_function(fun = spl_funs.ls[["UVA1.diff_fr"]], xlim = c(-10, 90), colour = "violet") +
+  stat_function(fun = spl_funs.ls[["Blue.diff_fr"]], xlim = c(-10, 90), colour = "blue") +
+  stat_function(fun = spl_funs.ls[["Green.diff_fr"]], xlim = c(-10, 90), colour = "green") +
+  stat_function(fun = spl_funs.ls[["Red.diff_fr"]], xlim = c(-10, 90), colour = "red") +
+  scale_x_continuous(name = "Solar elevation angle (degrees)",
+                     breaks = c(-10, 0, 15, 30, 45, 60, 75, 90)) +
+  scale_y_continuous(name = expression("Diffuse fraction, "*Q[s] / Q[t]~~(""/1)),
+       sec.axis = sec_axis(name = expression("Direct fraction, "*Q[d] / Q[t]~~(""/1)),
+       transform = function(x) {1 - x} )) +
+  expand_limits(y = 0)
+```
+
+This plot shows clearly that solar radiation of longer wavelengths is less scattered and how scattering increases as the solar elevation decreases. Concurrently to the increased scattering, the equivalent length of the path through the atmosphere increases as shown below. The computation used here is based on an empirical formula that deviates from simple geometry.
+
+```{r}
+AM.df <- data.frame(SEA = 1:90,
+                    AM = relative_AM(1:90))
+ggplot(AM.df, aes(SEA, AM)) +
+  geom_line() +
+  scale_x_continuous(name = "Solar elevation angle (degrees)",
+                     breaks = c(-10, 0, 15, 30, 45, 60, 75, 90)) +
+  labs(y = "Relative air mass, AM") +
+  expand_limits(y = 0)
+``` 
+
+## Additional simulated spectral data
+
+Package
+['photobiologyInOut'](https://docs.r4photobiology.info/photobiologyInOut)
+supports the import of irradiance and spectral irradiance data from various file
+formats as well as direct calls to the Quick TUV calculator. Data similar to
+those in `sun_elevation.spct` used in the section above, for other conditions
+or variation in other variables can be, thus, easily obtained if needed.
+
+## References
+
+Aphalo, Pedro J. (2023) _High frequency weather data for Viikki, Helsinki, 
+Finland._ OSF, \doi{10.17605/OSF.IO/E4VAU}.
+
+Madronich, Sasha (n.d.) _Tropospheric Ultraviolet and Visible (TUV) Radiation Model._
+[https://www2.acom.ucar.edu/modeling/](https://www2.acom.ucar.edu/modeling/tropospheric-ultraviolet-and-visible-tuv-radiation-model).
+
+Madronich, Sasha, and Siri Flocke (1999), The role of solar radiation in atmospheric chemistry, in Handbook of Environmental Chemistry, edited by P. Boule, pp. 1-26, Springer-Verlag, Heidelberg.

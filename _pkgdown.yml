@@ -51,6 +51,8 @@ navbar:
         href: articles/r4p-introduction.html
       - text: '1 The data and their use'
         href: articles/user-guide.html
+      - text: 'Article: Advanced examples'
+        href: articles/advanced-examples.html
     tutorials:
       text: Resources
       menu:
