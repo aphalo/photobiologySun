@@ -66,7 +66,7 @@ deleted.
 ```{r}
 old.timeout <- options(timeout = 180L)
 if (!file.exists("Viikki_1min_2023.rda")) {
-  download.file("https://osf.io/download/3rbd9/",
+  download.file("https://osf.io/e4vau/files/osfstorage/6696d61dec07f9062bbdbaa4",
                 destfile = "Viikki_1min_2023.rda",
                 cacheOK = TRUE,
                 mode = "wb")
@@ -219,7 +219,7 @@ Data from the [EUMETSAT CAMS radiation
 service](https://ads-beta.atmosphere.copernicus.eu/datasets/cams-solar-radiation-timeseries?tab=overview)
 can be downloaded interactively or using API calls. The global radiation data
 available through this service is rather similar to that in NASA Power. However,
-one important difference is that data are natively at 1 min intervals in the
+one important difference is that data are natively at 15 min intervals in the
 time series, although also available for download integrated over longer time
 periods. Data are available both in .CSV (using English conventions for
 separators and decimal mark) and in netDCF format. To be able to download data,
@@ -228,6 +228,8 @@ interactively as a netCDF file. The maximum number of queries per day and user
 is enforced to 100. A single query can include many grid points and times. For
 this example I downloaded data for the same day as in the examples above, with
 a 1 min time resolution.
+
+R package 'camsRad' can be used to retrieve radiation data directly from R. A free account is needed to access the service.
 
 ```{r}
 library(tidync)

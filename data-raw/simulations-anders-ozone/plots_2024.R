@@ -1,7 +1,7 @@
 library(ggspectra)
 library(photobiologyWavebands)
 
-load("jokioinen-may-ozone-mspct.rda")
+load("data-raw/simulations-anders-ozone/jokioinen-may-ozone-mspct.rda")
 
 names(jokioinen_may_ozone.mspct)
 
