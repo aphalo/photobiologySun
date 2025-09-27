@@ -12,7 +12,7 @@ ppfd_LICOR.data
 }
 \description{
 Dataset containing mean, maximum, minimum and standard deviation values for
-photosynthetically active radiaition expresed as photon irradiance. Values
+photosynthetically active radiation expressed as photon irradiance. Values
 are summaries of 12 consecutive readings acquired once every 5 s. The data
 set covers 17 consecutive days.
 }
@@ -28,10 +28,12 @@ The variables are as follows:
 }
 
 These data are part of a much larger data set (Aphalo, 2023).
-on tripod at approximately 2 m height. Data collected with a Campbell
-Scientific CR6 datalogger. Sensor connected through a LI-COR millivolt adaptor
-(604 ohm). Wavelength sensitivity range of the quantum sensor
-is 400 nm to 700 nm. Location: Viikki campus of the University of Helsinki.
+  Instrument used: LI-COR LI-190 quantum sensor,  mounted on permanent tripod
+  at approximately 2 m height. Data collected with a Campbell Scientific CR6
+  datalogger. Sensor connected through a LI-COR millivolt adaptor (604 ohm).
+  Wavelength sensitivity range of the quantum sensor is 400 nm to 700 nm.
+  Location: Viikki campus of the University of Helsinki. Coordinates:
+  60.226803 N, 25.019205 E.
 }
 \examples{
 colnames(ppfd_LICOR.data)

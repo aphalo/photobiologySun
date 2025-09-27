@@ -16,10 +16,11 @@
 #' }
 #' 
 #' @details These data are part of a much larger data set (Aphalo, 2023).
-#  Instrument used: Kipp SMP3 smart pyranometer, factory calibrated, mounted 
-#' on tripod at approximately 2 m height. Data collected with a Campbell
-#' Scientific CR6 datalogger. Wavelength sensitivity range of the pyranometer
-#' is 300 nm to 2800 nm. Location: Viikki campus of the University of Helsinki.
+#'   Instrument used: Kipp SMP3 smart pyranometer, factory calibrated, mounted
+#'   on permanent tripod at approximately 2 m height. Data collected with a
+#'   Campbell Scientific CR6 datalogger. Wavelength sensitivity range of the
+#'   pyranometer is 300 nm to 2800 nm. Location: Viikki campus of the University
+#'   of Helsinki. Coordinates: 60.226803 N, 25.019205 E.
 #' 
 #' @references  
 #' Aphalo, Pedro J. (2023) High frequency weather data for Viikki, Helsinki, 
@@ -45,7 +46,7 @@
 #' Ground level solar PAR photon irradiance (measured)
 #' 
 #' Dataset containing mean, maximum, minimum and standard deviation values for
-#' photosynthetically active radiaition expresed as photon irradiance. Values
+#' photosynthetically active radiation expressed as photon irradiance. Values
 #' are summaries of 12 consecutive readings acquired once every 5 s. The data
 #' set covers 17 consecutive days.
 #' 
@@ -60,11 +61,12 @@
 #' }
 #' 
 #' @details These data are part of a much larger data set (Aphalo, 2023).
-#  Instrument used: LI-COR LI-190 quantum sensor,  mounted 
-#' on tripod at approximately 2 m height. Data collected with a Campbell
-#' Scientific CR6 datalogger. Sensor connected through a LI-COR millivolt adaptor
-#' (604 ohm). Wavelength sensitivity range of the quantum sensor
-#' is 400 nm to 700 nm. Location: Viikki campus of the University of Helsinki.
+#'   Instrument used: LI-COR LI-190 quantum sensor,  mounted on permanent tripod
+#'   at approximately 2 m height. Data collected with a Campbell Scientific CR6
+#'   datalogger. Sensor connected through a LI-COR millivolt adaptor (604 ohm).
+#'   Wavelength sensitivity range of the quantum sensor is 400 nm to 700 nm.
+#'   Location: Viikki campus of the University of Helsinki. Coordinates:
+#'   60.226803 N, 25.019205 E.
 #' 
 #' @references  
 #' Aphalo, Pedro J. (2023) High frequency weather data for Viikki, Helsinki, 
@@ -91,7 +93,7 @@
 #' Ground level solar PAR photon irradiance, direct and diffuse (measured)
 #' 
 #' Dataset containing mean, maximum, minimum and standard deviation values for
-#' total, direct and difusse photosynthetically active radiation expresed as
+#' total, direct and diffuse photosynthetically active radiation expressed as
 #' photon irradiance. Values are summaries of 12 consecutive readings acquired
 #' once every 5 s. The data set covers 17 consecutive days.
 #' 
@@ -113,8 +115,10 @@
 #'   Instrument used: Delta-T BF5 "quantum sensor" , mounted on tripod at
 #'   approximately 2 m height. Data collected with a Campbell Scientific CR6
 #'   datalogger, using analogue outputs from the sensor. Wavelength sensitivity
-#'   range of the quantum sensor is 400 nm to 700 nm. Location: Viikki campus of
-#'   the University of Helsinki, Finland.
+#'   range of the quantum sensor is 400 nm to 700 nm, but response is not
+#'   proportional to energy quanta across wavelengths. Sensor calibrated in site
+#'   for sunlight. Location: Viikki campus of the University of Helsinki,
+#'   Finland. Coordinates: 60.226803 N, 25.019205 E.
 #' 
 #' @references  
 #' Aphalo, Pedro J. (2023) High frequency weather data for Viikki, Helsinki, 
@@ -168,7 +172,7 @@
 #' }
 #' 
 #' @details These data are part of a much larger data set (Aphalo, 2023).
-#    All broad-band sensors, mounted on tripod at approximately 2.5 m
+#    All broad-band sensors, mounted on fixed tripod at approximately 2.5 m
 #'   height. Data collected with a Campbell Scientific CR6 datalogger, using
 #'   analogue outputs from the sensors. Location: Viikki campus of the
 #'   University of Helsinki. Coordinates: 60.226803 N, 25.019205 E. Same data

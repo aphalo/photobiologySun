@@ -29,9 +29,11 @@ The variables are as follows:
 }
 
 These data are part of a much larger data set (Aphalo, 2023).
-on tripod at approximately 2 m height. Data collected with a Campbell
-Scientific CR6 datalogger. Wavelength sensitivity range of the pyranometer
-is 300 nm to 2800 nm. Location: Viikki campus of the University of Helsinki.
+  Instrument used: Kipp SMP3 smart pyranometer, factory calibrated, mounted
+  on permanent tripod at approximately 2 m height. Data collected with a
+  Campbell Scientific CR6 datalogger. Wavelength sensitivity range of the
+  pyranometer is 300 nm to 2800 nm. Location: Viikki campus of the University
+  of Helsinki. Coordinates: 60.226803 N, 25.019205 E.
 }
 \examples{
 colnames(irrad_Kipp.data)
