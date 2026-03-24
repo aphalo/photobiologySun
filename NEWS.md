@@ -1,3 +1,8 @@
+## photobiologySun 0.5.2
+
+* Rebuild `sun_reference.mspct` with updated script adding metadata.
+* Rebuild all data objects with 'photobiology' (0.14.2),
+
 ## photobiologySun 0.5.1
 
 * Add `sun_hourly_ozone.spct` with simulated spectral data for terrestrial

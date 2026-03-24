@@ -35,6 +35,9 @@ A summary of these data has been published in the article by Morales
 }
 \examples{
 e_irrad(sun_hourly_june.spct)
+cat(what_measured(sun_hourly_june.spct))
+when_measured(sun_hourly_june.spct)[[1]]
+where_measured(sun_hourly_june.spct)
 wl_range(sun_hourly_june.spct)
 getMultipleWl(sun_hourly_june.spct) # number of spectra
 

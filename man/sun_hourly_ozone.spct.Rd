@@ -34,6 +34,10 @@ The simulation methods has been described in Lindfors et al. (2009).
 }
 \examples{
 e_irrad(sun_hourly_ozone.spct)
+what_measured(sun_hourly_ozone.spct)
+when_measured(sun_hourly_ozone.spct)[[1]]
+where_measured(sun_hourly_ozone.spct)
+how_measured(sun_hourly_ozone.spct)
 wl_range(sun_hourly_ozone.spct)
 getMultipleWl(sun_hourly_ozone.spct) # number of spectra
 

@@ -32,6 +32,9 @@ The simualtion methods has been described in Lindfors et al. (2009).
 }
 \examples{
 e_irrad(sun_hourly_august.spct)
+cat(what_measured(sun_hourly_august.spct))
+when_measured(sun_hourly_august.spct)[[1]]
+where_measured(sun_hourly_august.spct)
 wl_range(sun_hourly_august.spct)
 getMultipleWl(sun_hourly_august.spct) # number of spectra
 

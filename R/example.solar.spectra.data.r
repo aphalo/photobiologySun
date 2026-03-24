@@ -28,6 +28,9 @@
 #'   
 #' @examples
 #' sun_may_morning.spct
+#' what_measured(sun_may_morning.spct)
+#' when_measured(sun_may_morning.spct)
+#' where_measured(sun_may_morning.spct)
 #' wl_range(sun_may_morning.spct)
 #' e_irrad(sun_may_morning.spct)
 #' 
@@ -74,6 +77,9 @@
 #'   
 #' @examples
 #' e_irrad(sun_hourly_june.spct)
+#' cat(what_measured(sun_hourly_june.spct))
+#' when_measured(sun_hourly_june.spct)[[1]]
+#' where_measured(sun_hourly_june.spct)
 #' wl_range(sun_hourly_june.spct)
 #' getMultipleWl(sun_hourly_june.spct) # number of spectra
 #' 
@@ -112,6 +118,9 @@
 #'   
 #' @examples
 #' e_irrad(sun_hourly_august.spct)
+#' cat(what_measured(sun_hourly_august.spct))
+#' when_measured(sun_hourly_august.spct)[[1]]
+#' where_measured(sun_hourly_august.spct)
 #' wl_range(sun_hourly_august.spct)
 #' getMultipleWl(sun_hourly_august.spct) # number of spectra
 #' 
@@ -152,6 +161,10 @@
 #'   
 #' @examples
 #' e_irrad(sun_hourly_ozone.spct)
+#' what_measured(sun_hourly_ozone.spct)
+#' when_measured(sun_hourly_ozone.spct)[[1]]
+#' where_measured(sun_hourly_ozone.spct)
+#' how_measured(sun_hourly_ozone.spct)
 #' wl_range(sun_hourly_ozone.spct)
 #' getMultipleWl(sun_hourly_ozone.spct) # number of spectra
 #' 
@@ -188,9 +201,10 @@
 #'   \code{source_spct} objects.
 #'   
 #' @examples
-#' length(gap.mspct)
-#' summary(gap.mspct)
+#' length(gap.mspct) # number of spectra
 #' e_irrad(gap.mspct, attr2tb = "when.measured")
+#' what_measured(gap.mspct)[1:2, ]
+#' when_measured(gap.mspct)[1:6, ]
 #'   
 "gap.mspct"
 
@@ -227,7 +241,10 @@
 #' @examples
 #' e_irrad(sun_elevation.spct)
 #' wl_range(sun_elevation.spct)
+#' what_measured(sun_elevation.spct)
+#' when_measured(sun_elevation.spct)[[1]]
 #' getMultipleWl(sun_elevation.spct) # number of spectra
+#' unique(sun_elevation.spct$sun.elevation)
 #' 
 "sun_elevation.spct"
 

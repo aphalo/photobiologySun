@@ -38,8 +38,10 @@ library(photobiologyWavebands)
 library(photobiologySun)
 library(lubridate)
 eval_plots <- requireNamespace("ggspectra", quietly = TRUE)
-if (eval_plots) library(ggspectra)
-theme_set(theme_bw())
+if (eval_plots) {
+  library(ggspectra)
+  theme_set(theme_bw())  
+}
 ```
 
 One collection of spectra, `sun_reference.mspct`, contains published reference solar spectra used in model simulations and for calculations. Another collection, `gap.mspct` contains a rapid sequence of spectra measured in a forest gap. Another two

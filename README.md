@@ -17,13 +17,15 @@ status](https://github.com/aphalo/photobiologySun/workflows/R-CMD-check/badge.sv
 
 Package ‘**photobiologySun**’ complements other packages in the [*R for
 photobiology* suite](https://www.r4photobiology.info/). It contains
-spectral data for daylight, including sunlight and shade light. Package
-‘photobiologySun’ also includes spectra measured or simulated for
-different times of the day, and reference spectra for solar radiation.
+spectral irradiance and irradiance data for daylight, including sunlight
+and shade light. Package ‘photobiologySun’ also includes spectra
+measured or simulated for different times of the day, sun elevation
+angles, atmospheric ozone column and ANSI and other reference spectra
+for solar radiation.
 
-This package contains only data. Data are stored as collections of
-spectra of class `source_mspct` from package ‘photobiology’, which is
-the core of the [*R for photobiology*
+This package contains only data and documentation. Data are stored as
+collections of spectra of class `source_mspct` from package
+‘photobiology’, which is the core of the [*R for photobiology*
 suite](https://www.r4photobiology.info/). Spectra can be easily plotted
 with functions and methods from package
 [‘ggspectra’](https://docs.r4photobiology.info/ggspectra/). The spectra
@@ -36,8 +38,12 @@ as is with base R functions.
 ## Examples
 
 ``` r
-library(ggspectra)
 library(photobiologySun)
+eval_plots <- requireNamespace("ggspectra", quietly = TRUE)
+if (eval_plots) {
+  library(ggspectra)
+  theme_set(theme_bw())  
+}
 ```
 
 How many spectra are contained in the collection of spectra `gap.mspct`?
@@ -48,29 +54,39 @@ length(gap.mspct)
 #> [1] 72
 ```
 
-What are their names?
+When where they measured?
 
 ``` r
-names(gap.mspct)
-#>  [1] "spct.01" "spct.02" "spct.03" "spct.04" "spct.05" "spct.06" "spct.07"
-#>  [8] "spct.08" "spct.09" "spct.10" "spct.11" "spct.12" "spct.13" "spct.14"
-#> [15] "spct.15" "spct.16" "spct.17" "spct.18" "spct.19" "spct.20" "spct.21"
-#> [22] "spct.22" "spct.23" "spct.24" "spct.25" "spct.26" "spct.27" "spct.28"
-#> [29] "spct.29" "spct.30" "spct.31" "spct.32" "spct.33" "spct.34" "spct.35"
-#> [36] "spct.36" "spct.37" "spct.38" "spct.39" "spct.40" "spct.41" "spct.42"
-#> [43] "spct.43" "spct.44" "spct.45" "spct.46" "spct.47" "spct.48" "spct.49"
-#> [50] "spct.50" "spct.51" "spct.52" "spct.53" "spct.54" "spct.55" "spct.56"
-#> [57] "spct.57" "spct.58" "spct.59" "spct.60" "spct.61" "spct.62" "spct.63"
-#> [64] "spct.64" "spct.65" "spct.66" "spct.67" "spct.68" "spct.69" "spct.70"
-#> [71] "spct.71" "spct.72"
+when_measured(gap.mspct)
+#> # A tibble: 72 × 2
+#>    spct.idx when.measured      
+#>    <fct>    <dttm>             
+#>  1 spct.01  2014-04-30 11:09:46
+#>  2 spct.02  2014-04-30 11:09:46
+#>  3 spct.03  2014-04-30 11:09:47
+#>  4 spct.04  2014-04-30 11:09:47
+#>  5 spct.05  2014-04-30 11:09:48
+#>  6 spct.06  2014-04-30 11:09:48
+#>  7 spct.07  2014-04-30 11:09:49
+#>  8 spct.08  2014-04-30 11:09:49
+#>  9 spct.09  2014-04-30 11:09:50
+#> 10 spct.10  2014-04-30 11:09:50
+#> # ℹ 62 more rows
 ```
 
-How many spectra are contained in the collection of spectra
+What are the spectra are contained in the collection of spectra
 `sun_reference.mspct`?
 
 ``` r
-length(sun_reference.mspct)
-#> [1] 5
+what_measured(sun_reference.mspct)
+#> # A tibble: 5 × 2
+#>   spct.idx         what.measured                                 
+#>   <fct>            <chr>                                         
+#> 1 ASTM.E490.AM0    AM0 extraterrestrial solar spectrum           
+#> 2 ASTM.G173.direct AM1.5 direct normal terrestrial solar spectrum
+#> 3 ASTM.G173.global AM1.5 global terrestrial solar spectrum       
+#> 4 Gueymard.AM0     AM0 extraterrestrial solar spectrum           
+#> 5 WMO.Wehrli.AM0   AM0 extraterrestrial solar spectrum
 ```
 
 What are their names? (The three “AM0” spectra are for the
@@ -110,8 +126,7 @@ The `autoplot()` methods from package ‘ggspectra’ can be used for
 plotting one or more spectra at a time.
 
 ``` r
-autoplot(gap.mspct[1:10], annotations = c("-", "peaks")) + 
-  theme_bw()
+autoplot(gap.mspct[1:10], annotations = c("-", "peaks"))
 ```
 
 ![](man/figures/README-unnamed-chunk-1-1.png)<!-- -->
@@ -152,16 +167,17 @@ HTML documentation is available at
 (<https://docs.r4photobiology.info/photobiologySun/>), including a *User
 Guide*.
 
-News on updates to the different packages of the ‘r4photobiology’ suite
-are regularly posted at (<https://www.r4photobiology.info/>).
+The [R for Photobiology web site](https://www.r4photobiology.info/)
+contains additional information and examples on the use of these and
+other packages in the suite.
 
 Two articles introduce the basic ideas behind the design of the suite
-and its use: Aphalo P. J. (2015)
-(<https://doi.org/10.19232/uv4pb.2015.1.14>) and Aphalo P. J. (2016)
-(<https://doi.org/10.19232/uv4pb.2016.1.15>).
+and its use: [Aphalo P. J.
+(2015)](https://doi.org/10.19232/uv4pb.2015.1.14) and [Aphalo P. J.
+(2016)](https://doi.org/10.19232/uv4pb.2016.1.15).
 
 A book is under preparation, and the draft is currently available at
-(<https://leanpub.com/r4photobiology/>).
+[Leanpub](https://leanpub.com/r4photobiology/).
 
 A handbook written before the suite was developed contains useful
 information on the quantification and manipulation of ultraviolet and
@@ -181,7 +197,8 @@ Pull requests, bug reports, and feature requests are welcome at
 ## Citation
 
 If you use this package to produce scientific or commercial
-publications, please cite according to:
+publications, please cite both the original data sources (see
+documentation) and this package as:
 
 ``` r
 citation("photobiologySun")
@@ -206,6 +223,6 @@ citation("photobiologySun")
 
 ## License
 
-© 2012-2024 Pedro J. Aphalo (<pedro.aphalo@helsinki.fi>). Released under
+© 2012-2026 Pedro J. Aphalo (<pedro.aphalo@helsinki.fi>). Released under
 the GPL, version 2 or greater. This software carries no warranty of any
 kind.

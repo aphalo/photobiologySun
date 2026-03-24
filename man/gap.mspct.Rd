@@ -30,9 +30,10 @@ The variables are as follows:
 }
 }
 \examples{
-length(gap.mspct)
-summary(gap.mspct)
+length(gap.mspct) # number of spectra
 e_irrad(gap.mspct, attr2tb = "when.measured")
+what_measured(gap.mspct)[1:2, ]
+when_measured(gap.mspct)[1:6, ]
   
 }
 \references{

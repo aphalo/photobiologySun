@@ -3,13 +3,35 @@
 #' Dataset containing wavelengths and tabulated values for spectral irradiance
 #' for the sun both above the terrestrial atmosphere and at ground level under
 #' clear sky. The different spectra in this collection are from ASTM G173
-#' standard.
+#' standard and other published sources.
 #'
-#' @note Please see the metadata in each spectrum. Metadata is stored in
-#'   attributes and can accessed with functions
-#'   \code{\link[photobiology]{getWhatMeasured}} and \code{\link{comment}}.
-#'
-#' @details \code{ASTM.E490.AM0} is the mean extraterrestrial solar spectrum,
+#' @details The effect of the pass of solar radiation depends on the elevation
+#'   angle of the sun above the horizon as it affects the distance light travels
+#'   through the atmosphere. This frequently expressed as equivalent air mass.
+#'   AM0 is used for extraterrestrial normal solar irradiance (its integral is
+#'   called the solar constant). AM1 represents the terrestrial solar spectrum
+#'   at sea level with the sun located at the zenith. AM1.5 is commonly used
+#'   as a reference suitable for mid-latitudes. The AM0 spectrum changes very
+#'   little with time, while AM1.5 being at ground level is dependent on the
+#'   composition of the atmosphere and affected by water vapour and ozone
+#'   concentrations as well as by particulate matter and ground surface 
+#'   optical properties.
+#'   
+#'   Irradiance describes a flux of energy onto a plane. The plane is usually
+#'   located horizontally and receives light from the sun (direct radiation) and
+#'   from the sky (diffuse radiation). Global radiation is the sum of direct and
+#'   diffuse. A variation is to quantity direct radiation separately from 
+#'   diffuse radiation on a plane normal to the direction of the sun, called
+#'   direct normal irradiance. Independently of the units used in the sources
+#'   of the data, all these data are stored with wavelengths expressed in
+#'   nanometres \eqn{(n)} and spectral energy irradiances 
+#'   \eqn{(W\,m^{-2}\,nm^{-1})}.
+#'   
+#'   The three different AM0 spectra differ mainly in the range of wavelengths
+#'   they cover. The two AM1.5 spectra are for simulations for typical
+#'   clear sky conditions at mid-latitudes and a sun elevation of 41.81 degrees.
+#' 
+#'   \code{ASTM.E490.AM0} is the mean extraterrestrial solar spectrum,
 #'   for air mass zero (AM0).
 #'
 #'   \code{Gueymard.AM0} is Gueymard's (2004) extraterrestrial solar spectrum,
@@ -26,6 +48,11 @@
 #'   \code{ASTM.G173.direct} is direct spectral irradiance for air mass 1.5
 #'   (AM1.5). Reference Spectrum Derived from SMARTS v. 2.9.2 for AM1.5. (solar
 #'   zenith angle 48.19)
+#'   
+#'   Metadata are stored as attributes in each of these spectral data objects
+#'   and can be accessed with methods
+#'   \code{\link[photobiology]{what_measured}()},
+#'   \code{\link[photobiology]{how_measured}()} and \code{\link{comment}()}.
 #'
 #' @source \emph{https://rredc.nrel.gov/solar/spectra/am1.5/} (no longer on-line).
 #'
@@ -35,7 +62,7 @@
 #' 
 #' Gueymard, C. A. (2004) The sun's total and spectral irradiance for solar 
 #' energy applications and solar radiation models. Solar Energy, 76, 423-453.
-#' <doi:10.1016/j.solener.2003.08.039>
+#' \doi{j.solener.2003.08.039}.
 #' 
 #' Wehrli, C. (1985) Extraterrestrial solar spectrum. Pub. No. 615, World 
 #' Radiation Center, Davos, Switzerland.
@@ -43,7 +70,7 @@
 #' @docType data
 #' @keywords datasets
 #'
-#' @format A \code{"source_mspct"} object containing 51 \code{"source_spct"}
+#' @format A \code{"source_mspct"} object containing 5 \code{"source_spct"}
 #'   objects.
 #'
 #'   In each of the member spectra, the variables are as follows: \itemize{
@@ -51,7 +78,8 @@
 #'
 #' @examples
 #'
-#' names(sun_reference.mspct)
+#' summary(sun_reference.mspct)
+#' what_measured(sun_reference.mspct)
 #' 
 "sun_reference.mspct"
 

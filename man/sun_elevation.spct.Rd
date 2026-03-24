@@ -30,7 +30,10 @@ The variables are as follows:
 \examples{
 e_irrad(sun_elevation.spct)
 wl_range(sun_elevation.spct)
+what_measured(sun_elevation.spct)
+when_measured(sun_elevation.spct)[[1]]
 getMultipleWl(sun_elevation.spct) # number of spectra
+unique(sun_elevation.spct$sun.elevation)
 
 }
 \references{

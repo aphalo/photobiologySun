@@ -32,8 +32,12 @@ knitr::opts_chunk$set(
 ```
 
 ```{r example-02, message=FALSE}
-library(ggspectra)
 library(photobiologySun)
+eval_plots <- requireNamespace("ggspectra", quietly = TRUE)
+if (eval_plots) {
+  library(ggspectra)
+  theme_set(theme_bw())  
+}
 ```
 
 How many spectra are contained in the collection of spectra `gap.mspct`? In this case the spectra are from a fast time series of measurements.
@@ -42,16 +46,16 @@ How many spectra are contained in the collection of spectra `gap.mspct`? In this
 length(gap.mspct)
 ```
 
-What are their names?
+When where they measured?
 
 ```{r example-03a}
-names(gap.mspct)
+when_measured(gap.mspct)
 ```
 
-How many spectra are contained in the collection of spectra `sun_reference.mspct`?
+What are the spectra are contained in the collection of spectra `sun_reference.mspct`?
 
 ```{r example-03d}
-length(sun_reference.mspct)
+what_measured(sun_reference.mspct)
 ```
 
 What are their names? (The three "AM0" spectra are for the extraterrestrial solar spectrum, AM0 = zero atmosphera. ASTM G173 corresponds to AM1.5 and frequently used in engineering.)
@@ -68,9 +72,8 @@ q_irrad(sun_hourly_august.spct, scale.factor = 1e6) # Q_Total: umol m-2 s-1
 
 The `autoplot()` methods from package 'ggspectra' can be used for plotting one or more spectra at a time.
 
-```{r}
-autoplot(gap.mspct[1:10], annotations = c("-", "peaks")) + 
-  theme_bw()
+```{r, eval=eval_plots}
+autoplot(gap.mspct[1:10], annotations = c("-", "peaks"))
 ```
 
 The classes of the objects used to store the spectral data are derived from `"data.frame"` making direct use of the data with functions and methods from base R and various packages easy.
@@ -102,12 +105,13 @@ devtools::install_github("aphalo/photobiologySun")
 
 HTML documentation is available at (https://docs.r4photobiology.info/photobiologySun/), including a _User Guide_.
 
-News on updates to the different packages of the 'r4photobiology' suite are regularly posted at (https://www.r4photobiology.info/).
+The [R for Photobiology web site](https://www.r4photobiology.info/) contains additional information and examples on the use of these and other packages in the suite.
 
 Two articles introduce the basic ideas behind the design of the suite and its use:
-Aphalo P. J. (2015) (https://doi.org/10.19232/uv4pb.2015.1.14) and Aphalo P. J. (2016)  (https://doi.org/10.19232/uv4pb.2016.1.15).
+[Aphalo P. J. (2015)](https://doi.org/10.19232/uv4pb.2015.1.14) and 
+[Aphalo P. J. (2016)](https://doi.org/10.19232/uv4pb.2016.1.15).
 
-A book is under preparation, and the draft is currently available at (https://leanpub.com/r4photobiology/).
+A book is under preparation, and the draft is currently available at [Leanpub](https://leanpub.com/r4photobiology/).
 
 A handbook written before the suite was developed contains useful information on the quantification and manipulation of ultraviolet and visible radiation:
 Aphalo, P. J., Albert, A., Björn, L. O., McLeod, A. R., Robson, T. M., & Rosenqvist, E. (Eds.) (2012) Beyond the Visible: A handbook of best practice in plant UV photobiology (1st ed., p. xxx + 174). Helsinki: University of Helsinki, Department of Biosciences, Division of Plant Biology. ISBN 978-952-10-8363-1 (PDF), 978-952-10-8362-4 (paperback). PDF file available from (https://hdl.handle.net/10138/37558).
@@ -118,7 +122,7 @@ Pull requests, bug reports, and feature requests are welcome at (https://github.
 
 ## Citation
 
-If you use this package to produce scientific or commercial publications, please cite according to:
+If you use this package to produce scientific or commercial publications, please cite both the original data sources (see documentation) and this package as:
 
 ```{r}
 citation("photobiologySun")
@@ -126,4 +130,4 @@ citation("photobiologySun")
 
 ## License
 
-© 2012-2024 Pedro J. Aphalo (pedro.aphalo@helsinki.fi). Released under the GPL, version 2 or greater. This software carries no warranty of any kind.
+© 2012-2026 Pedro J. Aphalo (pedro.aphalo@helsinki.fi). Released under the GPL, version 2 or greater. This software carries no warranty of any kind.

@@ -10,8 +10,10 @@ library(photobiologyWavebands)
 library(photobiologySun)
 library(lubridate)
 eval_plots <- requireNamespace("ggspectra", quietly = TRUE)
-if (eval_plots) library(ggspectra)
-theme_set(theme_bw())
+if (eval_plots) {
+  library(ggspectra)
+  theme_set(theme_bw())  
+}
 
 ## -----------------------------------------------------------------------------
 names(sun_reference.mspct)

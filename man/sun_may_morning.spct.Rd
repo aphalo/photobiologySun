@@ -33,6 +33,9 @@ Instrument used: Maya2000Pro scanning double monochromator
 }
 \examples{
 sun_may_morning.spct
+what_measured(sun_may_morning.spct)
+when_measured(sun_may_morning.spct)
+where_measured(sun_may_morning.spct)
 wl_range(sun_may_morning.spct)
 e_irrad(sun_may_morning.spct)
 
