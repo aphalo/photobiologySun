@@ -41,6 +41,11 @@ Useful links:
 \author{
 \strong{Maintainer}: Pedro J. Aphalo \email{pedro.aphalo@helsinki.fi} (\href{https://orcid.org/0000-0003-3385-972X}{ORCID}) [translator]
 
+Authors:
+\itemize{
+  \item Pedro J. Aphalo \email{pedro.aphalo@helsinki.fi} (\href{https://orcid.org/0000-0003-3385-972X}{ORCID}) [translator]
+}
+
 Other contributors:
 \itemize{
   \item T. Matthew Robson (\href{https://orcid.org/0000-0002-8631-796X}{ORCID}) [contributor]
